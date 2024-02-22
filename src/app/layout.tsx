@@ -21,11 +21,11 @@ export default function RootLayout({ children }: LayoutProps) {
     <html lang="en">
       <body className={inter.className}>
         <header>
-          {/* <Navbar /> */}
+          <Navbar />
         </header>
         {children}
         <main>
-        {/* <FillerComponent/> */}
+        <FillerComponent/>
         </main>
         <footer>
           <Footer/>
