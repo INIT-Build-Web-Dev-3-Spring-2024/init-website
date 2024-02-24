@@ -40,9 +40,11 @@ export default function Programs() {
                       className="rounded-s-none	max-[2560px]:object-top min-[320px]:object-left sm:object-left md:object-left  2xl:object-top"
                       alt={programData.title}
                       src={programData.image}
-                      layout="fill"
-                      objectFit="cover"
-                    />
+                      fill
+                      sizes="100vw"
+                      style={{
+                        objectFit: "cover"
+                      }} />
                   </div>
                 </a>
                 <div className="flex flex-grow flex-col p-5">
