@@ -51,7 +51,7 @@ export default function JobCard({ jobPostings, setJobPostings }: JobCardProps) {
   };
 
   // if (!Array.isArray(jobPostings) || jobPostings.length === 0) {
-  //   return <p>No matching job postingssss.</p>;
+  //   return <p>No matching   job postingssss.</p>;
   // }
 
   return (
