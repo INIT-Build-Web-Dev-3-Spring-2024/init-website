@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CompanyCard, { getWasViewJobsClicked } from "~/components/CompanyCard";
+import CompanyCard, { getWasViewJobsClicked } from "./CompanyCard";
 import {
   type GetServerSideProps,
   type InferGetServerSidePropsType,
