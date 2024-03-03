@@ -1,5 +1,11 @@
 import { Client } from "@notionhq/client";
-import { QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
+import {
+    QueryDatabaseResponse,
+    PageObjectResponse,
+    PartialPageObjectResponse,
+    PartialDatabaseObjectResponse,
+    DatabaseObjectResponse,
+} from "@notionhq/client/build/src/api-endpoints";
 import { Event } from "./definitions";
 
 // Notion Database Reference: https://smyvens.notion.site/smyvens/b1c5ddd386bb4abcaab264d630246d99?v=d340036c928e40bea2ac68c41c3d5461
@@ -58,21 +64,60 @@ export default async function fetchEvents(weekly = false) {
         });
 
         // Return Event objects
-        const events = [];
+        const events: Array<Event> = [];
         if (response.results.length > 0) {
-            response.results.map((page) => {
-                const event: Event = {
-                    id: page.id,
-                    // `Project name` on Notion database has an invisible character for some reason
-                    // TODO: Fix TypeScript type checking errors
-                    name: page.properties["﻿Project name"]?.title[0]?.plain_text ?? "Unnamed Event",
-                    date: page.properties["Date"]?.date?.start ?? "Date TBD",
-                    location: page.properties.Location?.rich_text[0]?.plain_text ?? "Location TBD",
-                };
-                events.push(event);
-            });
+            response.results.forEach(
+                (
+                    page:
+                        | PageObjectResponse
+                        | PartialPageObjectResponse
+                        | PartialDatabaseObjectResponse
+                        | DatabaseObjectResponse
+                ) => {
+                    if ("properties" in page) {
+                        let name = "Unnamed Event";
+                        let date = "Date TBD";
+                        let location = "Location TBD";
+
+                        // Check and extract the 'title' property
+                        const titleProperty = page.properties["﻿Project name"]; // `Project name` on Notion database has an invisible character for some reason
+                        if (
+                            titleProperty?.type === "title" &&
+                            Array.isArray(titleProperty.title) &&
+                            titleProperty.title.length > 0
+                        ) {
+                            name = titleProperty.title[0].plain_text;
+                        }
+
+                        // Check and extract the 'date' property
+                        const dateProperty = page.properties["Date"];
+                        if (dateProperty?.type === "date" && dateProperty.date) {
+                            date = dateProperty.date.start;
+                        }
+
+                        // Check and extract the 'rich_text' property
+                        const locationProperty = page.properties["Location"];
+                        if (
+                            locationProperty?.type === "rich_text" &&
+                            Array.isArray(locationProperty.rich_text) &&
+                            locationProperty.rich_text.length > 0
+                        ) {
+                            location = locationProperty.rich_text[0].plain_text;
+                        }
+
+                        const event: Event = {
+                            id: page.id,
+                            name,
+                            date,
+                            location,
+                        };
+                        events.push(event);
+                    }
+                }
+            );
         }
 
+        console.log(events);
         return { events };
     } catch (error) {
         console.error("Failed to fetch latest event data:", error);
