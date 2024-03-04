@@ -1,14 +1,14 @@
 import Head from "next/head";
 import Image from "next/image";
-// import { chapters } from "../Data/chapters";
-// import { team_members } from "../Data/InitTeam";
-// import Init_Team from "~/components/Init_Team";
-// import Chapter_card from "../components/Chapter_card";
+import { chapters } from "../Data/chapters";
+import { team_members } from "./InitTeam";
+import Init_Team from "~/components/Init_Team";
+import Chapter_card from "../components/Chapter_card";
 
 export default function About() {
   return (
     <>
-      {/* <section className="mx-auto max-w-screen-lg ">
+      <section className="mx-auto max-w-screen-lg ">
         <Head>
           <title>About Init</title>
           <meta name="description" content="About us for Init" />
@@ -136,10 +136,8 @@ export default function About() {
             </div>
           ))}
         </div>
-      </section> */}
-      <div>
-        HELLO!
-      </div>
+      </section>
+     
     </>
   );
 }
