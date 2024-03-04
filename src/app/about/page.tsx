@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
-import { chapters } from "../Data/chapters";
+import { chapters } from "./chapters";
 import { team_members } from "./InitTeam";
-import Init_Team from "~/components/Init_Team";
-import Chapter_card from "../components/Chapter_card";
+import Init_Team from "./Init_Team";
+import Chapter_card from "./Chapter_card";
 
 export default function About() {
   return (
