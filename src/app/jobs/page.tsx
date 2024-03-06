@@ -4,14 +4,18 @@ import {
   type GetServerSideProps,
   type InferGetServerSidePropsType,
 } from "next";
+import type {
+	CompanyCardType,
+	JobPostingType,
+  } from "~/server/api/routers/jobRouter";
 import JobModal from "./JobModal";
 import { getWasApplyFilterClicked } from "./FilterJobsCard";
 import FilterJobsCard from "./FilterJobsCard";
 import type { FilterInput } from "./FilterJobsCard";
 import JobCard from "./JobCard";
 import { getSession } from 'next-auth/react';
-import superjson from 'superjson';
-import { db } from '~/server/db';
+// import superjson from 'superjson';
+// import { db } from '~/server/db';
 
 // Define a type fore the selected filters
 export type SelectedFilters = {
@@ -33,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 		db, // Database connection
 	};
 
-	const helpers createServerSideHelpers({
+	const helpers = createServerSideHelpers({
 		router: appRouter,
 		ctx: trpcContext,
 		transformer: superjson,

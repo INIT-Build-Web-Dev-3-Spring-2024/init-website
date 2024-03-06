@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@types/node": "latest",
+    "@types/npm": "^7.19.3",
     "@types/react": "^18.2.61",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
