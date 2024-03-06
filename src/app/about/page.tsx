@@ -37,7 +37,7 @@ export default function About() {
         <br />
         <div className="mx-auto mb-10 flex h-auto w-auto flex-wrap items-start justify-center ">
           <Image
-            src="https://res.cloudinary.com/dh6y8bufo/image/upload/v1699917117/init-dashboard/events/%27Empowering%20tech%20talent.jpg"
+            src="/Empowering_tech_talent.jpg"
             alt="Init Members"
             className="rounded-lg"
             width={400}
@@ -70,7 +70,7 @@ export default function About() {
         <br />
         <span className="flex w-full flex-wrap items-center justify-center">
           <Image
-            src="https://res.cloudinary.com/dh6y8bufo/image/upload/v1700204766/init-dashboard/about/partners/knight-foundation-logo.svg"
+            src="/knight-foundation-logo_ztgk9c.svg"
             alt="Knight Foundation Logo"
             className="mb-5  mr-5"
             width={200}
@@ -78,7 +78,7 @@ export default function About() {
             loading="lazy"
           />
           <Image
-            src="https://res.cloudinary.com/dh6y8bufo/image/upload/v1700204767/init-dashboard/about/partners/Lab2C.svg"
+            src="/Lab2C-logo_xfjof0.svg"
             alt="Lab22c Logo"
             className="mb-5  text-sm"
             width={200}
@@ -86,7 +86,7 @@ export default function About() {
             loading="lazy"
           />
           <Image
-            src="https://res.cloudinary.com/dh6y8bufo/image/upload/v1700204830/init-dashboard/about/partners/FIU-Engineering-Logo.svg"
+            src="/FIU-Engineering-Logo_pl5s6p.svg"
             alt="Init Logo"
             className=" mb-5 text-sm"
             width={200}
@@ -94,7 +94,7 @@ export default function About() {
             loading="lazy"
           />
           <Image
-            src="https://res.cloudinary.com/dh6y8bufo/image/upload/v1700204768/init-dashboard/about/partners/MDC-Logo.svg"
+            src="/MDC-Logo_gk1mqm.svg"
             alt="MDC Logo"
             className="mb-5 text-sm"
             width={200}
