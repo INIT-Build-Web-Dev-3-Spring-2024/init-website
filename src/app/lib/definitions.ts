@@ -2,6 +2,6 @@
 export type Event = {
     id: string;
     name: string;
-    date: string;
+    date: Date | string;
     location: string;
 };

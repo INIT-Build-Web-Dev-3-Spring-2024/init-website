@@ -76,7 +76,7 @@ export default async function fetchEvents(weekly = false) {
                 ) => {
                     if ("properties" in page) {
                         let name = "Unnamed Event";
-                        let date = "Date TBD";
+                        let date: Date | string = "Date TBD";
                         let location = "Location TBD";
 
                         // Check and extract the 'title' property
@@ -89,10 +89,10 @@ export default async function fetchEvents(weekly = false) {
                             name = titleProperty.title[0].plain_text;
                         }
 
-                        // Check and extract the 'date' property
+                        // Check and extract the 'date' property, & store it as a Date object
                         const dateProperty = page.properties["Date"];
                         if (dateProperty?.type === "date" && dateProperty.date) {
-                            date = dateProperty.date.start;
+                            date = new Date(dateProperty.date.start);
                         }
 
                         // Check and extract the 'rich_text' property
