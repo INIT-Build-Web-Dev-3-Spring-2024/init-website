@@ -117,10 +117,8 @@ export default async function fetchEvents(weekly = false) {
             );
         }
 
-        console.log(events);
         return { events };
     } catch (error) {
         console.error("Failed to fetch latest event data:", error);
-        throw new Error("Failed to fetch latest event data:");
     }
 }
