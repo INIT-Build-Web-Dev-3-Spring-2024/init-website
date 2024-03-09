@@ -1,4 +1,11 @@
-import type { Init_Member } from "./Init_Member.interface";
+import Image from "next/image";
+
+export interface Init_Member {
+  name: string;
+  position: string;
+  linkedin: string;
+  image: string;
+}
 
 export default function init_member({
   name,
@@ -8,7 +15,7 @@ export default function init_member({
 }: Init_Member) {
   return (
     <div className="card text-align flex flex-col items-center justify-center pb-10">
-      <img
+      <Image
         className="rounded-full object-cover"
         src={image}
         width={200}
