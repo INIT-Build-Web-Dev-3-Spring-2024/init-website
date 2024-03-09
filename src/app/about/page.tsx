@@ -1,11 +1,18 @@
 import Head from "next/head";
 import Image from "next/image";
-import { chapters } from "./chapters";
-import { team_members } from "./InitTeam";
+import { headers } from "next/headers";
 import Init_Team from "./Init_Team";
 import Chapter_card from "./Chapter_card";
+import { Chapter } from "../api/chapters/route";
+import { Member } from "../api/eboard/route";
 
-export default function About() {
+export default async function About() {
+  const origin = headers().get("x-origin");
+  const chaptersRequest = await fetch(`${origin}/api/chapters`);
+  const chapters: Chapter[] = await chaptersRequest.json();
+  const eboardMembersRequest = await fetch(`${origin}/api/eboard`);
+  const team_members: Member[] = await eboardMembersRequest.json();
+  console.log(team_members);
   return (
     <>
       <section className="mx-auto max-w-screen-lg ">
@@ -70,7 +77,7 @@ export default function About() {
         <br />
         <span className="flex w-full flex-wrap items-center justify-center">
           <Image
-            src="/knight-foundation-logo_ztgk9c.svg"
+            src="/images/logos/knight-foundation-logo_ztgk9c.svg"
             alt="Knight Foundation Logo"
             className="mb-5  mr-5"
             width={200}
@@ -78,7 +85,7 @@ export default function About() {
             loading="lazy"
           />
           <Image
-            src="/Lab2C-logo_xfjof0.svg"
+            src="/images/logos/Lab2C-logo_xfjof0.svg"
             alt="Lab22c Logo"
             className="mb-5  text-sm"
             width={200}
@@ -86,7 +93,7 @@ export default function About() {
             loading="lazy"
           />
           <Image
-            src="/FIU-Engineering-Logo_pl5s6p.svg"
+            src="/images/logos/FIU-Engineering-Logo_pl5s6p.svg"
             alt="Init Logo"
             className=" mb-5 text-sm"
             width={200}
@@ -94,7 +101,7 @@ export default function About() {
             loading="lazy"
           />
           <Image
-            src="/MDC-Logo_gk1mqm.svg"
+            src="/images/logos/MDC-Logo_gk1mqm.svg"
             alt="MDC Logo"
             className="mb-5 text-sm"
             width={200}
@@ -111,11 +118,8 @@ export default function About() {
         <section className="flex justify-center">
           <div className="flex flex-wrap justify-center gap-9 ">
             {chapters.map((chapter) => (
-              <Chapter_card
-                image={chapter.image}
-                name={chapter.name}
-                description={chapter.description}
-                key={chapter.name}
+              <Chapter_card key={chapter.name}
+                {...chapter}
               />
             ))}
           </div>
@@ -127,17 +131,12 @@ export default function About() {
           {team_members.map((member) => (
             <div key={member.name} className="w-full p-4 md:w-1/3">
               <Init_Team
-                name={member.name}
-                position={member.position}
-                linkedin={member.linkedin}
-                image={member.image}
-                key={member.name}
+                {...member}
               />
             </div>
           ))}
         </div>
       </section>
-     
     </>
   );
 }
