@@ -1,6 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import type { ChapterCardProps } from "./Chapter_Card.interface";
+
+interface ChapterCardProps {
+  image: string;
+  name: string;
+  description: string;
+}
 
 export default function chapter_card({
   image,

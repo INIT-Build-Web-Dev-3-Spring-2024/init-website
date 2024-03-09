@@ -1,4 +1,6 @@
-export const chapters = [
+import { Chapter } from "./route";
+
+export const chapters: Chapter[] = [
   {
     image:
       "https://res.cloudinary.com/dh6y8bufo/image/upload/v1700204948/init-dashboard/about/chapters/FIU-GC.jpg",
