@@ -5,6 +5,12 @@ import Init_Team from "./Init_Team";
 import Chapter_card from "./Chapter_card";
 import { Chapter } from "../api/chapters/route";
 import { Member } from "../api/eboard/route";
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'About Init',
+  description: 'About us for Init',
+}
 
 export default async function About() {
   const origin = headers().get("x-origin");
@@ -13,13 +19,14 @@ export default async function About() {
   const eboardMembersRequest = await fetch(`${origin}/api/eboard`);
   const team_members: Member[] = await eboardMembersRequest.json();
   console.log(team_members);
+
   return (
     <>
-      <section className="mx-auto max-w-screen-lg ">
-        <Head>
+      <main className="mx-auto max-w-screen-lg ">
+        {/* <Head>
           <title>About Init</title>
           <meta name="description" content="About us for Init" />
-        </Head>
+        </Head> */}
         <main className="flex flex-col bg-primary"></main>
         <h1 className="mb-10 text-center text-4xl text-white">💻 About Us</h1>
         <br />
@@ -33,7 +40,7 @@ export default async function About() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen={true}
                 height={500}
-                style={{ width: "100%" }}
+                width={"100%"}
               ></iframe>
             </div>
           </div>
@@ -44,7 +51,7 @@ export default async function About() {
         <br />
         <div className="mx-auto mb-10 flex h-auto w-auto flex-wrap items-start justify-center ">
           <Image
-            src="/Empowering_tech_talent.jpg"
+            src="/images/eboard/Empowering_tech_talent.jpg"
             alt="Init Members"
             className="rounded-lg"
             width={400}
@@ -136,7 +143,7 @@ export default async function About() {
             </div>
           ))}
         </div>
-      </section>
+      </main>
     </>
   );
 }

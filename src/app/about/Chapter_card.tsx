@@ -15,7 +15,7 @@ export default function chapter_card({
   return (
     <div className="bg-dark  max-w-sm rounded-lg border  border-yellow-500 shadow dark:border-gray-700 dark:bg-gray-800">
       <div className="flex items-center justify-center pt-5">
-        <Image src={image} alt="Chapter Logo" width={300} height={300} />
+        <Image src={image} alt={`${name} Chapter Logo`} width={300} height={300} />
       </div>
       <div className="p-5">
         <h5 className="mb-2 text-2xl font-bold text-white dark:text-white">
