@@ -1,8 +1,6 @@
 import React from "react";
-//import NextAuth from "next-auth";
-import RsvpButton from "./RsvpButton";
-import Image from "next/image";
-//'use client'; //so do we need this or no because this component is rendering based on an api anyway, so it might have to be done on the client server
+import Button from "./Button";
+import Image from "next/image"; //
 
 export interface Event {
   id: number;
@@ -60,8 +58,6 @@ export default function EventCard({
 
   return (
     <>
-      {" "}
-      {/*TODO: remove> do we need this fragment here??? */}
       <div className="group flex h-full flex-col rounded-sm border border-zinc-600 bg-zinc-900 shadow-lg shadow-zinc-900">
         <div className="relative h-52 overflow-hidden rounded-t-sm sm:h-56">
           {
@@ -97,7 +93,7 @@ export default function EventCard({
             </div>
           </div>
           <div className="mt-4 flex">
-            <RsvpButton rsvpLink={rsvpLink} />
+            <Button buttonText="RSVP Now" buttonLink={rsvpLink} />
           </div>
         </div>
       </div>
