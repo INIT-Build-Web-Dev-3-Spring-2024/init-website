@@ -8,7 +8,12 @@ export const options: NextAuthOptions = {
         GitHubProvider({
             clientId: process.env.GITHUB_ID as string,
             clientSecret: process.env.GITHUB_SECRET as string 
-    })], 
+    }), 
+        GoogleProvider({ 
+            clientId: process.env.GOOGLE_ID as string,
+            clientSecret: process.env.GOOGLE_SECRET as string, 
+        })
+], 
     // pages option to define custom routes for the signIn / signUp pages 
     // pages: {
     //     signIn: '/signIn'
