@@ -4,4 +4,7 @@ export interface Event {
     name: string;
     date: Date | string;
     location: string;
+    description: string;
+    lumaLink: string;
+    imageLink: string;
 }
