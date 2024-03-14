@@ -7,4 +7,5 @@ export interface Event {
     description: string;
     lumaLink: string;
     imageLink: string;
+    program: string;
 }

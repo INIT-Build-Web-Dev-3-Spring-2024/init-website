@@ -72,6 +72,7 @@ export default async function fetchEvents(weekly = false) {
         // Return Event objects
         const events: Array<Event> = [];
         if (response.results.length > 0) {
+            const regex = /build|discover|explore|ignite|hack|launch|reach/i; // Used to get program name
             response.results.forEach(
                 (
                     page:
@@ -87,6 +88,7 @@ export default async function fetchEvents(weekly = false) {
                         let description = "Description TBD";
                         let lumaLink = "Link TBD";
                         let imageLink = "Image TBD";
+                        let program = "General";
 
                         // Check and extract the 'Project name' property
                         const titleProperty = page.properties["﻿Project name"]; // `Project name` on Notion database has an invisible character for some reason
@@ -141,6 +143,24 @@ export default async function fetchEvents(weekly = false) {
                             imageLink = pictureProperty.files[0].file.url;
                         }
 
+                        // Check and extract the "Role" property, will be used to get the program
+                        const programProperty = page.properties["Role"];
+                        if (
+                            programProperty?.type === "rich_text" &&
+                            Array.isArray(programProperty.rich_text) &&
+                            programProperty.rich_text.length > 0 &&
+                            "text" in programProperty.rich_text[0]
+                        ) {
+                            // Extract property from notion, and match against our regex
+                            const programMatch: RegExpMatchArray | null =
+                                programProperty.rich_text[0].text.content.match(regex);
+
+                            // If a program is found (Reach, Build, etc.), then store the name in `program`
+                            if (programMatch) {
+                                program = programMatch[0];
+                            }
+                        }
+
                         const event: Event = {
                             id: page.id,
                             name,
@@ -149,6 +169,7 @@ export default async function fetchEvents(weekly = false) {
                             description,
                             lumaLink,
                             imageLink,
+                            program,
                         };
                         events.push(event);
                     }
