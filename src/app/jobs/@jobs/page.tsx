@@ -1,114 +1,103 @@
 import { headers } from "next/headers";
-//import { companyPosting } from "../api/Events_Tracker/copmanyPosting";
 import { ReactNode } from "react";
 import { CompanyPosting } from "../../api/Events_Tracker/companyPosting";
-import { JobPosting } from "../../api/Events_Tracker/jobPostings";
+import { JobPosting, jobPostings } from "../../api/Events_Tracker/jobPostings";
 import JobCard from "./JobCard";
+import { PrismaClient } from "@prisma/client";
 
 interface PageProps {
   companies: ReactNode;
 }
 
-export default async function page() {
-  const headersList = headers();
+export default async function page(
+  {
+    searchParams,
+    }: {
+      searchParams?: { [key: string]: string | undefined };
+    }) {
 
-  const eventsRequest = await fetch(
-    `${headersList.get("x-url")}/api/Events_Tracker/`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+    const prisma = new PrismaClient();
 
-  interface Data {
-    companyPostings: CompanyPosting[];
-    jobPostings: JobPosting[];
-  }
+    const groupByCompany = false;
+    const headersList = headers();
+    const searchQuery = searchParams?.q || null;
+    const decodedSearchQuery = decodeURI(searchQuery ?? "");
+    const input = { q: decodedSearchQuery };
 
-  const { companyPostings, jobPostings }: Data = await eventsRequest.json();
+    async function getJobs(input: { q: string | null }) {
+      if(input.q) {
+        console.log(decodedSearchQuery);
+        return await prisma.jobPosting.findMany({
+          where: {
+            OR: [
+              { title: {contains: decodedSearchQuery, mode: "insensitive"}},
+              { company: {contains: decodedSearchQuery, mode: "insensitive"}},
+            ],
+          },
+        });
+      } else {
+          const eventsRequest = await fetch(
+            `${headersList.get("x-url")}/api/Events_Tracker`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const eventsData = await eventsRequest.json();
+          return eventsData.jobPostings;
+        };
+    };
 
-  console.log(companyPostings, jobPostings);
+    const jobs: typeof jobPostings = await getJobs(input);
 
-  // const jobs: typeof jobPostings = responseBody;
-  // console.log(jobs);
+    console.log("end result:",jobs);
 
-  // const companies: typeof companyPosting = responseBody;
-  // console.log("Companies go here!!!:");
-  // console.log(companies);
+    await prisma.$disconnect();
 
   return (
-    <>
-      <main className="min-h-screen">
-        {/* Container to keep everything in line */}
-        <div className="mx-auto">
-          {/* Filter Card and Jobs container */}
-          <div className="flex flex-col md:flex-row">
-            {/* Dropdown for small Screen sizes */}
-            <div className="mx-auto mb-8 md:hidden">
-              {/* <Dropdown
-              className="bg-[#1A1E22] text-white"
-              label="Filter"
-              placement="bottom"
-              inline
-            > */}
-              {/* <FilterJobsCard
-                onFilterChange={setSelectedFilters}
-                onResetFilters={handleResetFilters}
-              />
-            </Dropdown> */}
-            </div>
-
-            {/* Normal Screen Sizes */}
-            <div className="mr-[5%] hidden md:block">
-              {/* <FilterJobsCard
-              onFilterChange={setSelectedFilters}
-              onResetFilters={handleResetFilters}
-            /> */}
-            </div>
-
-            <div className="w-full">
-              {/* {groupByCompany && jobPostings.length > 0 ? (
-              <CompanyCard
-                company={
-                  companyDataArr
-                    ? companyDataArr.map((company) => ({
-                        name: company.company,
-                        image: company.image,
-                        id: company.id,
-                      }))
-                    : []
-                }
-                setJobPostings={setJobPostings}
-                setGroupByCompany={setGroupByCompany}
-                fetchJobsByCompany={fetchJobsByCompany}
-              />
-            ) : jobPostings && jobPostings.length > 0 ? ( */}
-              <div
-                className={`grid w-full grid-cols-1 place-items-center min-[980px]:grid-cols-2 min-[1320px]:grid-cols-3 `}
-              >
-                {jobPostings.map((job) => (
-                  <JobCard {...job} />
-                ))}
-              </div>
-
-              {/* ) : (
-              <p className="flex h-3/6 items-center justify-center">
-                No matching job postings.
-              </p>
-            ) */}
-            </div>
-          </div>
-        </div>
-      </main>
-
-      {/* {jobs.map((job) => (
-        <JobCard {...job} />
-      ))} */}
-    </>
+    <div className={`grid w-full grid-cols-1 place-items-center min-[980px]:grid-cols-2 min-[1320px]:grid-cols-3 `}>
+    {jobs.length === 0 ? (
+          <p>No jobs available</p>
+        ) : (
+          jobs.map((job) => (
+            <JobCard key={job.id} {...job} />
+          ))
+        )}
+    </div>
   );
 }
+      // <main className="min-h-screen">
+      //   {/* Container to keep everything in line */}
+      //   <div className="mx-auto">
+      //     {/* Filter Card and Jobs container */}
+      //     <div className="flex flex-col md:flex-row">
+      //       {/* Dropdown for small Screen sizes */}
+      //       <div className="mx-auto mb-8 md:hidden">
+
+      //       </div>
+
+      //       {/* Normal Screen Sizes */}
+      //       <div className="mr-[5%] hidden md:block">
+
+      //       </div>
+
+      //       <div className="w-full">
+      //         <div
+      //           className={`grid w-full grid-cols-1 place-items-center min-[980px]:grid-cols-2 min-[1320px]:grid-cols-3 `}
+      //         >
+      //           {jobPostings.map((job) => (
+      //             <JobCard key={job.id} {...job} />
+      //           ))}
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
+      // </main>
+
+
+      // -----------
 
 // import React, { useEffect, useState } from "react";
 // import CompanyCard, { getWasViewJobsClicked } from "./CompanyCard";

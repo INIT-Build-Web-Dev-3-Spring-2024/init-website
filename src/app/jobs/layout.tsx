@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode, useState } from "react";
+import SearchInput from "./SearchInput";
 
 interface JobsLayoutProps {
   children: ReactNode;
@@ -22,7 +23,7 @@ export default function JobsLayout({
           <h1>Upcoming Jobs</h1>
 
           <div>
-            <input type="text" name="" id="" placeholder="search" />
+            <SearchInput searchType="job"/>
             <button
               type="button"
               className="hover:bg-light-yellow inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary_yellow px-3 py-2 text-sm font-semibold text-black transition-all hover:bg-light_yellow focus:outline-none focus:ring-2 focus:ring-light_yellow md:w-auto lg:px-4 lg:py-3"
