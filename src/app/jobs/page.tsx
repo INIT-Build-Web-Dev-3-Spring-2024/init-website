@@ -2,13 +2,9 @@ import React from "react";
 import { PrismaClient } from "@prisma/client";
 import { headers } from "next/headers";
 import { jobPostings } from "../api/Events_Tracker/jobPostings";
-import JobCard from "./JobCard";
-<<<<<<< Updated upstream
-import FilterCard from './FilterJobsCard';
-export default async function page() {
-=======
 import SearchInput, {setWasSearchBtnClicked} from "./SearchInput";
 import { getWasSearchBtnClicked } from "./SearchInput";
+import JobCard from "./@jobs/JobCard";
 
 
 
@@ -21,7 +17,6 @@ export default async function page({
   const prisma = new PrismaClient();
 
   const groupByCompany = false;
->>>>>>> Stashed changes
   const headersList = headers();
   const searchQuery = searchParams?.q || null;
   const decodedSearchQuery = decodeURI(searchQuery ?? "");
@@ -92,7 +87,7 @@ export default async function page({
       <p>No jobs available</p>
       ) : (
       jobs.map((job) => (
-        <JobCard {...job} />
+        <JobCard key={job.id}{...job} />
       ))
       )}
     </div>
