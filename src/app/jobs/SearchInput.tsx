@@ -1,7 +1,8 @@
+"use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { setWasApplyFilterClicked } from "./FilterJobsCard";
-import { type SearchProps } from "~/interfaces/Search.interface";
+import { SearchProps } from "../../interfaces/Search.interface";
 
 let wasSearchBtnClicked = false;
 

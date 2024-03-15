@@ -1,28 +1,101 @@
+import React from "react";
+import { PrismaClient } from "@prisma/client";
 import { headers } from "next/headers";
 import { jobPostings } from "../api/Events_Tracker/jobPostings";
 import JobCard from "./JobCard";
+<<<<<<< Updated upstream
 import FilterCard from './FilterJobsCard';
 export default async function page() {
+=======
+import SearchInput, {setWasSearchBtnClicked} from "./SearchInput";
+import { getWasSearchBtnClicked } from "./SearchInput";
+
+
+
+export default async function page({
+  searchParams,
+  }: {
+    searchParams?: { [key: string]: string | undefined };
+  }) {
+
+  const prisma = new PrismaClient();
+
+  const groupByCompany = false;
+>>>>>>> Stashed changes
   const headersList = headers();
+  const searchQuery = searchParams?.q || null;
+  const decodedSearchQuery = decodeURI(searchQuery ?? "");
+  const input = { q: decodedSearchQuery };
 
-  const eventsRequest = await fetch(
-    `${headersList.get("x-url")}/api/Events_Tracker`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  async function getJobs(input: { q: string | null }) {
+    if(input.q) {
+      console.log(decodedSearchQuery);
+      return await prisma.jobPosting.findMany({
+        where: {
+          OR: [
+            { title: {contains: decodedSearchQuery, mode: "insensitive"}},
+            { company: {contains: decodedSearchQuery, mode: "insensitive"}},
+          ],
+        },
+      });
+    } else {
+        const eventsRequest = await fetch(
+          `${headersList.get("x-url")}/api/Events_Tracker`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const eventsData = await eventsRequest.json();
+        return eventsData;
+      };
+  };
 
-  const jobs: typeof jobPostings = await eventsRequest.json();
+  const jobs: typeof jobPostings = await getJobs(input);
 
   console.log(jobs);
+
+  await prisma.$disconnect();
+
   return (
     <>
-      {jobs.map((job) => (
+    {/* Container to keep everything in line */}
+    <div className="mx-auto max-w-screen-xl">
+    {/* Title and Search Bar */}
+    <div className="mb-4 flex flex-col items-center justify-between  md:mb-8 md:flex-row">
+      <h1 className="mb-4 text-xl text-white md:mb-0 md:text-2xl lg:text-3xl">
+        Upcoming Jobs
+      </h1>
+      <div className="flex w-full flex-col items-center space-y-4 md:w-auto md:flex-row md:space-x-5 md:space-y-0">
+        {
+          <button
+            className="cursor-pointer hover:text-primary_yellow hover:underline"
+            //onClick={handleResetFilters}
+          >
+            See All Jobs
+          </button>
+        }
+        {!groupByCompany && <SearchInput searchType="job" />}
+        <button
+          className="hover:bg-light-yellow inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary_yellow px-3 py-2 text-sm font-semibold text-black transition-all hover:bg-light_yellow focus:outline-none focus:ring-2 focus:ring-light_yellow md:w-auto lg:px-4 lg:py-3"
+          type="button"
+          //onClick={() => setGroupByCompany(!groupByCompany)}
+        >
+        {groupByCompany ? "Group By Postings" : "Group By Company"}
+        </button>
+        {/*{isSignedIn && <JobModal setPostings={setJobPostings} />}*/}
+      </div>
+    </div>
+      {jobs.length === 0 ? (
+      <p>No jobs available</p>
+      ) : (
+      jobs.map((job) => (
         <JobCard {...job} />
-      ))}
+      ))
+      )}
+    </div>
     </>
   );
 }
