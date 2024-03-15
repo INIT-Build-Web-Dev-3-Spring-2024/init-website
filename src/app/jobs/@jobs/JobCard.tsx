@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 // import { Card } from "flowbite-react";
-import DeleteModal from "./DeleteModal";
+import DeleteModal from "../DeleteModal";
 import Image from "next/image";
 // import { useUser } from "@clerk/nextjs";
 
@@ -68,14 +68,12 @@ export default function JobCard({
   // }
 
   return (
-    <div
-      className={`grid w-full grid-cols-1 place-items-center min-[980px]:grid-cols-2 min-[1320px]:grid-cols-3 `}
-    >
+    <div>
       {/* {jobPostings.map((job, index) => ( */}
       <div
-        className={`min-w-[16rem] max-w-xs bg-[#121415] ${
+        className={`min-w-[16rem] max-w-xs p-5${
           "" // !isSignedIn && "pt-3"
-        } mb-8 border-[#121415] max-[820px]:mb-8`}
+        } mb-8 border-[#121415] bg-[#121415] max-[820px]:mb-8`}
       >
         {/* <DeleteModal
             cardType="job"
@@ -123,7 +121,9 @@ export default function JobCard({
             <h3 className="mb-1 text-lg text-white max-[428px]:text-[0.84rem]">
               {title}
             </h3>
-            <p className="text-sm max-[428px]:text-[0.7rem]">{company}</p>
+            <p className="text-sm text-white max-[428px]:text-[0.7rem]">
+              {company}
+            </p>
           </div>
         </div>
 
@@ -144,7 +144,7 @@ export default function JobCard({
 
         {/* Date posted and Apply Button */}
         <div className="mb-4 flex items-center">
-          <h3 className="mr-8 max-[428px]:text-[0.7rem]">{date}</h3>
+          <h3 className="mr-8 text-white max-[428px]:text-[0.7rem]">{date}</h3>
           <a
             href={url}
             rel="noopener noreferrer"

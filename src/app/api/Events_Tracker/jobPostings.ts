@@ -1,3 +1,15 @@
+export type JobPosting = {
+  id: number;
+  image: string;
+  title: string;
+  company: string;
+  jobType: string;
+  jobPosition: string;
+  jobLocation: string;
+  date: string;
+  url: string;
+};
+
 export const jobPostings = [
   {
     id: 1,
