@@ -2,6 +2,7 @@
 
 import { ReactNode, useState } from "react";
 import SearchInput from "./SearchInput";
+import Button from "@/components/Button";
 
 interface JobsLayoutProps {
   children: ReactNode;
@@ -17,26 +18,24 @@ export default function JobsLayout({
   const [showCompanies, setShowCompanies] = useState(false);
 
   return (
-    <div className="bg-primary text-white">
-      <div className="max-w-screen-xl mx-auto">
-        <div className="flex items-center justify-between">
-          <h1>Upcoming Jobs</h1>
+    <div className="max-w-screen-xl mx-auto">
+      <div className="flex items-center justify-between">
+        <h1 className="font-poppins font-bold text-xl text-white md:mb-0 md:text-2xl lg:text-3xl">
+          Upcoming Jobs
+        </h1>
 
-          <div>
-            <SearchInput searchType="job"/>
-            <button
-              type="button"
-              className="hover:bg-light-yellow inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary_yellow px-3 py-2 text-sm font-semibold text-black transition-all hover:bg-light_yellow focus:outline-none focus:ring-2 focus:ring-light_yellow md:w-auto lg:px-4 lg:py-3"
-              onClick={() => setShowCompanies(!showCompanies)}
-            >
-              Group By {showCompanies ? "Jobs" : "Companies"}
-            </button>
-            <button type="button">Add jobs</button>
-          </div>
+        <div className="flex items-center gap-6 h-24">
+          {showCompanies || <SearchInput searchType="job" />}
+          <Button onClick={() => setShowCompanies(!showCompanies)}>
+            Group By {showCompanies ? "Jobs" : "Companies"}
+          </Button>
+          <Button onClick={() => alert("clicked add job button")}>Add Jobs</Button>
         </div>
-
-        {showCompanies ? companies : jobs}
       </div>
+
+      {showCompanies ? companies : jobs}
+
+      {children}
     </div>
   );
 }
