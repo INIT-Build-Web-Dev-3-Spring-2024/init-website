@@ -13,8 +13,9 @@ function ProgramCard({ name, color, image, description }: programCardProps) {
       <div className="bg-zinc-900 text-white rounded-2xl overflow-hidden">
         <div className="relative w-full h-40">
           <Image
+            sizes="100%"
             src={image}
-            alt={""}
+            alt={"init " + name + " program picture"}
             fill
             className="object-cover object-left-top"
           />
