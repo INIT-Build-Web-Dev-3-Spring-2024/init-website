@@ -62,13 +62,13 @@ export default function SearchInput({ searchType }: SearchProps) {
             value={searchQuery}
             onChange={(event) => setSearchQuery(event.target.value)}
             id={`search-${searchType}-input-field`}
-            className="border-yellow_primary block w-full rounded-md border bg-white p-3 pl-10 text-sm text-gray-900 focus:border-primary_yellow focus:ring-primary_yellow md:w-[400px]"
+            className="text-black border-yellow_primary block w-full rounded-md border bg-white p-3 pl-10 text-sm text-gray-900 focus:border-primary_yellow focus:ring-primary_yellow md:w-[400px]"
             placeholder={`Search ${searchType}s...`}
             required
           />
           <button
             id="search-submit-btn"
-            className="absolute inset-y-0 right-0 flex items-center justify-center rounded-r-lg bg-primary_yellow px-4 text-sm font-medium text-black hover:bg-light_yellow focus:ring-light_yellow"
+            className="text-red-500 text-7xl absolute inset-y-0 right-0 flex items-center justify-center rounded-r-lg bg-primary_yellow px-4 text-sm font-medium text-black hover:bg-light_yellow focus:ring-light_yellow"
           >
             Search
           </button>
