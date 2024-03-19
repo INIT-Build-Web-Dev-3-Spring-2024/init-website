@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Image from "next/image";
 import { headers } from "next/headers";
 import Init_Team from "./Init_Team";
@@ -23,10 +22,6 @@ export default async function About() {
   return (
     <>
       <main className="mx-auto max-w-screen-lg ">
-        {/* <Head>
-          <title>About Init</title>
-          <meta name="description" content="About us for Init" />
-        </Head> */}
         <main className="flex flex-col bg-primary"></main>
         <h1 className="mb-10 text-center text-4xl text-white">💻 About Us</h1>
         <br />
@@ -43,7 +38,7 @@ export default async function About() {
                 width={"100%"}
               ></iframe>
             </div>
-          </div>
+          </div>  
         </span>
         <br />
 
