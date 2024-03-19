@@ -78,11 +78,6 @@ export const jobPostings = [
 
 type FilterCategories = "jobType" | "positionType" | "jobLocation";
 
-interface Filters {
-  jobType: ("full-time" | "part-time")[];
-  positionType: ("New-Grad" | "Internship")[];
-}
-
 export default function FilterCard() {
   const [filteredJobs, setFilteredJobs] = useState(jobPostings);
   const [filters, setFilters] = useState<Record<FilterCategories, Set<string>>>(
@@ -95,22 +90,36 @@ export default function FilterCard() {
 
   function handleFilter(category: FilterCategories, filter: string) {
     // see which filters the user has applied
-    const newFilters = structuredClone(filters);
+    const newJobTypeFilters = new Set(filters.jobType);
+	const newPositionTypeFilters = new Set(filters.positionType);
+	const newJobLocationFilters = new Set(filters.jobLocation);
 
-    if (newFilters[category].has(filter)) {
-      newFilters[category].delete(filter);
-    } else {
-      newFilters[category].add(filter);
-    }
+	if(category === 'jobType'){
+		newJobTypeFilters.has(filter) ? newJobTypeFilters.delete(filter) : newJobTypeFilters.add(filter);
+	}else if(category === 'positionType'){
+		newPositionTypeFilters.has(filter) ? newPositionTypeFilters.delete(filter) : newPositionTypeFilters.add(filter);
+	}else if(category === 'jobLocation'){
+		newJobLocationFilters.has(filter) ? newJobLocationFilters.delete(filter) : newJobLocationFilters.add(filter);
+	};
 
-    setFilters(newFilters);
+    setFilters({
+		jobType: newJobTypeFilters,
+		positionType: newPositionTypeFilters,
+		jobLocation: newJobLocationFilters
+	});
 
     // only display the jobs based on the filters the user applied
-    const newFilteredJobs = structuredClone(jobPostings);
+    const newFilteredJobs = jobPostings.filter(job => {
+		return(
+			(newJobTypeFilters.size == 0 || newJobTypeFilters.has(job.jobType)) &&
+			(newPositionTypeFilters.size == 0 || newPositionTypeFilters.has(job.jobPosition)) &&
+			(newJobLocationFilters.size == 0 || newJobLocationFilters.has(job.jobLocation))
+		);
+	});
 
-    setFilteredJobs(structuredClone(newFilteredJobs));
+    setFilteredJobs(newFilteredJobs);
   }
-  
+
   return (
     <div className="mx-10">
       <div className="mb-10">
@@ -130,14 +139,56 @@ export default function FilterCard() {
           />
           <label htmlFor="part-time">Fulltime</label>
         </div>
-      </div>
+		<div className="">
+          <input
+            type="checkbox"
+            checked={filters.positionType.has("New-Grad")}
+            onChange={() => handleFilter("positionType", "New-Grad")}
+          />
+          <label htmlFor="part-time">New-Grad</label>
+        </div>
+		<div className="">
+          <input
+            type="checkbox"
+            checked={filters.positionType.has("Internship")}
+            onChange={() => handleFilter("positionType", "Internship")}
+          />
+          <label htmlFor="internship">Internship</label>
+        </div>
+		<div className="">
+          <input
+            type="checkbox"
+            checked={filters.jobLocation.has("On-Site")}
+            onChange={() => handleFilter("jobLocation", "On-Site")}
+          />
+          <label htmlFor="part-time">On-Site</label>
+        </div>
+		<div className="">
+          <input
+            type="checkbox"
+            checked={filters.jobLocation.has("Hybrid")}
+            onChange={() => handleFilter("jobLocation", "Hybrid")}
+          />
+          <label htmlFor="part-time">Hybrid</label>
+        </div>
+		<div className="">
+          <input
+            type="checkbox"
+            checked={filters.jobLocation.has("Remote")}
+            onChange={() => handleFilter("jobLocation", "Remote")}
+          />
+          <label htmlFor="part-time">Remote</label>
+        </div>
+	  </div>
 
       <div className="grid grid-cols-3 gap-3">
-        {filteredJobs.map(({ title, company, jobType }, index) => (
+        {filteredJobs.map(({ title, company, jobType, jobPosition, jobLocation }, index) => (
           <div key={index} className="bg-gray-200 w-56 p-5">
             <h1>{title}</h1>
             <h2>{company}</h2>
             <p>{jobType}</p>
+			<p>{jobPosition}</p>
+			<p>{jobLocation}</p>
           </div>
         ))}
       </div>
