@@ -3,13 +3,13 @@ import Button from "./Button";
 import Image from "next/image"; //
 
 export interface Event {
-  id: number;
+  id: string;
   name: string;
   description: string;
   picture: string;
   location: string;
   program: string;
-  time: Date;
+  time: Date | string;
   rsvpLink: string;
 }
 
@@ -34,27 +34,24 @@ const programColor = (program: string) => {
   }
 };
 
-export default function EventCard({
-  id,
-  picture,
-  description,
-  location,
-  name,
-  program,
-  rsvpLink,
-  time,
-}: Event) {
-  const date = time.toLocaleDateString("en-us", {
-    weekday: "short",
-    month: "long",
-    day: "numeric",
-  });
+export default function EventCard({ id, picture, description, location, name, program, rsvpLink, time }: Event) {
+  const date: Date | String =
+    typeof time == "string"
+      ? "Date TBD"
+      : time.toLocaleDateString("en-us", {
+          weekday: "short",
+          month: "long",
+          day: "numeric",
+        });
 
-  const realTime = time.toLocaleTimeString("en-us", {
-    hour: "numeric",
-    minute: "numeric",
-    timeZoneName: "short",
-  });
+  const realTime =
+    typeof time == "string"
+      ? "Time TBD"
+      : time.toLocaleTimeString("en-us", {
+          hour: "numeric",
+          minute: "numeric",
+          timeZoneName: "short",
+        });
 
   return (
     <>
@@ -72,19 +69,11 @@ export default function EventCard({
         </div>
         <div className="flex flex-grow flex-col justify-between p-4 md:p-6">
           <div>
-            <span
-              className={`mb-1 block text-xs font-semibold uppercase ${programColor(
-                program.toLowerCase()
-              )}`}
-            >
+            <span className={`mb-1 block text-xs font-semibold uppercase ${programColor(program.toLowerCase())}`}>
               {program}
             </span>
-            <h3 className="text-lg font-semibold text-gray-300 sm:text-xl">
-              {name}
-            </h3>
-            <p className="sm:text-md mt-2 text-sm text-gray-500">
-              {description}
-            </p>
+            <h3 className="text-lg font-semibold text-gray-300 sm:text-xl">{name}</h3>
+            <p className="sm:text-md mt-2 text-sm text-gray-500">{description}</p>
             <div>
               <p className="text-gray-400">{date}</p>
               <p className="text-xs text-gray-400">
