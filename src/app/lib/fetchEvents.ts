@@ -82,7 +82,7 @@ export default async function fetchEvents(weekly = false) {
             let time: Date | string = "Date TBD";
             let location = "Location TBD";
             let description = "Description TBD";
-            let rsvpLink = "Link TBD";
+            let rsvpLink = "RSVP TBD";
             let picture = "/eventDefaultImage.avif"; // Default Event Image, can be a link or a local file
             let program = "General";
 

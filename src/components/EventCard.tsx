@@ -82,7 +82,10 @@ export default function EventCard({ id, picture, description, location, name, pr
             </div>
           </div>
           <div className="mt-4 flex">
-            <Button buttonText="RSVP Now" buttonLink={rsvpLink} />
+            <Button
+              buttonText={rsvpLink == "RSVP TBD" ? "RSVP TBD" : "RSVP Now"}
+              buttonLink={rsvpLink == "RSVP TBD" ? "" : rsvpLink}
+            />
           </div>
         </div>
       </div>
