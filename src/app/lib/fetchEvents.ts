@@ -79,7 +79,8 @@ export default async function fetchEvents(weekly = false) {
         ) => {
           if ("properties" in page) {
             let name = "Unnamed Event";
-            let time: Date | string = "Date TBD";
+            let date = "Date TBD";
+            let time = "Time TBD";
             let location = "Location TBD";
             let description = "Description TBD";
             let rsvpLink = "RSVP TBD";
@@ -96,10 +97,25 @@ export default async function fetchEvents(weekly = false) {
               name = titleProperty.title[0].plain_text;
             }
 
-            // Check and extract the 'Date' property, & store it as a Date object
+            // Check and extract the 'Date' property
             const dateProperty = page.properties["Date"];
             if (dateProperty?.type === "date" && dateProperty.date) {
-              time = new Date(dateProperty.date.start);
+              let dateObject = new Date(dateProperty.date.start);
+
+              date = dateObject.toLocaleDateString("en-us", {
+                weekday: "short",
+                month: "long",
+                day: "numeric",
+              });
+
+              // If our date property in Notion is only 10 character's long, it means it doesn't have a specific time
+              if (dateProperty.date.start.length !== 10) {
+                time = dateObject.toLocaleTimeString("en-us", {
+                  hour: "numeric",
+                  minute: "numeric",
+                  timeZoneName: "short",
+                });
+              }
             }
 
             // Check and extract the 'Location' property
@@ -163,6 +179,7 @@ export default async function fetchEvents(weekly = false) {
               picture,
               location,
               program,
+              date,
               time,
               rsvpLink,
             };

@@ -9,7 +9,8 @@ export interface Event {
   picture: string;
   location: string;
   program: string;
-  time: Date | string;
+  date: string;
+  time: string;
   rsvpLink: string;
 }
 
@@ -34,25 +35,7 @@ const programColor = (program: string) => {
   }
 };
 
-export default function EventCard({ id, picture, description, location, name, program, rsvpLink, time }: Event) {
-  const date: Date | String =
-    typeof time == "string"
-      ? "Date TBD"
-      : time.toLocaleDateString("en-us", {
-          weekday: "short",
-          month: "long",
-          day: "numeric",
-        });
-
-  const realTime =
-    typeof time == "string"
-      ? "Time TBD"
-      : time.toLocaleTimeString("en-us", {
-          hour: "numeric",
-          minute: "numeric",
-          timeZoneName: "short",
-        });
-
+export default function EventCard({ id, picture, description, location, name, program, rsvpLink, date, time }: Event) {
   return (
     <>
       <div className="group flex h-full flex-col rounded-sm border border-zinc-600 bg-zinc-900 shadow-lg shadow-zinc-900">
@@ -77,7 +60,7 @@ export default function EventCard({ id, picture, description, location, name, pr
             <div>
               <p className="text-gray-400">{date}</p>
               <p className="text-xs text-gray-400">
-                {location} | {realTime}
+                {location} | {time}
               </p>
             </div>
           </div>
