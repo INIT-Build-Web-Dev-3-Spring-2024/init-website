@@ -35,7 +35,7 @@ const programColor = (program: string) => {
   }
 };
 
-export default function EventCard({ id, picture, description, location, name, program, rsvpLink, date, time }: Event) {
+export default function EventCard({ picture, description, location, name, program, rsvpLink, date, time }: Event) {
   return (
     <>
       <div className="group flex h-full flex-col rounded-sm border border-zinc-600 bg-zinc-900 shadow-lg shadow-zinc-900">
