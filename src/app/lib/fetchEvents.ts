@@ -83,8 +83,7 @@ export default async function fetchEvents(weekly = false) {
             let location = "Location TBD";
             let description = "Description TBD";
             let rsvpLink = "Link TBD";
-            let picture =
-              "https://file.notion.so/f/f/61d8e95b-e8f0-433c-94fe-b96d043eda8d/599a764e-96a9-4f63-b2df-1d391fba7113/1a5605a0-e1e2-40a7-a311-32ad96bf9be0.avif?id=e85950ee-71fc-447f-b5d4-a259125a094a&table=block&spaceId=61d8e95b-e8f0-433c-94fe-b96d043eda8d&expirationTimestamp=1710979200000&signature=_YWCstqx3nZWRztjLxgT6Th3UwQ1fE_LAUGL54_FO9o&downloadName=1a5605a0-e1e2-40a7-a311-32ad96bf9be0.avif"; // Default Event Image Link
+            let picture = "/eventDefaultImage.avif"; // Default Event Image, can be a link or a local file
             let program = "General";
 
             // Check and extract the 'Project name' property
