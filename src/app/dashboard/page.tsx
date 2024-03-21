@@ -1,15 +1,11 @@
-import { options } from "../api/auth/[...nextauth]/options";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/dist/server/api-utils";
+import withAuth, { AuthProps } from '../api/auth/[...nextauth]/auth';
 
+interface DashboardProps extends AuthProps {}
 
-export default async function Dashboard(){
-    const session = await getServerSession(options)
+// Wrap the Page component with the withAuth HOC
 
-    if (!session){
-        // redirect()
-    }
-  return (
-    <div>Dashboard</div>
-  )
+async function Dashboard({ session }: DashboardProps) {
+  console.log(session);
+  return <div>{JSON.stringify(session)}</div>;
 }
+export default withAuth(Dashboard);
