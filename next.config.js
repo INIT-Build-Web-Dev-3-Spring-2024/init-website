@@ -25,6 +25,15 @@ const nextConfig = {
       },
     ],
   },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      issuer: { and: [/\.(js|ts)x?$/] },
+      use: ["@svgr/webpack"],
+    });
+
+    return config;
+  },
 
   /**
    * If you are using `appDir` then you must comment the below `i18n` config out.

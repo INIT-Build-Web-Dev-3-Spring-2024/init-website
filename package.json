@@ -13,9 +13,12 @@
     "next": "latest",
     "next-auth": "^4.24.6",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-icons": "^5.0.1",
+    "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
@@ -23,7 +26,7 @@
     "eslint": "latest",
     "eslint-config-next": "latest",
     "postcss": "latest",
-    "tailwindcss": "^3.4.1",
+    "tailwindcss": "latest",
     "typescript": "latest"
   }
 }
