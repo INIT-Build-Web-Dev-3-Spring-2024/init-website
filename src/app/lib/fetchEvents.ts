@@ -9,7 +9,7 @@ import {
 import { Event } from "@/components/EventCard";
 
 // Notion Database Reference: https://smyvens.notion.site/smyvens/b1c5ddd386bb4abcaab264d630246d99?v=d340036c928e40bea2ac68c41c3d5461
-export default async function fetchEvents(weekly = false) {
+export default async function fetchEvents(searchQuery = "", weekly = false) {
   try {
     if (!process.env.NOTION_API_KEY || !process.env.NOTION_EVENTS_DATABASE_ID) {
       throw new Error("Required environment variables NOTION_API_KEY or NOTION_EVENTS_DATABASE_ID are not set.");
@@ -59,6 +59,28 @@ export default async function fetchEvents(weekly = false) {
             },
           },
           dayOrWeekFilter,
+          {
+            or: [
+              {
+                property: "﻿Project name",
+                rich_text: {
+                  contains: searchQuery,
+                },
+              },
+              {
+                property: "Description",
+                rich_text: {
+                  contains: searchQuery,
+                },
+              },
+              {
+                property: "Role",
+                rich_text: {
+                  contains: searchQuery,
+                },
+              },
+            ],
+          },
         ],
       },
       sorts: [
