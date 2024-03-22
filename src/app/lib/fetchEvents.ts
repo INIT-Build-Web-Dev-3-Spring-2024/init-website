@@ -110,7 +110,6 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
             let program = "General";
 
             // Check and extract the properties from Notion
-
             const titleProperty = page.properties["﻿Project name"]; // `Project name` on Notion database has an invisible character for some reason
             if (
               titleProperty?.type === "title" &&

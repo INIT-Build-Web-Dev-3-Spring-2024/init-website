@@ -1,4 +1,4 @@
-import EventCard, { Event } from "@/components/EventCard";
+import EventCard from "@/components/EventCard";
 import fetchEvents from "../lib/fetchEvents";
 import SearchInput from "@/components/Search";
 
@@ -11,7 +11,7 @@ export default async function page({ searchParams }: { searchParams?: { query?: 
       <div className="ordered mb-4 flex flex-col items-center justify-between md:mb-0 md:flex-row">
         <h1 className="text-4xl font-bold mb-3">Upcoming events</h1>
         <div className="flex w-full flex-col items-center space-y-4 md:w-auto md:flex-row md:space-x-5 md:space-y-0">
-          <SearchInput searchType="event"></SearchInput>
+          <SearchInput searchType="events"></SearchInput>
         </div>
       </div>
       <div className="mx-auto mt-8">

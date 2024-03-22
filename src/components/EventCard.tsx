@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./Button";
-import Image from "next/image"; //
+import Image from "next/image";
 
 export interface Event {
   id: string;
@@ -42,7 +42,10 @@ export default function EventCard({ picture, description, location, name, progra
         </div>
         <div className="flex flex-grow flex-col font-semibold justify-between p-4 md:p-6">
           <div>
-            <span className={`mb-1 block text-xs font-semibold uppercase ${color[program.toLowerCase() as keyof typeof color] || color.default}`}>
+            <span
+              className={`mb-1 block text-xs font-semibold uppercase ${
+                color[program.toLowerCase() as keyof typeof color] || color.default
+              }`}>
               {program}
             </span>
             <h3 className="text-lg font-semibold text-gray-300 sm:text-xl">{name}</h3>

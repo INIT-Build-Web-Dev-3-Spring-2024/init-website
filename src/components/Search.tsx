@@ -4,7 +4,7 @@ import SearchLogo from "@/images/searchLogo.svg";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
-export default function SearchInput({ searchType }: { searchType: string }) {
+export default function SearchInput({ searchType = "" }: { searchType: string }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -33,7 +33,7 @@ export default function SearchInput({ searchType }: { searchType: string }) {
             type="search"
             className="border-yellow_primary block w-full rounded-md border bg-white p-3 pl-10 text-sm text-gray-900 focus:border-primary_yellow focus:ring-primary_yellow md:w-[400px]"
             id={`search-${searchType}-input-field`}
-            placeholder={`Search ${searchType}s...`}
+            placeholder={`Search ${searchType}`}
             onChange={(e) => handleSearch(e.target.value)}
             defaultValue={searchParams.get("query")?.toString()}
             required
