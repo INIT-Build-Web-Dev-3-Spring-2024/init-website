@@ -7,8 +7,7 @@ export interface CompanyPosting {
 
 export const companyPostings = [
   {
-    image:
-      "https://res.cloudinary.com/dh6y8bufo/image/upload/v1700202362/init-dashboard/jobs/google-logo.png",
+    image: "https://res.cloudinary.com/dh6y8bufo/image/upload/v1700202362/init-dashboard/jobs/google-logo.png",
     name: "Google",
     id: 1,
     index: 1,
@@ -16,25 +15,22 @@ export const companyPostings = [
 
   {
     name: "Netflix",
-    image:
-      "https://res.cloudinary.com/dh6y8bufo/image/upload/v1700202460/init-dashboard/jobs/netflix-logo.png",
-    id: 1,
-    index: 1,
+    image: "https://res.cloudinary.com/dh6y8bufo/image/upload/v1700202460/init-dashboard/jobs/netflix-logo.png",
+    id: 2,
+    index: 2,
   },
 
   {
-    image:
-      "https://res.cloudinary.com/dh6y8bufo/image/upload/v1700202362/init-dashboard/jobs/google-logo.png",
+    image: "https://res.cloudinary.com/dh6y8bufo/image/upload/v1700202362/init-dashboard/jobs/google-logo.png",
     name: "Amazon",
-    id: 1,
-    index: 1,
+    id: 3,
+    index: 3,
   },
 
   {
-    image:
-      "https://res.cloudinary.com/dh6y8bufo/image/upload/v1700202362/init-dashboard/jobs/google-logo.png",
+    image: "https://res.cloudinary.com/dh6y8bufo/image/upload/v1700202362/init-dashboard/jobs/google-logo.png",
     name: "Capital One",
-    id: 1,
-    index: 1,
+    id: 4,
+    index: 4,
   },
 ];
