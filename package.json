@@ -21,9 +21,15 @@
     "react-dom": "latest"
   },
   "devDependencies": {
-    "@types/node": "latest",
     "@types/npm": "^7.19.3",
-    "@types/react": "^18.2.61",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-icons": "^5.0.1",
+    "tailwind-merge": "^2.2.1",
+    "@svgr/webpack": "^8.1.0",
+    "@types/node": "latest",
+    "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
     "eslint": "latest",
