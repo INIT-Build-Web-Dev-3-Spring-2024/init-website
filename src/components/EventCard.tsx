@@ -28,7 +28,7 @@ const color = {
 export default function EventCard({ picture, description, location, name, program, rsvpLink, date, time }: Event) {
   return (
     <>
-      <div className="group flex h-full flex-col rounded-2xl bg-zinc-900 overflow-hidden">
+      <section className="group flex h-full flex-col rounded-2xl bg-zinc-900 overflow-hidden">
         <div className="relative w-full h-52">
           {
             <Image
@@ -61,7 +61,7 @@ export default function EventCard({ picture, description, location, name, progra
             {rsvpLink !== "RSVP TBD" && <Button buttonText="RSVP Now" buttonLink={rsvpLink} />}
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }
