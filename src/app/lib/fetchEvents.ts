@@ -7,6 +7,7 @@ import {
   DatabaseObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import { Event } from "@/components/EventCard";
+import eventDefaultImage from "@/images/eventDefaultImage.avif";
 
 // Notion Database Reference: https://smyvens.notion.site/smyvens/b1c5ddd386bb4abcaab264d630246d99?v=d340036c928e40bea2ac68c41c3d5461
 export default async function fetchEvents(searchQuery = "", weekly = false) {
