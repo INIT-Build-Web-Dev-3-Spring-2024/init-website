@@ -17,21 +17,21 @@ export interface Event {
 const programColor = (program: string) => {
   switch (program) {
     case "build":
-      return "text-programs-build";
+      return "text-program-build";
     case "discover":
-      return "text-programs-discover";
+      return "text-program-discover";
     case "explore":
-      return "text-programs-explore";
+      return "text-program-explore";
     case "ignite":
-      return "text-programs-ignite";
+      return "text-program-ignite";
     case "hack":
-      return "text-programs-hack";
+      return "text-program-hack";
     case "launch":
-      return "text-programs-launch";
+      return "text-program-launch";
     case "reach":
-      return "text-programs-reach";
+      return "text-program-reach";
     default:
-      return "text-primary_yellow";
+      return "text-primary-yellow";
   }
 };
 
