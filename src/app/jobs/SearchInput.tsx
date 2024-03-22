@@ -1,18 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { setWasApplyFilterClicked } from "./FilterJobsCard";
 import { SearchProps } from "../../interfaces/Search.interface";
-
-let wasSearchBtnClicked = false;
-
-export function setWasSearchBtnClicked(value: boolean) {
-  wasSearchBtnClicked = value;
-}
-
-export function getWasSearchBtnClicked() {
-  return wasSearchBtnClicked;
-}
 
 export default function SearchInput({ searchType }: SearchProps) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,9 +12,6 @@ export default function SearchInput({ searchType }: SearchProps) {
 
     const encodedSearchQuery = encodeURI(searchQuery);
     router.push(`/${searchType}s?q=${encodedSearchQuery}`);
-
-    setWasApplyFilterClicked(false);
-    setWasSearchBtnClicked(true);
 
     setSearchQuery(""); // Clears search bar after user submits
   };

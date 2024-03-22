@@ -2,11 +2,8 @@ import React from "react";
 import { PrismaClient } from "@prisma/client";
 import { headers } from "next/headers";
 import { jobPostings } from "../api/Events_Tracker/jobPostings";
-import SearchInput, {setWasSearchBtnClicked} from "./SearchInput";
-import { getWasSearchBtnClicked } from "./SearchInput";
+import SearchInput from "./SearchInput";
 import JobCard from "./@jobs/JobCard";
-
-
 
 export default async function page({
   searchParams,

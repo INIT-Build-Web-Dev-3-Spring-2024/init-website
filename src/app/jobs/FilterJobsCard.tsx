@@ -1,197 +1,218 @@
 "use client";
 
 import { useState } from "react";
-
-export const jobPostings = [
-  {
-    image:
-      "https://res.cloudinary.com/dh6y8bufo/image/upload/v1700202460/init-dashboard/jobs/netflix-logo.png",
-    title: "Software Engineer",
-    company: "Netflix",
-    jobType: "Fulltime",
-    jobPosition: "New-Grad",
-    jobLocation: "On-Site",
-    date: "10/14/23",
-    url: "https://jobs.netflix.com/jobs/291980521",
-  },
-
-  {
-    image:
-      "https://res.cloudinary.com/dh6y8bufo/image/upload/v1700202362/init-dashboard/jobs/google-logo.png",
-    title: "Software Engineer",
-    company: "Google",
-    jobType: "Fulltime",
-    jobPosition: "Internship",
-    jobLocation: "On-Site",
-    date: "10/11/23",
-    url: "https://www.google.com/about/careers/applications/jobs/results/?src=Online/Google%20Website/ByF&utm_source=Online%20&utm_medium=careers_site%20&utm_campaign=ByF&company=Fitbit&company=Google&company=YouTube&distance=50&employment_type=INTERN",
-  },
-
-  {
-    image:
-      "https://res.cloudinary.com/dh6y8bufo/image/upload/v1700202587/init-dashboard/jobs/capital-one-logo.svg",
-    title: "Software Engineer",
-    company: "Capital One",
-    jobType: "Fulltime",
-    jobPosition: "Internship",
-    jobLocation: "Remote",
-    date: "10/14/23",
-    url: "https://www.capitalonecareers.com/job/mclean/technology-early-internship-program-summer-2024/31238/52660888800?messenger=email",
-  },
-
-  {
-    image:
-      "https://res.cloudinary.com/dh6y8bufo/image/upload/v1700202798/init-dashboard/jobs/104477_amazon_icon_b5cspe.png",
-    title: "Software Engineer",
-    company: "Amazon",
-    jobType: "Fulltime",
-    jobPosition: "Internship",
-    jobLocation: "On-Site",
-    date: "10/14/23",
-    url: "https://www.amazon.jobs/en/jobs/2408098/software-development-engineer-internship-2024-us",
-  },
-
-  {
-    image:
-      "https://res.cloudinary.com/dh6y8bufo/image/upload/v1700202362/init-dashboard/jobs/google-logo.png",
-    title: "Data Science",
-    company: "Google",
-    jobType: "Fulltime",
-    jobPosition: "Internship",
-    jobLocation: "On-Site",
-    date: "10/11/23",
-    url: "https://www.google.com/about/careers/applications/jobs/results/?src=Online/Google%20Website/ByF&utm_source=Online%20&utm_medium=careers_site%20&utm_campaign=ByF&company=Fitbit&company=Google&company=YouTube&distance=50&employment_type=INTERN",
-  },
-
-  {
-    image:
-      "https://res.cloudinary.com/dh6y8bufo/image/upload/v1700202460/init-dashboard/jobs/netflix-logo.png",
-    title: "Machine Learning",
-    company: "Netflix",
-    jobType: "Partime",
-    jobPosition: "New-Grad",
-    jobLocation: "On-Site",
-    date: "10/14/23",
-    url: "https://jobs.netflix.com/jobs/291980521",
-  },
-];
+import { useRouter } from "next/navigation";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 type FilterCategories = "jobType" | "positionType" | "jobLocation";
 
 export default function FilterCard() {
-  const [filteredJobs, setFilteredJobs] = useState(jobPostings);
-  const [filters, setFilters] = useState<Record<FilterCategories, Set<string>>>(
-    {
-      jobType: new Set(),
-      positionType: new Set(),
-      jobLocation: new Set(),
-    }
-  );
+	const router = useRouter();
+	const [filters, setFilters] = useState<Record<FilterCategories, Set<string>>>(
+		{
+		jobType: new Set(),
+		positionType: new Set(),
+		jobLocation: new Set(),
+		}
+	);
 
-  function handleFilter(category: FilterCategories, filter: string) {
-    // see which filters the user has applied
-    const newJobTypeFilters = new Set(filters.jobType);
-	const newPositionTypeFilters = new Set(filters.positionType);
-	const newJobLocationFilters = new Set(filters.jobLocation);
+	function handleFilter(category: FilterCategories, filter: string) {
+		// see which filters the user has applied
+		const newJobTypeFilters = new Set(filters.jobType);
+		const newPositionTypeFilters = new Set(filters.positionType);
+		const newJobLocationFilters = new Set(filters.jobLocation);
 
-	if(category === 'jobType'){
-		newJobTypeFilters.has(filter) ? newJobTypeFilters.delete(filter) : newJobTypeFilters.add(filter);
-	}else if(category === 'positionType'){
-		newPositionTypeFilters.has(filter) ? newPositionTypeFilters.delete(filter) : newPositionTypeFilters.add(filter);
-	}else if(category === 'jobLocation'){
-		newJobLocationFilters.has(filter) ? newJobLocationFilters.delete(filter) : newJobLocationFilters.add(filter);
-	};
+		if(category === 'jobType'){
+			newJobTypeFilters.has(filter) ? newJobTypeFilters.delete(filter) : newJobTypeFilters.add(filter);
+		}else if(category === 'positionType'){
+			newPositionTypeFilters.has(filter) ? newPositionTypeFilters.delete(filter) : newPositionTypeFilters.add(filter);
+		}else if(category === 'jobLocation'){
+			newJobLocationFilters.has(filter) ? newJobLocationFilters.delete(filter) : newJobLocationFilters.add(filter);
+		};
 
-    setFilters({
-		jobType: newJobTypeFilters,
-		positionType: newPositionTypeFilters,
-		jobLocation: newJobLocationFilters
-	});
+		setFilters({
+			jobType: newJobTypeFilters,
+			positionType: newPositionTypeFilters,
+			jobLocation: newJobLocationFilters
+		});
+	}
 
-    // only display the jobs based on the filters the user applied
-    const newFilteredJobs = jobPostings.filter(job => {
-		return(
-			(newJobTypeFilters.size == 0 || newJobTypeFilters.has(job.jobType)) &&
-			(newPositionTypeFilters.size == 0 || newPositionTypeFilters.has(job.jobPosition)) &&
-			(newJobLocationFilters.size == 0 || newJobLocationFilters.has(job.jobLocation))
-		);
-	});
+	function applyFilters(router: AppRouterInstance){
+		let filterParams = ""
 
-    setFilteredJobs(newFilteredJobs);
-  }
+		if(filters.jobType.size > 0){
+			filterParams += (`?jobType=${encodeURI(Array.from(filters.jobType).join(','))}`);
+		}
 
-  return (
-    <div className="mx-10">
-      <div className="mb-10">
-        <div className="">
-          <input
-            type="checkbox"
-            checked={filters.jobType.has("Partime")}
-            onChange={() => handleFilter("jobType", "Partime")}
-          />
-          <label htmlFor="part-time">Part Time</label>
-        </div>
-        <div className="">
-          <input
-            type="checkbox"
-            checked={filters.jobType.has("Fulltime")}
-            onChange={() => handleFilter("jobType", "Fulltime")}
-          />
-          <label htmlFor="part-time">Fulltime</label>
-        </div>
-		<div className="">
-          <input
-            type="checkbox"
-            checked={filters.positionType.has("New-Grad")}
-            onChange={() => handleFilter("positionType", "New-Grad")}
-          />
-          <label htmlFor="part-time">New-Grad</label>
-        </div>
-		<div className="">
-          <input
-            type="checkbox"
-            checked={filters.positionType.has("Internship")}
-            onChange={() => handleFilter("positionType", "Internship")}
-          />
-          <label htmlFor="internship">Internship</label>
-        </div>
-		<div className="">
-          <input
-            type="checkbox"
-            checked={filters.jobLocation.has("On-Site")}
-            onChange={() => handleFilter("jobLocation", "On-Site")}
-          />
-          <label htmlFor="part-time">On-Site</label>
-        </div>
-		<div className="">
-          <input
-            type="checkbox"
-            checked={filters.jobLocation.has("Hybrid")}
-            onChange={() => handleFilter("jobLocation", "Hybrid")}
-          />
-          <label htmlFor="part-time">Hybrid</label>
-        </div>
-		<div className="">
-          <input
-            type="checkbox"
-            checked={filters.jobLocation.has("Remote")}
-            onChange={() => handleFilter("jobLocation", "Remote")}
-          />
-          <label htmlFor="part-time">Remote</label>
-        </div>
-	  </div>
+		if(filters.positionType.size > 0){
+			filterParams += (filterParams.length > 0 ? "&" : "?") +
+				`positionType=${encodeURI(Array.from(filters.positionType).join(','))}`;
+		}
 
-      <div className="grid grid-cols-3 gap-3">
-        {filteredJobs.map(({ title, company, jobType, jobPosition, jobLocation }, index) => (
-          <div key={index} className="bg-gray-200 w-56 p-5">
-            <h1>{title}</h1>
-            <h2>{company}</h2>
-            <p>{jobType}</p>
-			<p>{jobPosition}</p>
-			<p>{jobLocation}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+		if(filters.jobLocation.size > 0){
+			filterParams += (filterParams.length > 0 ? "&" : "?") +
+				`jobLocation=${encodeURI(Array.from(filters.jobLocation).join(','))}`;
+		}
+
+		if(filterParams.length > 0) {
+			router.push(filterParams);
+		}
+	}
+
+	function clearFilters(){
+		setFilters({
+			jobType: new Set(),
+			positionType: new Set(),
+			jobLocation: new Set(),
+		});
+
+		router.replace("jobs")
+	}
+
+	return (
+		<div className="h-[485px] w-48 rounded-md border-2 border-[#121415] bg-[#121415] p-6">
+		  <div className="flex items-baseline justify-between">
+			<h2 className="mb-4 text-xl">Filter</h2>
+			{/* Reset Filters Button */}
+			<p
+			  className="cursor-pointer text-xs text-primary_yellow hover:text-light_yellow hover:underline"
+			  onClick={clearFilters}
+			>
+			  Clear filters
+			</p>
+		  </div>
+		  <form action="submit">
+			{/* Job Hours Container */}
+			<div className="mb-2">
+			  <h3 className="mb-2 text-base">Job Type</h3>
+			  {/* Full time box */}
+			  <div className="mb-1.5 flex items-center">
+				<input
+				  type="checkbox"
+				  className="mr-1.5 cursor-pointer rounded-sm"
+				  checked={filters.jobType.has("Fulltime")}
+				  onChange={() => handleFilter("jobType", "Fulltime")}
+				/>
+				<label
+				  className="cursor-pointer pt-[0.1rem] text-sm font-normal"
+				  htmlFor="fulltime"
+				>
+				  Fulltime
+				</label>
+			  </div>
+			  {/* Part time box */}
+			  <div className="mb-1.5 flex items-center">
+				<input
+				  type="checkbox"
+				  className="mr-1.5 cursor-pointer rounded-sm"
+				  checked={filters.jobType.has("Partime")}
+				  onChange={() => handleFilter("jobType", "Partime")}
+				/>
+				<label
+				  className="cursor-pointer pt-[0.1rem] text-sm font-normal"
+				  htmlFor="partTime"
+				>
+				  Parttime
+				</label>
+			  </div>
+			</div>
+
+			{/* Job Type Container */}
+			<div className="mb-2">
+			  <h3 className="mb-2 text-base">Position Type</h3>
+			  {/* Internship box */}
+			  <div className="mb-1.5 flex items-center">
+				<input
+				  type="checkbox"
+				  className="mr-1.5 cursor-pointer rounded-sm"
+				  checked={filters.positionType.has("Internship")}
+				  onChange={() => handleFilter("positionType", "Internship")}
+				/>
+				<label
+				  className="cursor-pointer pt-[0.1rem] text-sm font-normal"
+				  htmlFor="internship"
+				>
+				  Internship
+				</label>
+			  </div>
+			  {/* New-grad box */}
+			  <div className="mb-1.5 flex items-center">
+				<input
+				  type="checkbox"
+				  className="mr-1.5 cursor-pointer rounded-sm"
+				  checked={filters.positionType.has("New-Grad")}
+				  onChange={() => handleFilter("positionType", "New-Grad")}
+				/>
+				<label
+				  className="cursor-pointer pt-[0.1rem] text-sm font-normal"
+				  htmlFor="newGrad"
+				>
+				  New-Grad
+				</label>
+			  </div>
+			</div>
+
+			{/* Job location Container */}
+			<div className="mb-9">
+			  <h3 className="mb-2 text-base">Job location</h3>
+			  {/* On-site box */}
+			  <div className="mb-1.5 flex items-center">
+				<input
+				  type="checkbox"
+				  className="mr-1.5 cursor-pointer rounded-sm"
+				  checked={filters.jobLocation.has("On-Site")}
+				  onChange={() => handleFilter("jobLocation", "On-Site")}
+				/>
+				<label
+				  className="cursor-pointer pt-[0.1rem] text-sm font-normal"
+				  htmlFor="onSite"
+				>
+				  On-Site
+				</label>
+			  </div>
+			  {/* Hybrid box */}
+			  <div className="mb-1.5 flex items-center">
+				<input
+				  type="checkbox"
+				  className="mr-1.5 cursor-pointer rounded-sm"
+				  checked={filters.jobLocation.has("Hybrid")}
+				  onChange={() => handleFilter("jobLocation", "Hybrid")}
+				/>
+				<label
+				  className="cursor-pointer pt-[0.1rem] text-sm font-normal"
+				  htmlFor="hybrid"
+				>
+				  Hybrid
+				</label>
+			  </div>
+			  {/* Remote box */}
+			  <div className="mb-1.5 flex items-center">
+				<input
+				  type="checkbox"
+				  className="mr-1.5 cursor-pointer rounded-sm"
+				  checked={filters.jobLocation.has("Remote")}
+				  onChange={() => handleFilter("jobLocation", "Remote")}
+				/>
+				<label
+				  className="cursor-pointer pt-[0.1rem] text-sm font-normal"
+				  htmlFor="remote"
+				>
+				  Remote
+				</label>
+			  </div>
+			</div>
+
+			{/* Apply Filter Button */}
+			<button
+			  id="filter-btn"
+			  type="button"
+			  className="mb-2 mr-2 rounded-lg bg-primary_yellow px-5 py-2.5 text-sm
+							  font-medium text-black hover:bg-light_yellow focus:ring-light_yellow dark:focus:ring-yellow-900"
+			  onClick={() => applyFilters(router)}
+			>
+			  Apply Filter
+			</button>
+		  </form>
+		</div>
+	);
 }
