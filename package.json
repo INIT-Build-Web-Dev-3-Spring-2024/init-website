@@ -10,10 +10,11 @@
   },
   "dependencies": {
     "next": "latest",
+    "node": "^21.7.1",
     "react": "latest",
     "react-dom": "latest",
     "react-icons": "^5.0.1",
-    "tailwind-merge": "^2.2.1"
+    "tailwind-merge": "^2.2.2"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
