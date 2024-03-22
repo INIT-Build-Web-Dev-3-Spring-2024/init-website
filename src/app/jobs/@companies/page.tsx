@@ -1,5 +1,4 @@
 import { headers } from "next/headers";
-//import { companyPosting } from "../api/Events_Tracker/copmanyPosting";
 import { CompanyPosting } from "../../api/Events_Tracker/companyPosting";
 import { JobPosting } from "../../api/Events_Tracker/jobPostings";
 import CompanyCard from "./CompanyCard";
@@ -27,13 +26,6 @@ export default async function page() {
 
   console.log(companyPostings, jobPostings);
 
-  // const jobs: typeof jobPostings = responseBody;
-  // console.log(jobs);
-
-  // const companies: typeof companyPosting = responseBody;
-  // console.log("Companies go here!!!:");
-  // console.log(companies);
-
   return (
     <>
       <main className="min-h-screen">
@@ -59,14 +51,6 @@ export default async function page() {
           {/* </div> */}
         </div>
       </main>
-
-      {/* {jobs.map((job) => (
-        <JobCard {...job} />
-      ))} */}
-      {/* 
-      {companyPostings.map((company) => (
-        <CompanyCard {...company} />
-      ))} */}
     </>
   );
 }
