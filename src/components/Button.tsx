@@ -1,28 +1,20 @@
 "use client";
+import React from "react";
 
-import { ReactNode, MouseEvent } from "react";
-import { twMerge } from "tailwind-merge";
-
-interface ButtonProps {
-  children: ReactNode;
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
-  type?: HTMLButtonElement["type"];
-  className?: HTMLButtonElement["className"];
+export interface Button {
+  children: string;
+  buttonLink: string;
 }
 
-export default function Button(props: ButtonProps) {
-  const { children, onClick, type = "button", className } = props;
-
+export default function RsvpButton({ buttonLink, children }: { buttonLink: string; children: string }) {
   return (
-    <button
-      type={type}
-      onClick={onClick}
-      className={twMerge(
-        "bg-primary-yellow hover:bg-light_yellow px-3 py-2 lg:px-4 lg:py-3 text-sm font-semibold text-black transition-all rounded-md",
-        className
-      )}
-    >
-      {children}
-    </button>
+    <>
+      <a
+        className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary-yellow px-3 py-2 text-xs font-medium text-gray-700 shadow-sm transition-all hover:bg-light_yellow focus:outline-none focus:ring-2 focus:ring-light_yellow sm:rounded-lg sm:px-4 sm:py-3 sm:text-sm"
+        href={buttonLink}
+        target="_blank">
+        {children}
+      </a>
+    </>
   );
 }
