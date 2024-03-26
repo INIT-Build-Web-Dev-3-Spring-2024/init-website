@@ -11,7 +11,7 @@
   "dependencies": {
     "@notionhq/client": "^2.2.14",
     "next": "latest",
-    "next-auth": "^4.24.6",
+    "next-auth": "^4.24.7",
     "react": "latest",
     "react-dom": "latest",
     "react-icons": "^5.0.1",
