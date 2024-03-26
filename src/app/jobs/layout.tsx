@@ -21,10 +21,12 @@ export default function JobsLayout({
   return (
     <div className="max-w-screen-xl mx-auto">
       <div className="flex items-center justify-between">
+        <div className="relative -top-8">
+          <FilterCard/>
+        </div>
         <h1 className="font-poppins font-bold text-xl text-white md:mb-0 md:text-2xl lg:text-3xl">
           Upcoming Jobs
         </h1>
-
         <div className="flex items-center gap-6 h-24">
           {showCompanies || <SearchInput searchType="job" />}
           <Button onClick={() => setShowCompanies(!showCompanies)}>
@@ -32,9 +34,7 @@ export default function JobsLayout({
           </Button>
           <Button onClick={() => alert("clicked add job button")}>Add Jobs</Button>
         </div>
-        <div className="relative left-0 -top-8">
-          <FilterCard/>
-        </div>
+        
       </div>
 
       {showCompanies ? companies : jobs}
