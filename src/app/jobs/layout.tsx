@@ -3,6 +3,7 @@
 import Button from "@/components/Button";
 import { ReactNode, useState } from "react";
 import SearchInput from "./SearchInput";
+import FilterCard from "./FilterJobsCard";
 
 interface JobsLayoutProps {
   children: ReactNode;
@@ -30,6 +31,9 @@ export default function JobsLayout({
             Group By {showCompanies ? "Jobs" : "Companies"}
           </Button>
           <Button onClick={() => alert("clicked add job button")}>Add Jobs</Button>
+        </div>
+        <div className="relative left-0 -top-8">
+          <FilterCard/>
         </div>
       </div>
 

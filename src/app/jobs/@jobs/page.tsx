@@ -36,19 +36,16 @@ export default async function page({ searchParams }: { searchParams?: { [key: st
     input: { q: string | null },
     filters: { jobType: string; positionType: string; jobLocation: string }
   ) {
-    if (input.q) {
-      return await prisma.jobPosting.findMany({
-        where: {
-          OR: [
-            { title: { contains: decodedSearchQuery, mode: "insensitive" } },
-            { company: { contains: decodedSearchQuery, mode: "insensitive" } },
-          ],
-        },
-      });
-    } else if (filters.jobType || filters.positionType || filters.jobLocation) {
+    if (input.q ||filters.jobType || filters.positionType || filters.jobLocation) {
       return await prisma.jobPosting.findMany({
         where: {
           AND: [
+            {
+              OR: [
+                input.q ? { title: { contains: decodedSearchQuery, mode: "insensitive" } } : {},
+                input.q ? { company: { contains: decodedSearchQuery, mode: "insensitive" } } : {},
+              ],
+            },
             filters.jobType ? { jobType: { in: filters.jobType.split(",") } } : {},
             filters.positionType ? { jobPosition: { in: filters.positionType.split(",") } } : {},
             filters.jobLocation ? { jobLocation: { in: filters.jobLocation.split(",") } } : {},

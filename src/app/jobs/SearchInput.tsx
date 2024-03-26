@@ -3,16 +3,35 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { SearchProps } from "../../interfaces/Search.interface";
 import Button from "@/components/Button";
+import { useSearchParams } from "next/navigation";
 
 export default function SearchInput({ searchType }: SearchProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
+  const searchParams = useSearchParams()
 
   const onSearch = (event: React.FormEvent) => {
     event.preventDefault();
 
-    const encodedSearchQuery = encodeURI(searchQuery);
-    router.push(`/${searchType}s?q=${encodedSearchQuery}`);
+    const jobType = searchParams.has('jobType') ? searchParams.get('jobType')! : "";
+    const positionType = searchParams.has('positionType') ? searchParams.get('positionType')! : "";
+    const jobLocation = searchParams.has('jobLocation') ? searchParams.get('jobLocation')! : "";
+
+    let query = `/${searchType}s?q=${encodeURI(searchQuery)}`;
+
+    if(jobType.length > 0){
+			query += (`&jobType=${encodeURI(jobType)}`);
+		}
+
+    if(positionType.length > 0){
+			query += (`&positionType=${encodeURI(positionType)}`);
+		}
+
+    if(jobLocation.length > 0){
+			query += (`&jobLocation=${encodeURI(jobLocation)}`);
+		}
+
+    router.push(query);
 
     setSearchQuery(""); // Clears search bar after user submits
   };

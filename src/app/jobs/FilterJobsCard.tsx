@@ -3,11 +3,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { useSearchParams } from "next/navigation";
 
 type FilterCategories = "jobType" | "positionType" | "jobLocation";
 
 export default function FilterCard() {
 	const router = useRouter();
+	const searchParams = useSearchParams()
+	const search = searchParams.has('q') ? searchParams.get('q')! : "";
 	const [filters, setFilters] = useState<Record<FilterCategories, Set<string>>>(
 		{
 		jobType: new Set(),
@@ -40,8 +43,13 @@ export default function FilterCard() {
 	function applyFilters(router: AppRouterInstance){
 		let filterParams = ""
 
+		if(search.length > 0){
+			filterParams += (`?q=${encodeURI(search)}`);
+		}
+
 		if(filters.jobType.size > 0){
-			filterParams += (`?jobType=${encodeURI(Array.from(filters.jobType).join(','))}`);
+			filterParams += (filterParams.length > 0 ? "&" : "?") +
+				`jobType=${encodeURI(Array.from(filters.jobType).join(','))}`;
 		}
 
 		if(filters.positionType.size > 0){
