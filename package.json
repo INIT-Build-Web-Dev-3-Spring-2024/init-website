@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@notionhq/client": "^2.2.14",
     "next": "latest",
     "next-auth": "^4.24.7",
     "react": "latest",
     "react-dom": "latest",
     "react-icons": "^5.0.1",
-    "tailwind-merge": "^2.2.1"
+    "tailwind-merge": "^2.2.1",
+    "use-debounce": "^10.0.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
