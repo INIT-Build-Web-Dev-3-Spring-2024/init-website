@@ -5,8 +5,11 @@ import Button from "@/components/Button";
 import SubTitle from "@/components/SubTitle";
 import Text from "@/components/Text";
 import { Title, AnimatedTitle } from "@/components/Title";
+import useSearchInput from "@/hooks/useSearchInput";
 
-export default function page() {
+export default function Page() {
+  const [input, setInput] = useSearchInput();
+
   return (
     <>
       <Title>
@@ -33,6 +36,13 @@ export default function page() {
       <Button href="" className="m-10">
         Hello world
       </Button>
+
+      <input
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        className="bg-black focus:outline-none border"
+      />
     </>
   );
 }
