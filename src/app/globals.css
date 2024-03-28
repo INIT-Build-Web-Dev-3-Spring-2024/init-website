@@ -8,6 +8,16 @@ body {
   /* background: theme(colors.black); */
 }
 
+@layer utilities {
+  .no-srollbar {
+    scrollbar-width:  0;
+  }
+
+  .no-srollbar::-webkit-scrollbar { 
+    display: none;  
+  }
+}
+
 /* colored animated text */
 @layer utilities {
   .animated-text {
@@ -73,4 +83,4 @@ body {
       --gradient-angle: 360deg;
     }
   }
-}
+
