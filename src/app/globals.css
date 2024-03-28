@@ -10,11 +10,11 @@ body {
 
 @layer utilities {
   .no-srollbar {
-    scrollbar-width:  0;
+    scrollbar-width: 0;
   }
 
-  .no-srollbar::-webkit-scrollbar { 
-    display: none;  
+  .no-srollbar::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -83,4 +83,4 @@ body {
       --gradient-angle: 360deg;
     }
   }
-
+}
