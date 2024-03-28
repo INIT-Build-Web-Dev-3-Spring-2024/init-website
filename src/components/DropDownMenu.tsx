@@ -2,7 +2,7 @@
 
 import { ChangeEvent, ChangeEventHandler } from "react";
 import Text from "./Text";
-import useSearchInput from "@/hooks/useSearchInput";
+import useAutoQueryString from "@/hooks/useAutoQueryString";
 
 export interface DropDownMenuProps {
   name: string;
@@ -14,7 +14,7 @@ export default function DropDownMenu(props: DropDownMenuProps) {
   const { name, options, onChange } = props;
 
   // save what the user select in the query url string
-  const [query, setQuery] = useSearchInput(name);
+  const [query, setQuery] = useAutoQueryString(name);
 
   function handleChange(e: ChangeEvent<HTMLSelectElement>) {
     setQuery(e.target.value);

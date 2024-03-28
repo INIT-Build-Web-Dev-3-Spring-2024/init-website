@@ -5,12 +5,12 @@ import Button from "@/components/Button";
 import SubTitle from "@/components/SubTitle";
 import Text from "@/components/Text";
 import { Title, AnimatedTitle } from "@/components/Title";
-import useSearchInput from "@/hooks/useSearchInput";
+import useAutoQueryString from "@/hooks/useAutoQueryString";
 import InputAndFilters from "@/components/InputAndFilters";
 import { ChangeEvent } from "react";
 
 export default function Page() {
-  const [input, setInput] = useSearchInput();
+  const [input, setInput] = useAutoQueryString();
 
   function handleFilter(e: ChangeEvent<HTMLSelectElement>) {
     console.log(e.target.name, e.target.value);

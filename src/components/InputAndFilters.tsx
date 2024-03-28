@@ -1,6 +1,6 @@
 "use client";
 
-import useSearchInput from "@/hooks/useSearchInput";
+import useAutoQueryString from "@/hooks/useAutoQueryString";
 import { Fragment } from "react";
 import { IoIosSearch } from "react-icons/io";
 import DropDownMenu, { DropDownMenuProps } from "./DropDownMenu";
@@ -16,7 +16,7 @@ interface InputAndFiltersProps {
 export default function InputAndFilters(props: InputAndFiltersProps) {
   const { placeholder = "search", name, filters } = props;
   const router = useRouter();
-  const [input, setInput] = useSearchInput(name);
+  const [input, setInput] = useAutoQueryString(name);
 
   function reload() {
     router.refresh();
