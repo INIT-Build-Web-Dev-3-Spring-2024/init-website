@@ -20,14 +20,15 @@ export default function useSearchInput(name: string = "q") {
       params.delete(name);
     }
 
-    router.push(pathname + "?" + params.toString());
+    router.push(`${pathname}?${params}`);
   }, 300);
 
   // get the initial value of the input on load
   useEffect(() => {
     const initialValue = searchParams.get(name) || "";
     setValue(initialValue);
-  }, [setValue, searchParams, name]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // keep calling search input whenever the user types
   useEffect(() => {
