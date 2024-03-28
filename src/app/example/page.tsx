@@ -6,9 +6,15 @@ import SubTitle from "@/components/SubTitle";
 import Text from "@/components/Text";
 import { Title, AnimatedTitle } from "@/components/Title";
 import useSearchInput from "@/hooks/useSearchInput";
+import InputAndFilters from "@/components/InputAndFilters";
+import { ChangeEvent } from "react";
 
 export default function Page() {
   const [input, setInput] = useSearchInput();
+
+  function handleFilter(e: ChangeEvent<HTMLSelectElement>) {
+    console.log(e.target.name, e.target.value);
+  }
 
   return (
     <>
@@ -43,6 +49,28 @@ export default function Page() {
         onChange={(e) => setInput(e.target.value)}
         className="bg-black focus:outline-none border"
       />
+
+      <div className="mx-auto w-3/4 my-5">
+        <InputAndFilters
+          placeholder="Search by name or type"
+          filters={[
+            {
+              name: "Location",
+              options: ["Seattle", "Arlington", "Chicago"],
+              onChange: handleFilter,
+            },
+            {
+              name: "Type",
+              options: ["Full Time", "Part Time", "Internship"],
+              onChange: handleFilter,
+            },
+            {
+              name: "Program",
+              options: ["Expolore", "Build", "Reach"],
+            },
+          ]}
+        />
+      </div>
     </>
   );
 }
