@@ -9,16 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        page: "#000",
         primary: {
           DEFAULT: "#1A1E22",
           yellow: "#FFD550",
-          purple: "#7289DA",
-          gray: "#D1D1D1",
+          purple: "#430486",
+          gray: "#BABABA",
+          text: "#D9D9D9",
         },
         secondary: {
           DEFAULT: "#FFFFFF",
-          yellow: "#FFF1B8",
+          yellow: "#F07053",
           purple: "#D0C3FC",
+          gray: "#3E3E3E",
         },
         program: {
           build: "#FC6C3F",
@@ -32,7 +35,11 @@ const config: Config = {
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      fontFamily: {
+        "gothic-a1": ["var(--font-gothic-a1)"],
       },
     },
   },
