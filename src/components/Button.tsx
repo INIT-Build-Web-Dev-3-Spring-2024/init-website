@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { MouseEventHandler, ReactNode } from "react";
+import { HTMLAttributeAnchorTarget, MouseEventHandler, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 import GradientBorder from "./GradientBorder";
 
@@ -13,6 +13,7 @@ interface Base {
 
 interface Link extends Base {
   href: string;
+  target?: HTMLAttributeAnchorTarget;
   // If it is a link, this Ensures these cannot be passed in
   onClick?: never;
   type?: never;
@@ -23,12 +24,14 @@ interface Action extends Base {
   onClick: MouseEventHandler;
   // If it is a button, this Ensures these cannot be passed in
   href?: never;
+  target?: never;
 }
 
 type ButtonProps = Link | Action;
 
 export default function Button(props: ButtonProps) {
-  const { children, className, borderGradient, onClick, type, href } = props;
+  const { children, className, borderGradient, onClick, type, href, target } =
+    props;
 
   // conditionaly render a link or a button based on if href is defined
   const ElementType = props.href !== undefined ? Link : "button";
@@ -37,6 +40,7 @@ export default function Button(props: ButtonProps) {
   const content = (
     <ElementType
       href={href || ""}
+      target={target}
       onClick={onClick}
       type={type}
       className={twMerge(
