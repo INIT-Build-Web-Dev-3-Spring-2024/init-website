@@ -2,10 +2,86 @@
 @tailwind components;
 @tailwind utilities;
 
-.no-srollbar {
-    scrollbar-width:  0;
+body {
+  @apply text-primary-text overflow-x-hidden max-w-full bg-fixed font-gothic-a1;
+  @apply bg-page;
+  /* background: theme(colors.black); */
 }
 
-.no-srollbar::-webkit-scrollbar { 
-    display: none;  
+@layer utilities {
+  .no-srollbar {
+    scrollbar-width: 0;
+  }
+
+  .no-srollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* colored animated text */
+@layer utilities {
+  .animated-text {
+    background: linear-gradient(
+      90deg,
+      theme(colors.primary.yellow) 0%,
+      theme(colors.secondary.yellow) 50%,
+      theme(colors.primary.purple) 75%,
+      theme(colors.primary.yellow) 100%
+    );
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200%;
+    animation: scroll-background 5s linear infinite reverse;
+  }
+  @keyframes scroll-background {
+    from {
+      background-position: 0%;
+    }
+    to {
+      background-position: 190%;
+    }
+  }
+}
+
+@layer utilities {
+  @property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  .gradient-border::before,
+  .gradient-border::after {
+    content: "";
+    position: absolute;
+    inset: -0.1rem;
+    z-index: -1;
+    background: conic-gradient(
+      from var(--gradient-angle),
+      theme(colors.primary.yellow),
+      theme(colors.secondary.yellow),
+      theme(colors.primary.purple),
+      theme(colors.primary.yellow)
+    );
+    border-radius: inherit;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .animated-border:before,
+  .animated-border::after {
+    animation: rotation 5s linear infinite;
+  }
+
+  .animated-border::after {
+    @apply blur;
+  }
+
+  @keyframes rotation {
+    0% {
+      --gradient-angle: 0deg;
+    }
+    100% {
+      --gradient-angle: 360deg;
+    }
+  }
 }

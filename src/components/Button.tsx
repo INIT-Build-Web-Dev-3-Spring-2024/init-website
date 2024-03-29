@@ -1,20 +1,68 @@
 "use client";
-import React from "react";
 
-export interface Button {
-  children: string;
-  buttonLink: string;
+import Link from "next/link";
+import { HTMLAttributeAnchorTarget, MouseEventHandler, ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
+import GradientBorder from "./GradientBorder";
+
+interface Base {
+  children?: ReactNode;
+  className?: HTMLElement["className"];
+  borderGradient?: "onHover" | "always";
 }
 
-export default function RsvpButton({ buttonLink, children }: { buttonLink: string; children: string }) {
+interface Link extends Base {
+  href: string;
+  target?: HTMLAttributeAnchorTarget;
+  // If it is a link, this Ensures these cannot be passed in
+  onClick?: never;
+  type?: never;
+}
+
+interface Action extends Base {
+  type?: HTMLButtonElement["type"];
+  onClick: MouseEventHandler;
+  // If it is a button, this Ensures these cannot be passed in
+  href?: never;
+  target?: never;
+}
+
+type ButtonProps = Link | Action;
+
+export default function Button(props: ButtonProps) {
+  const { children, className, borderGradient, onClick, type, href, target } =
+    props;
+
+  // conditionaly render a link or a button based on if href is defined
+  const ElementType = props.href !== undefined ? Link : "button";
+
+  // pass the props to which ever element gets render
+  const content = (
+    <ElementType
+      href={href || ""}
+      target={target}
+      onClick={onClick}
+      type={type}
+      className={twMerge(
+        "border border-secondary-gray p-3 rounded-lg active:translate-y-1 bg-page inline-block",
+        borderGradient ? "border-transparent" : className
+      )}
+    >
+      {children}
+    </ElementType>
+  );
+
   return (
-    <>
-      <a
-        className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary-yellow px-3 py-2 text-xs font-medium text-gray-700 shadow-sm transition-all hover:bg-light_yellow focus:outline-none focus:ring-2 focus:ring-light_yellow sm:rounded-lg sm:px-4 sm:py-3 sm:text-sm"
-        href={buttonLink}
-        target="_blank">
-        {children}
-      </a>
-    </>
+    <GradientBorder
+      className={twMerge(
+        "p-0 active:before:translate-y-1 active:after:translate-y-1 active:translate-y-1",
+        className
+      )}
+      animatedOnHover={borderGradient === "onHover"}
+      animated={borderGradient === "always"}
+      disabled={borderGradient === undefined}
+    >
+      {content}
+    </GradientBorder>
   );
 }
