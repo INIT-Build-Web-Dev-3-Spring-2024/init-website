@@ -8,6 +8,7 @@ import { Title, AnimatedTitle } from "@/components/Title";
 import useAutoQueryString from "@/hooks/useAutoQueryString";
 import InputAndFilters from "@/components/InputAndFilters";
 import { ChangeEvent } from "react";
+import HoverEffect from "@/components/hoverEff";
 
 export default function Page() {
   const [input, setInput] = useAutoQueryString();
@@ -30,11 +31,11 @@ export default function Page() {
         explicabo quia. Repudiandae aliquid, voluptas repellendus ipsa modi sint
         error.
       </Text>
-
       <GradientBorder disabled animated animatedOnHover className="m-20">
-        <div>any element inside</div>
+    <HoverEffect className='rounded-md'>
+        <div className=" p-10">any element inside</div>
+    </HoverEffect>
       </GradientBorder>
-
       <Button gradientBorder onClick={() => null} className="m-10">
         Hello world
       </Button>
