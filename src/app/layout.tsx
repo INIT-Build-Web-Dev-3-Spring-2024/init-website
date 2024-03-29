@@ -26,9 +26,8 @@ export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <body className={twMerge(inter.className, gothicA1.className)}>
-        <header>
-          <Navbar />
-        </header>
+        <Navbar />
+
         {children}
         <main></main>
 
