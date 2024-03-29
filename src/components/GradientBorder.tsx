@@ -4,8 +4,8 @@ import { twMerge } from "tailwind-merge";
 interface GradientBorderProps {
   children?: ReactNode;
   className?: HTMLElement["className"];
-  animated?: true;
-  animatedOnHover?: true;
+  animated?: boolean;
+  animatedOnHover?: boolean;
   disabled?: boolean;
 }
 

@@ -8,7 +8,7 @@ import GradientBorder from "./GradientBorder";
 interface Base {
   children?: ReactNode;
   className?: HTMLElement["className"];
-  gradientBorder?: boolean;
+  borderGradient?: "onHover" | "always";
 }
 
 interface Link extends Base {
@@ -28,7 +28,7 @@ interface Action extends Base {
 type ButtonProps = Link | Action;
 
 export default function Button(props: ButtonProps) {
-  const { children, className, gradientBorder, onClick, type, href } = props;
+  const { children, className, borderGradient, onClick, type, href } = props;
 
   // conditionaly render a link or a button based on if href is defined
   const ElementType = props.href !== undefined ? Link : "button";
@@ -41,7 +41,7 @@ export default function Button(props: ButtonProps) {
       type={type}
       className={twMerge(
         "border border-secondary-gray p-3 rounded-lg active:translate-y-1 bg-page inline-block",
-        gradientBorder ? "border-transparent" : className
+        borderGradient ? "border-transparent" : className
       )}
     >
       {children}
@@ -54,8 +54,9 @@ export default function Button(props: ButtonProps) {
         "p-0 active:before:translate-y-1 active:after:translate-y-1 active:translate-y-1",
         className
       )}
-      animatedOnHover
-      disabled={gradientBorder !== true}
+      animatedOnHover={borderGradient === "onHover"}
+      animated={borderGradient === "always"}
+      disabled={borderGradient === undefined}
     >
       {content}
     </GradientBorder>

@@ -35,12 +35,16 @@ export default function Page() {
         <div>any element inside</div>
       </GradientBorder>
 
-      <Button gradientBorder onClick={() => null} className="m-10">
-        Hello world
+      <Button borderGradient="always" onClick={() => null} className="m-10">
+        Always border gradient button
       </Button>
 
-      <Button href="" className="m-10">
-        Hello world
+      <Button borderGradient="onHover" onClick={() => null} className="m-10">
+        Border gradient on hover
+      </Button>
+
+      <Button href="#" className="m-10">
+        link to a thing
       </Button>
 
       <input
