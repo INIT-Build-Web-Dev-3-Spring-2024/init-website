@@ -51,7 +51,7 @@ export default function Button(props: ButtonProps) {
   return (
     <GradientBorder
       className={twMerge(
-        "p-0 active:before:translate-y-1 activeafter:translate-y-1",
+        "p-0 active:before:translate-y-1 active:after:translate-y-1 active:translate-y-1",
         className
       )}
       animatedOnHover
