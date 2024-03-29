@@ -6,3 +6,10 @@
 body {
     @apply bg-primary text-white;
 }
+.no-srollbar {
+    scrollbar-width:  0;
+}
+
+.no-srollbar::-webkit-scrollbar {
+    display: none;
+}
