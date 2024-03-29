@@ -1,9 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { SearchProps } from "../../interfaces/Search.interface";
 import Button from "@/components/Button";
 import { useSearchParams } from "next/navigation";
+
+export interface SearchProps {
+  searchType: string;
+}
 
 export default function SearchInput({ searchType }: SearchProps) {
   const [searchQuery, setSearchQuery] = useState("");
