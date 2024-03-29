@@ -13,7 +13,7 @@ const HeroSection = () => {
             <div className="h-6"></div>
             <Button
                 className="mx-auto rounded-xl"
-                gradientBorder
+                borderGradient={"always"}
                 href="https://google.com"
             >
                 Get INIT
