@@ -12,40 +12,42 @@ const HoverEffect = ({ children, className }: HoverEffectProps) => {
   useEffect(() => {
     const hoverElement = hoverRef.current;
 
+    // bug fix: use the currentTarget property of the event object instead of target. 
+    // The currentTarget property always refers to the element that the event listener is attached to, 
+    // not the child element where the event happened.
     const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-      const rect = (e.target as HTMLDivElement).getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      if (hoverElement) {
-        hoverElement.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(110,110,110,0.5), rgba(255,255,255,0))`;
-      }
-    };
+        const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        if (hoverElement) {
+          hoverElement.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(110,110,110,0.5), rgba(255,255,255,0) 75%)`;
+        }
+      };
 
     const handleMouseLeave = () => {
-      if (hoverElement) {
-        hoverElement.style.background = 'transparent';
-      }
+        if (hoverElement) {
+            hoverElement.style.background = 'transparent';
+        }
     };
 
     if (hoverElement) {
-      hoverElement.addEventListener('mousemove', handleMouseMove);
-      hoverElement.addEventListener('mouseleave', handleMouseLeave);
+            hoverElement.addEventListener('mousemove', handleMouseMove as EventListener);
+            hoverElement.addEventListener('mouseleave', handleMouseLeave as EventListener);
     }
 
     return () => {
-      if (hoverElement) {
-        hoverElement.removeEventListener('mousemove', handleMouseMove);
-        hoverElement.removeEventListener('mouseleave', handleMouseLeave);
-      }
+        if (hoverElement) {
+            hoverElement.removeEventListener('mousemove', handleMouseMove as EventListener);
+            hoverElement.removeEventListener('mouseleave', handleMouseLeave as EventListener);
+        }
     };
   }, []);
 
   return (
-    <div ref={hoverRef} className={`flex w-fit ${className}`}>
+    <div ref={hoverRef} className={`${className}`}>
       {children}
     </div>
   );
 };
 
 export default HoverEffect;
-
