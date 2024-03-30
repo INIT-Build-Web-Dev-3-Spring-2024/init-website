@@ -21,6 +21,8 @@ function ProgramsPage() {
   return (
     <>
       <ProgramIcon />
+
+      
       <div className="flex flex-col justify-center mt-8 w-[300px] ml-8">
         <div className="mx-auto w-[1px] h-[100px] bg-white mb-8" />
         <Title>
