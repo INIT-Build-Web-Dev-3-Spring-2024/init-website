@@ -64,6 +64,7 @@ body {
       theme(colors.primary.yellow)
     );
     border-radius: inherit;
+    transition: all 0.5s ease-in-out;
   }
 
   .animated-border:before,

@@ -1,8 +1,8 @@
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Gothic_A1 } from "next/font/google";
+import { Gothic_A1, Inter } from "next/font/google";
+import "./globals.css";
 import { twMerge } from "tailwind-merge";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,11 +26,12 @@ export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <body className={twMerge(inter.className, gothicA1.className)}>
-        <header>
-          <Navbar />
-        </header>
+        <Navbar />
+
         {children}
-        <footer></footer>
+        <main></main>
+
+        <Footer />
       </body>
     </html>
   );
