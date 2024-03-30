@@ -4,10 +4,10 @@ import ProgramCard from "./programCard";
 import Image from "next/image";
 import Text from "@/components/Text";
 import Button from "@/components/Button";
+import ProgramIcon from "./ProgramIcon";
 
-export default 
-// async
- function ProgramsPage() {
+export default // async
+function ProgramsPage() {
   interface Program {
     name: string;
     color: string;
@@ -20,7 +20,15 @@ export default
 
   return (
     <>
+      <ProgramIcon />
       <div className="flex flex-col justify-center mt-8 w-[300px] ml-8">
+        <div className="mx-auto w-[1px] h-[100px] bg-white mb-8" />
+        <Title>
+          INIT <AnimatedTitle>Build</AnimatedTitle>
+          <Text className="mt-4 text-sm mb-8">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          </Text>
+        </Title>
         <div className="mx-auto w-[1px] h-[100px] bg-white" />
 
         <Image
@@ -43,18 +51,20 @@ export default
         error.
       </Text>
 
-      <div className="flex justify-center mt-8">
-        <Button gradientBorder onClick={() => null} className="">
+      <div className="flex justify-center mt-8 gap-2">
+        <Button borderGradient="onHover" target="_blank" href="https://airtable.com/appkfpQOssQZfmORj/shrNlrSaT073i6fog" className="">
           Get INIT
         </Button>
-        <Button href="" className="flex justify-center gap-2">
-          <Image
-            src="images/discord-icon.svg"
-            alt="Picture of discord"
-            width={15}
-            height={15}
-          />
-          Discord
+        <Button borderGradient="onHover" target="_blank" href="https://discord.gg/init">
+          <div className="flex justify-center gap-2 w-16">
+            <Image
+              src="images/discord-icon.svg"
+              alt="Picture of discord"
+              width={15}
+              height={15}
+            />
+            Discord
+          </div>
         </Button>
       </div>
     </>
