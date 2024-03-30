@@ -62,7 +62,7 @@ export default function EventCard({
   return (
     <>
       <GradientBorder animatedOnHover className="p-0 rounded-2xl w-full">
-          <HoverEffect className="grid rounded-2xl">
+          {/* <HoverEffect className="grid rounded-2xl"> */}
           <section className="rounded-2xl grid grid-cols-3 sm:grid-cols-7 grid-rows-7 sm:grid-rows-3 gap-1 h-96 sm:h-56">
             <div className="col-span-2 row-span-3 p-3">
               {
@@ -109,7 +109,7 @@ export default function EventCard({
               </div>
             </div>
         </section>
-          </HoverEffect>
+          {/* </HoverEffect> */}
       </GradientBorder>
     </>
   );
