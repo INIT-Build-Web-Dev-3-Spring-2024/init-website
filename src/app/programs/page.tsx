@@ -21,7 +21,7 @@ export default
   return (
     <>
       <div className="flex flex-col justify-center mt-8 w-[300px] ml-8">
-        <div className="mx-auto w-1 h-[100px] bg-white" />
+        <div className="mx-auto w-[1px] h-[100px] bg-white" />
 
         <Image
           className="mb-8"
