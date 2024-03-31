@@ -8,6 +8,8 @@ import { Title, AnimatedTitle } from "@/components/Title";
 import useAutoQueryString from "@/hooks/useAutoQueryString";
 import InputAndFilters from "@/components/InputAndFilters";
 import { ChangeEvent } from "react";
+import Hexagon from "@/components/Hexagon";
+import Link from "next/link";
 
 export default function Page() {
   const [input, setInput] = useAutoQueryString();
@@ -74,6 +76,15 @@ export default function Page() {
             },
           ]}
         />
+      </div>
+      <div className="flex justify-center">
+        <Hexagon className="w-40" borderGradient="always" fillOpacity="0.05">
+          <SubTitle>Init Explore</SubTitle>
+        </Hexagon>
+        <Hexagon className="w-40" offset={["top", "left"]} />
+        <Hexagon className="w-40" borderGradient="onHover" fillOpacity="0.05">
+          <SubTitle>Init Build</SubTitle>
+        </Hexagon>
       </div>
     </>
   );
