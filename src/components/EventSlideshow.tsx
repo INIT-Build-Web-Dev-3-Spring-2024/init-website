@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Event } from './EventCard';
 import { useState } from 'react';
+import NextEvent from './NextEvent';
 
 const EventSlideshow = () => {
   const [currentEvent, setCurrentEvent] = useState(0);
@@ -24,39 +25,27 @@ const EventSlideshow = () => {
 
     {
       id: '2',
-      name: 'Python Programming Crash Course',
+      name: 'Detecting Color using Computer Vision',
       rsvpLink: '',
       date: '04/15/2024',
       time: '10:00 AM - 3:00 PM',
       picture: '/assets/images/default2notion.avif',
       location: 'Virtual',
-      program: 'Reach',
+      program: 'Explore',
       description:
         "Join us for a crash course on Python programming. Whether you're a beginner or looking to brush up your skills, this workshop will cover the fundamentals of Python programming language.",
     },
     {
       id: '3',
-      name: 'UI/UX Design Workshop: Creating Engaging User Experiences',
-      rsvpLink: '/assets/images/ui_ux_design_workshop_image.jpeg',
+      name: 'Weekly Interview Prep: Dynamic Programming',
+      rsvpLink: '',
       date: '06/10/2024',
       time: '9:00 AM - 12:00 PM',
       picture: '',
-      location: 'Design Studio',
-      program: 'Build',
+      location: 'ACH5 - Room 201',
+      program: 'PG6 Room 115',
       description:
         'Learn the principles and techniques of UI/UX design in this hands-on workshop. From wireframing to prototyping, discover how to create engaging user experiences for your digital projects.',
-    },
-    {
-      id: '4',
-      name: 'Cybersecurity Awareness Seminar: Protecting Your Digital Identity',
-      rsvpLink: '',
-      date: '07/20/2024',
-      time: '2:00 PM - 4:00 PM',
-      picture: '',
-      location: 'Conference Room A',
-      program: 'Explore',
-      description:
-        'Join cybersecurity experts for a seminar on protecting your digital identity. Learn about common threats, best practices for online security, and how to safeguard your personal and professional information.',
     },
   ];
 
@@ -82,7 +71,7 @@ const EventSlideshow = () => {
   return (
     <div className="relative mx-auto my-16 w-4/5 h-[346px] overflow-hidden rounded-lg text-white">
       {/* overlay gradient */}
-      <div className="absolute inset-0 bg-black opacity-45"></div>
+      <div className="absolute inset-0 bg-black opacity-40"></div>
       {/* background img */}
       <Image
         src={
@@ -94,9 +83,8 @@ const EventSlideshow = () => {
         objectFit="cover"
         className="mix-blend-overlay"
       />
-
       {/* container */}
-      <div className="absolute inset-0 flex flex-col justify-between pt-1 p-4">
+      <div className="absolute flex flex-col justify-between pt-1 p-4">
         {/* top of container */}
 
         <div className="flex items-center space-x-4 pl-16 py-4 justify-between">
@@ -130,9 +118,7 @@ const EventSlideshow = () => {
 
         {/* bottom section */}
         <div className="flex justify-between items-center px-16 py-4">
-          <button className="text-black  bg-white rounded p-2">
-            More info
-          </button>
+          <button className="text-black bg-white rounded p-2">More info</button>
         </div>
       </div>
     </div>
