@@ -23,6 +23,11 @@ const INITIAL_MARGIN_OFFSETS = {
   marginRight: 4,
 };
 
+const SVG = {
+  path: "M 207 99.84 l -48.18 88 a 8 8 90 0 1 -7 4.16 h -95.64 a 8 8 90 0 1 -7 -4.16 l -48.18 -88 a 8 8 90 0 1 0 -7.68 l 48.18 -88 a 8 8 90 0 1 7 -4.16 H 151.82 a 8 8 90 0 1 7 4.16 l 48.18 88 A 8 8 90 0 1 207 99.84 Z",
+  viewBox: "-3 -3 213 196",
+};
+
 export default function Hexagon(props: HexagonProps) {
   const {
     children,
@@ -77,7 +82,7 @@ export default function Hexagon(props: HexagonProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="-3 -3 213 196"
+      viewBox={SVG.viewBox}
       className={twMerge(
         "w-60 text-opacity-40 text-secondary-gray duration-1000 transition-all",
         className
@@ -106,8 +111,14 @@ export default function Hexagon(props: HexagonProps) {
         </radialGradient>
       </defs>
 
+      <defs>
+        <clipPath id="hexagon-clip">
+          <path d={SVG.path} />
+        </clipPath>
+      </defs>
+
       <path
-        d="M 207 99.84 l -48.18 88 a 8 8 90 0 1 -7 4.16 h -95.64 a 8 8 90 0 1 -7 -4.16 l -48.18 -88 a 8 8 90 0 1 0 -7.68 l 48.18 -88 a 8 8 90 0 1 7 -4.16 H 151.82 a 8 8 90 0 1 7 4.16 l 48.18 88 A 8 8 90 0 1 207 99.84 Z"
+        d={SVG.path}
         fill={fillOpacity ? "url(#white-transparent)" : "none"}
         fillOpacity={fillOpacity}
         ref={hexagonRef}
@@ -122,7 +133,7 @@ export default function Hexagon(props: HexagonProps) {
         strokeOpacity={hidden ? 0 : 1}
         className="m-10"
       />
-      <foreignObject className="w-full h-full">
+      <foreignObject className="w-full h-full" clipPath="url(#hexagon-clip)">
         <div className="h-full flex items-center justify-center text-primary-gray">
           {children}
         </div>
