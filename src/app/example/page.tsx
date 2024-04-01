@@ -1,15 +1,14 @@
 "use client";
 
-import GradientBorder from "@/components/GradientBorder";
 import Button from "@/components/Button";
+import GradientBorder from "@/components/GradientBorder";
+import Hexagon from "@/components/Hexagon";
+import InputAndFilters from "@/components/InputAndFilters";
 import SubTitle from "@/components/SubTitle";
 import Text from "@/components/Text";
-import { Title, AnimatedTitle } from "@/components/Title";
+import { AnimatedTitle, Title } from "@/components/Title";
 import useAutoQueryString from "@/hooks/useAutoQueryString";
-import InputAndFilters from "@/components/InputAndFilters";
 import { ChangeEvent } from "react";
-import Hexagon from "@/components/Hexagon";
-import Link from "next/link";
 
 export default function Page() {
   const [input, setInput] = useAutoQueryString();
@@ -80,23 +79,38 @@ export default function Page() {
 
       <div className="flex items-center justify-center flex-col">
         <div className="flex justify-center">
-          <Hexagon className="w-40" fillOpacity="0.05">
+          <Hexagon className="w-40" fillOpacity="0.05" hiddenStroke>
             <SubTitle>Init ignite</SubTitle>
           </Hexagon>
-          <Hexagon className="w-40" offset={["top", "sides"]} hidden />
+          <Hexagon className="w-40" offset={["top", "sides"]} hiddenStroke />
           <Hexagon className="w-40"></Hexagon>
         </div>
 
         <div className="flex justify-center">
           <Hexagon className="w-40" offset={["sides"]} />
           <Hexagon className="w-40" offset={["top"]} />
-          <Hexagon className="w-40" fillOpacity="0.05" offset={["sides"]}>
+          <Hexagon
+            className="w-40"
+            fillOpacity="0.05"
+            offset={["sides"]}
+            hiddenStroke
+          >
             <SubTitle>Init Build</SubTitle>
           </Hexagon>
-          <Hexagon className="w-40" fillOpacity="0.05" offset={["top"]}>
+          <Hexagon
+            className="w-40"
+            fillOpacity="0.05"
+            offset={["top"]}
+            hiddenStroke
+          >
             <SubTitle>Init uplift</SubTitle>
           </Hexagon>
-          <Hexagon className="w-40" fillOpacity="0.05" offset={["sides"]}>
+          <Hexagon
+            className="w-40"
+            fillOpacity="0.05"
+            offset={["sides"]}
+            hiddenStroke
+          >
             <SubTitle>Init Reach</SubTitle>
           </Hexagon>
           <Hexagon className="w-40" offset={["top"]} />
@@ -114,7 +128,12 @@ export default function Page() {
           >
             <SubTitle>Init Explore</SubTitle>
           </Hexagon>
-          <Hexagon className="w-40" fillOpacity="0.05" offset={["sides"]}>
+          <Hexagon
+            className="w-40"
+            fillOpacity="0.05"
+            offset={["sides"]}
+            hiddenStroke
+          >
             <SubTitle>Init hack</SubTitle>
           </Hexagon>
           <Hexagon className="w-40" offset={["top"]} />

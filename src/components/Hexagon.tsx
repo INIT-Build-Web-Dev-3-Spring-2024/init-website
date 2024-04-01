@@ -11,7 +11,7 @@ interface HexagonProps {
   children?: ReactNode;
   className?: HTMLElement["className"];
   fillOpacity?: SVGProps<SVGRectElement>["fillOpacity"];
-  hidden?: boolean;
+  hiddenStroke?: boolean;
   borderGradient?: "always";
   offset?: ("top" | "sides")[];
 }
@@ -24,8 +24,14 @@ const INITIAL_MARGIN_OFFSETS = {
 };
 
 export default function Hexagon(props: HexagonProps) {
-  const { children, className, fillOpacity, hidden, borderGradient, offset } =
-    props;
+  const {
+    children,
+    className,
+    fillOpacity,
+    hiddenStroke: hidden,
+    borderGradient,
+    offset,
+  } = props;
 
   const [rotation, setRotation] = useState(90);
 
@@ -93,9 +99,16 @@ export default function Hexagon(props: HexagonProps) {
         </linearGradient>
       </defs>
 
+      <defs>
+        <radialGradient id={"white-transparent"}>
+          <stop offset="0%" stopColor="transparent" />
+          <stop offset="100%" stopColor="white" />
+        </radialGradient>
+      </defs>
+
       <path
         d="M 207 99.84 l -48.18 88 a 8 8 90 0 1 -7 4.16 h -95.64 a 8 8 90 0 1 -7 -4.16 l -48.18 -88 a 8 8 90 0 1 0 -7.68 l 48.18 -88 a 8 8 90 0 1 7 -4.16 H 151.82 a 8 8 90 0 1 7 4.16 l 48.18 88 A 8 8 90 0 1 207 99.84 Z"
-        fill={fillOpacity ? "white" : "none"}
+        fill={fillOpacity ? "url(#white-transparent)" : "none"}
         fillOpacity={fillOpacity}
         ref={hexagonRef}
         stroke={
