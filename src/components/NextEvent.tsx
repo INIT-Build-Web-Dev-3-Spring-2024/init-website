@@ -11,9 +11,11 @@ interface NextEvent {
 }
 const NextEvent = (props: NextEvent) => {
   return (
-    <div className="text-white flex flex-col bg-gradient-to-r from-purple-500 to-pink-500	 w-2/5 rounded mx-auto p-2 ">
-      <p className="">{props.title}</p>
-      <p>{props.description}</p>
+    <div className="text-white flex justify-between bg-gradient-to-r from-purple-500 to-pink-500	 w-2/5 rounded mx-auto p-2 ">
+      <div className="">
+        <p className="">{props.title}</p>
+        <p>{props.description}</p>
+      </div>
       <button className="rounded-full p-2 ">
         <IoIosArrowForward className="text-lg" />
       </button>
