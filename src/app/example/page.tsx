@@ -77,14 +77,48 @@ export default function Page() {
           ]}
         />
       </div>
-      <div className="flex justify-center">
-        <Hexagon className="w-40" borderGradient="always" fillOpacity="0.05">
-          <SubTitle>Init Explore</SubTitle>
-        </Hexagon>
-        <Hexagon className="w-40" offset={["top", "left"]} />
-        <Hexagon className="w-40" borderGradient="onHover" fillOpacity="0.05">
-          <SubTitle>Init Build</SubTitle>
-        </Hexagon>
+
+      <div className="flex items-center justify-center flex-col">
+        <div className="flex justify-center">
+          <Hexagon className="w-40" fillOpacity="0.05">
+            <SubTitle>Init ignite</SubTitle>
+          </Hexagon>
+          <Hexagon className="w-40" offset={["top", "sides"]} hidden />
+          <Hexagon className="w-40"></Hexagon>
+        </div>
+
+        <div className="flex justify-center">
+          <Hexagon className="w-40" offset={["sides"]} />
+          <Hexagon className="w-40" offset={["top"]} />
+          <Hexagon className="w-40" fillOpacity="0.05" offset={["sides"]}>
+            <SubTitle>Init Build</SubTitle>
+          </Hexagon>
+          <Hexagon className="w-40" fillOpacity="0.05" offset={["top"]}>
+            <SubTitle>Init uplift</SubTitle>
+          </Hexagon>
+          <Hexagon className="w-40" fillOpacity="0.05" offset={["sides"]}>
+            <SubTitle>Init Reach</SubTitle>
+          </Hexagon>
+          <Hexagon className="w-40" offset={["top"]} />
+          <Hexagon className="w-40" offset={["sides"]} />
+        </div>
+
+        <div className="flex justify-center">
+          <Hexagon className="w-40" offset={["top"]} />
+          <Hexagon className="w-40" offset={["sides"]} />
+          <Hexagon
+            className="w-40"
+            borderGradient="always"
+            fillOpacity="0.05"
+            offset={["top"]}
+          >
+            <SubTitle>Init Explore</SubTitle>
+          </Hexagon>
+          <Hexagon className="w-40" fillOpacity="0.05" offset={["sides"]}>
+            <SubTitle>Init hack</SubTitle>
+          </Hexagon>
+          <Hexagon className="w-40" offset={["top"]} />
+        </div>
       </div>
     </>
   );
