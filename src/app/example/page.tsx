@@ -8,6 +8,7 @@ import { Title, AnimatedTitle } from "@/components/Title";
 import useAutoQueryString from "@/hooks/useAutoQueryString";
 import InputAndFilters from "@/components/InputAndFilters";
 import { ChangeEvent } from "react";
+import Testimonials from "@/components/Testimonials";
 
 export default function Page() {
   const [input, setInput] = useAutoQueryString();
@@ -25,10 +26,8 @@ export default function Page() {
       <SubTitle>Get to know us</SubTitle>
 
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, laborum
-        numquam aspernatur aliquid fugiat quo fugit sit cum temporibus esse
-        explicabo quia. Repudiandae aliquid, voluptas repellendus ipsa modi sint
-        error.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, laborum numquam aspernatur aliquid fugiat quo
+        fugit sit cum temporibus esse explicabo quia. Repudiandae aliquid, voluptas repellendus ipsa modi sint error.
       </Text>
 
       <GradientBorder disabled animated animatedOnHover className="m-20">
@@ -75,6 +74,8 @@ export default function Page() {
           ]}
         />
       </div>
+
+      <Testimonials />
     </>
   );
 }

@@ -25,9 +25,11 @@ function ReviewAvatar({
   onClick: MouseEventHandler;
 }) {
   return (
-    <GradientBorder className={twMerge(className, "p-1 rounded-full")} disabled={person.index !== selectedIndex}>
+    <GradientBorder
+      className={twMerge(className, "p-0.5 rounded-full cursor-pointer")}
+      disabled={person.index !== selectedIndex}>
       <Image
-        className="w-28 h-28 rounded-full"
+        className="w-24 h-24 rounded-full"
         src={person.avatarSrc}
         alt={person.name}
         width="96"
@@ -40,9 +42,15 @@ function ReviewAvatar({
 
 function Review({ person }: { person: Person }) {
   return (
-    <>
-      <h1>{person.review}</h1>
-    </>
+    <section className="flex flex-col items-center">
+      <Image width="166" height="166" src={person.avatarSrc} alt={person.name} className="translate-y-7" />
+      <div className="flex flex-col items-center p-10 pb-20 gap-2 rounded-[3rem] min-h-[450px] bg-[#100820]">
+        <Image width="116" height="116" src={person.companyLogoSrc} alt={`${person.companyLogoSrc} logo`} />
+        <h1 className="font-bold text-lg pb-3">{`${person.position} at ${person.company}`}</h1>
+        <h1 className="font-extralight text-3xl text-center max-w-4xl">{`"${person.review}"`}</h1>
+        <h1 className="font-semibold text-lg">{`- ${person.name}`}</h1>
+      </div>
+    </section>
   );
 }
 
@@ -127,15 +135,14 @@ export default function Testimonials() {
     setSelectedIndex(desiredIndex);
   }
 
-  // Review component, takes in the object at selectedIndex and loads in that review
-
+  // make sure to add a translate property, even if it's 0, so it fills out nicely
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="grid grid-cols-5 grid-rows-3 justify-items-center gap-10">
+      <div className="grid grid-cols-5 grid-rows-3 justify-items-center gap-x-12">
         <ReviewAvatar
           person={reviews[0]}
           selectedIndex={selectedIndex}
-          className="translate-x-0 translate-y-2 col-start-1 col-end-2"
+          className="translate-x-0 translate-y-3 col-start-1 col-end-2"
           onClick={() => handleSelectedIndex(0)}
         />
         <ReviewAvatar
@@ -159,7 +166,7 @@ export default function Testimonials() {
         <ReviewAvatar
           person={reviews[4]}
           selectedIndex={selectedIndex}
-          className="translate-x-0 translate-y-3 col-start-4 col-end-5"
+          className="translate-x-0 translate-y-6 col-start-4 col-end-5"
           onClick={() => handleSelectedIndex(4)}
         />
         <ReviewAvatar
@@ -175,9 +182,7 @@ export default function Testimonials() {
           onClick={() => handleSelectedIndex(6)}
         />
       </div>
-      <div>
-        <Review person={reviews[selectedIndex]}>hi</Review>
-      </div>
+      <Review person={reviews[selectedIndex]} />
     </div>
   );
 }
