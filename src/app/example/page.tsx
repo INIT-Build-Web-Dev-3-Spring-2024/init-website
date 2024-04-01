@@ -8,6 +8,7 @@ import { Title, AnimatedTitle } from "@/components/Title";
 import useAutoQueryString from "@/hooks/useAutoQueryString";
 import InputAndFilters from "@/components/InputAndFilters";
 import { ChangeEvent } from "react";
+import { Action_Block } from "@/components/Astronaut_Section";
 
 export default function Page() {
   const [input, setInput] = useAutoQueryString();
@@ -18,7 +19,7 @@ export default function Page() {
 
   return (
     <>
-      <Title>
+      {/* <Title>
         Your <AnimatedTitle>TECH</AnimatedTitle> Journey is about to start
       </Title>
 
@@ -74,7 +75,8 @@ export default function Page() {
             },
           ]}
         />
-      </div>
+      </div> */}
+      <Action_Block></Action_Block>
     </>
   );
 }
