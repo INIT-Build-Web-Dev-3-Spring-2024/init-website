@@ -1,4 +1,9 @@
+import Testimonials from "@/components/Testimonials";
+
 export default function Home() {
-  // blank
-  return <></>;
+  return (
+    <>
+      <Testimonials />
+    </>
+  );
 }

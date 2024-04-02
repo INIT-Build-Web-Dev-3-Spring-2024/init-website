@@ -1,3 +1,5 @@
+"use client";
+
 import { MouseEventHandler, useState } from "react";
 import Image from "next/image";
 import GradientBorder from "./GradientBorder";

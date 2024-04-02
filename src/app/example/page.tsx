@@ -9,7 +9,6 @@ import Text from "@/components/Text";
 import { AnimatedTitle, Title } from "@/components/Title";
 import useAutoQueryString from "@/hooks/useAutoQueryString";
 import { ChangeEvent } from "react";
-import Testimonials from "@/components/Testimonials";
 
 export default function Page() {
   const [input, setInput] = useAutoQueryString();
@@ -113,8 +112,6 @@ export default function Page() {
           <Hexagon className="w-40" offset={["top"]} />
         </div>
       </div>
-
-      <Testimonials />
     </>
   );
 }
