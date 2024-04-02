@@ -3,7 +3,7 @@
 import InitLogo from "@/images/logo.svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import Button from "./Button";
 import GradientBorder from "./GradientBorder";
@@ -11,6 +11,8 @@ import HoverEffect from "./hoverEff";
 
 export default function Navbar() {
   const pathName = usePathname();
+  const [scrollPos, setScrollPos] = useState(0);
+  const [showNav, setShowNav] = useState(false);
 
   const navLinks = useMemo(
     () => [
@@ -46,16 +48,36 @@ export default function Navbar() {
     }
   }, [navLinks, pathName]);
 
+  useEffect(() => {
+    window.onscroll = function (event) {
+      setScrollPos((prevScrollPos) => {
+        if (prevScrollPos > window.scrollY) {
+          setShowNav(true);
+        } else {
+          setShowNav(false);
+        }
+
+        return window.scrollY;
+      });
+    };
+  }, []);
+
   return (
-    <nav className="grid grid-cols-3 gap-10 p-8">
+    <nav
+      className={twMerge(
+        "grid grid-cols-3 gap-10 p-8 sticky top-0 transition-all duration-500 z-50",
+        "bg-gradient-to-b from-black via-black to-transparent",
+        !showNav && "-top-52"
+      )}
+    >
       <div className="justify-self-end my-auto">
         <Link href="/">
-          <InitLogo className="w-16" />
+          <InitLogo className="w-16 hover:text-primary-yellow" />
         </Link>
       </div>
 
       <div className="mx-auto">
-        <ul className="flex justify-center items-center w-fit border border-secondary-gray rounded-3xl p-1">
+        <ul className="flex justify-center items-center gap-2 w-fit border border-secondary-gray rounded-3xl p-1">
           {navLinks.map(({ label, href }) => (
             <li key={label}>
               <HoverEffect className="z-10 rounded-3xl">
@@ -63,7 +85,7 @@ export default function Navbar() {
                   href={href}
                   className={twMerge(
                     "rounded-3xl py-px border-none text-nowrap first-letter:capitalize bg-transparent",
-                    activeLink === href && "bg-secondary-gray/20"
+                    activeLink === href && "bg-secondary-gray/30"
                   )}
                 >
                   {label}
@@ -74,8 +96,16 @@ export default function Navbar() {
         </ul>
       </div>
 
-      <div className="my-auto">
-        <GradientBorder className="px-3 py-1 rounded-3xl" animatedOnHover>
+      <div
+        className={twMerge(
+          "my-auto transition-all duration-500",
+          pathName === "/" && scrollPos < 100 && "opacity-0"
+        )}
+      >
+        <GradientBorder
+          className="px-3 py-1 rounded-3xl cursor-pointer"
+          animatedOnHover
+        >
           <Link
             href="https://airtable.com/appkfpQOssQZfmORj/shrNlrSaT073i6fog"
             className="p-0"
