@@ -121,7 +121,12 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
 
             const dateProperty = page.properties["Date"];
             if (dateProperty?.type === "date" && dateProperty.date) {
-              let dateObject = new Date(dateProperty.date.start);
+              // If our date property in Notion is only 10 character's long, it means it doesn't have a specific time
+              const timeProvided = dateProperty.date.start.length !== 10;
+
+              let dateObject = timeProvided
+                ? new Date(dateProperty.date.start)
+                : new Date(`${dateProperty.date.start}T12:00:00.000Z`); // if no time is provided, create date as if time is 12 PM UTC so that the correct day is rendered
 
               date = dateObject.toLocaleDateString("en-us", {
                 weekday: "short",
@@ -129,8 +134,7 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
                 day: "numeric",
               });
 
-              // If our date property in Notion is only 10 character's long, it means it doesn't have a specific time
-              if (dateProperty.date.start.length !== 10) {
+              if (timeProvided) {
                 time = dateObject.toLocaleTimeString("en-us", {
                   hour: "numeric",
                   minute: "numeric",
