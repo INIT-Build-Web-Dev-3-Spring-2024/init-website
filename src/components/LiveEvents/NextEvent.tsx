@@ -1,18 +1,21 @@
 import React from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
+import { Event } from '../EventCard';
 
 interface NextEvent {
   title: string;
   description: string;
+  isLive: boolean;
+  onNext: () => Event;
 }
 const NextEvent = (props: NextEvent) => {
   return (
-    <div className="text-white flex justify-between bg-gradient-to-r from-purple-500 to-pink-500 w-2/5 h-2/6 rounded-lg p-1 mr-65 ml-auto ">
+    <div className="text-white flex justify-between bg-gradient-to-r from-purple-500 to-pink-500 w-2/5 rounded-lg p-3 mr-65 ml-auto ">
       <div className="">
-        <p className="">{props.title}</p>
-        <p>{props.description}</p>
+        <h2 className="font-bold">{props.title}</h2>
+        <p className="text-sm">{props.description.slice(0, 100) + '...'}</p>
       </div>
-      <button className="rounded-full p-2 ">
+      <button className="rounded-full">
         <IoIosArrowForward className="text-lg" />
       </button>
     </div>

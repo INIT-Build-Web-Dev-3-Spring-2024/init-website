@@ -5,18 +5,10 @@ interface LiveEventProps {
   currentEvent: Event;
   onNext: any;
   onPrevious: any;
+  isLive: boolean;
 }
 
 const EventSlideshow = (props: LiveEventProps) => {
-  const isEventLive = (eventDate: string, eventTime: string) => {
-    const currentDate = new Date().toLocaleDateString('en-CA');
-    const currentTime = new Date().toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-    return eventDate === currentDate && eventTime === currentTime;
-  };
-
   return (
     <div className="relative mx-auto my-16 w-4/5 h-[350px] overflow-hidden rounded-lg bg-white text-white mb-0">
       {/* overlay gradient */}
@@ -40,7 +32,9 @@ const EventSlideshow = (props: LiveEventProps) => {
           <h3 className="text-xl text-white px-2 py-1">
             {props.currentEvent.date}
           </h3>
-          {props.currentEvent.isLive && (
+          {/* boolean or function to check if curr event is live  */}
+
+          {props.isLive && (
             <span className="text-xs bg-red-500 text-white px-2 py-1 rounded">
               Live
             </span>
