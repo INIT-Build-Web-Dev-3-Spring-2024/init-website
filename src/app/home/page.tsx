@@ -7,13 +7,13 @@ import Carousel from "./Carousel";
 import Blurb from "./Blurb";
 
 const page = () => {
-    return (
+   return (
         <>
             <HeroSection />
             <Sponsors />
             <Mission />
             <Testimonial />
-            <Carousel />
+            <Carousel />            
             <Blurb />
         </>
     );
