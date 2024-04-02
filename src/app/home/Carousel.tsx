@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-//TODO: will import images here to map them from assets
+//TODO: recheck mapping
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -10,40 +10,43 @@ import "swiper/css/mousewheel";
 import "swiper/css/free-mode";
 
 import { EffectCoverflow, Mousewheel, FreeMode } from "swiper/modules";
+interface CarouselProps {
+}
 
 //TODO: create styling to be used between transitions
-//TODO: add trasition animation 
-export default function Carousel() {
+//TODO: add trasition animation
+export default function Carousel({  }: CarouselProps) {
+  const slides = [
+    "/images/programs/initbuild.webp",
+    "/images/programs/initdiscover.webp",
+    "/images/programs/inithack.webp",
+    "/images/programs/initignite.webp",
+    "/images/programs/initlaunch.webp",
+    "/images/programs/inituplift.webp",
+  ];
   return (
     <>
       <Swiper
-        //effect={"coverflow"}
-        centeredSlides={true}
+        effect={'coverflow'}
         slidesPerView={5}
         spaceBetween={20}
         loop={true}
         freeMode={true}
         mousewheel={true}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 2.5,
+        }}
         modules={[EffectCoverflow, Mousewheel, FreeMode]}
+        className="mx-0 mt-10 mb-10"
       >
-        <SwiperSlide >
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" className="rounded-xl"/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" className="rounded-xl"/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" className="rounded-xl"/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" className="rounded-xl"/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-5.jpg" className="rounded-xl"/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-6.jpg" className="rounded-xl"/>
-        </SwiperSlide>
+        {slides.map((url, index) => (
+          <SwiperSlide key={index}>
+              <img className="rounded-xl" src={url} alt={`Slide ${index}`} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   );
