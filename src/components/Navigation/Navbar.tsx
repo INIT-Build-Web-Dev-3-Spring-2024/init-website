@@ -63,7 +63,7 @@ export default function Navbar() {
     <nav
       className={twMerge(
         "grid grid-cols-3 gap-10 p-8 sticky top-0 transition-all duration-500 z-50",
-        "bg-gradient-to-b from-black via-black to-transparent",
+        "bg-gradient-to-b from-[#10032c] from-65% to-transparent",
         !showNav && "-top-52"
       )}
     >

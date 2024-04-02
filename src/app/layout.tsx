@@ -38,7 +38,7 @@ export default function RootLayout({ children }: LayoutProps) {
         <main>{children}</main>
 
         <HexagonNavigation />
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );

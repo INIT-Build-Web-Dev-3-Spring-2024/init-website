@@ -10,10 +10,11 @@ export default function HexagonNavigation() {
   const router = useRouter();
   const pathName = usePathname();
 
-  const links = useMemo(
-    () => navLinks.filter(({ href }) => pathName !== href),
-    [pathName]
-  );
+  const links = useMemo(() => {
+    const options = navLinks.filter(({ href }) => pathName !== href);
+
+    return options.slice(0, 3);
+  }, [pathName]);
 
   return (
     <div className="flex items-center justify-center flex-col">
@@ -38,7 +39,11 @@ export default function HexagonNavigation() {
             fillOpacity="0.04"
             offset={index % 2 ? ["top", "sides"] : []}
           >
-            <button type="button" onClick={() => router.push(href)}>
+            <button
+              className="hover:scale-105 transition-all"
+              type="button"
+              onClick={() => router.push(href)}
+            >
               <SubTitle className="first-letter:capitalize">{label}</SubTitle>
             </button>
           </Hexagon>

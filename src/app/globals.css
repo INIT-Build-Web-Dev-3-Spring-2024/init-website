@@ -4,8 +4,7 @@
 
 body {
   @apply text-primary-text overflow-x-hidden max-w-full bg-fixed font-gothic-a1;
-  @apply bg-page;
-  /* background: theme(colors.black); */
+  @apply bg-gradient-to-b from-[#10032c] to-[#05020b];
 }
 
 @layer utilities {
