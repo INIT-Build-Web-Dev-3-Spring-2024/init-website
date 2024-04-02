@@ -10,7 +10,7 @@ type FilterCategories = "jobType" | "positionType" | "jobLocation";
 export default function FilterCard() {
 	const router = useRouter();
 	const searchParams = useSearchParams()
-	const search = searchParams.has('q') ? searchParams.get('q')! : "";
+	const search = searchParams.has('q') ? searchParams.get('q') : "";
 	const [filters, setFilters] = useState<Record<FilterCategories, Set<string>>>(
 		{
 		jobType: new Set(),
