@@ -5,40 +5,37 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import Button from "./Button";
-import GradientBorder from "./GradientBorder";
-import HoverEffect from "./hoverEff";
+import Button from "../Button";
+import GradientBorder from "../GradientBorder";
+import HoverEffect from "../hoverEff";
+
+export const navLinks = [
+  {
+    label: "Home",
+    href: "/",
+    isAuthRequired: false,
+  },
+  {
+    label: "Events",
+    href: "/events",
+    isAuthRequired: false,
+  },
+  {
+    label: "Programs",
+    href: "/programs",
+    isAuthRequired: false,
+  },
+  {
+    label: "Jobs",
+    href: "/jobs",
+    isAuthRequired: false,
+  },
+];
 
 export default function Navbar() {
   const pathName = usePathname();
   const [scrollPos, setScrollPos] = useState(0);
   const [showNav, setShowNav] = useState(false);
-
-  const navLinks = useMemo(
-    () => [
-      {
-        label: "Home",
-        href: "/",
-        isAuthRequired: false,
-      },
-      {
-        label: "Events",
-        href: "/events",
-        isAuthRequired: false,
-      },
-      {
-        label: "Programs",
-        href: "/programs",
-        isAuthRequired: false,
-      },
-      {
-        label: "Jobs",
-        href: "/jobs",
-        isAuthRequired: false,
-      },
-    ],
-    []
-  );
 
   const activeLink = useMemo(() => {
     for (const { href } of navLinks) {
@@ -46,7 +43,7 @@ export default function Navbar() {
         return href;
       }
     }
-  }, [navLinks, pathName]);
+  }, [pathName]);
 
   useEffect(() => {
     window.onscroll = function (event) {
@@ -76,7 +73,7 @@ export default function Navbar() {
         </Link>
       </div>
 
-      <div className="mx-auto">
+      <div className="justify-self-center">
         <ul className="flex justify-center items-center gap-2 w-fit border border-secondary-gray rounded-3xl p-1">
           {navLinks.map(({ label, href }) => (
             <li key={label}>
@@ -98,7 +95,7 @@ export default function Navbar() {
 
       <div
         className={twMerge(
-          "my-auto transition-all duration-500",
+          "justify-self-start my-auto transition-all duration-500",
           pathName === "/" && scrollPos < 100 && "opacity-0"
         )}
       >
