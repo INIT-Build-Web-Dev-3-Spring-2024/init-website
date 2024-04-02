@@ -25,13 +25,18 @@ interface LayoutProps {
 export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
-      <body className={twMerge(inter.className, gothicA1.className)}>
+      <body
+        className={twMerge(
+          inter.className,
+          gothicA1.className,
+          "max-w-screen-2xl mx-auto"
+        )}
+      >
         <Navbar />
 
-        {children}
-        <main></main>
+        <main>{children}</main>
 
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );
