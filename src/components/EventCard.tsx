@@ -12,7 +12,9 @@ export interface Event {
   location: string;
   program: string;
   date: string;
+  dateEnd: string;
   time: string;
+  timeEnd: string;
   rsvpLink: string;
 }
 
@@ -29,7 +31,7 @@ const color = {
 
 function displayCountdownUntilDateTime(date: string, time: string): string {
   const targetDateTime = new Date(`${date} ${time}`);
-  
+
   if (isNaN(targetDateTime.getTime())) {
     return "To Be Announced";
   }
@@ -49,16 +51,7 @@ function displayCountdownUntilDateTime(date: string, time: string): string {
   return `${hours} hours ${minutes} minutes ${seconds} seconds`;
 }
 
-export default function EventCard({
-  picture,
-  description,
-  location,
-  name,
-  program,
-  rsvpLink,
-  date,
-  time,
-}: Event) {
+export default function EventCard({ picture, description, location, name, program, rsvpLink, date, time }: Event) {
   return (
     <>
       <GradientBorder animatedOnHover className="p-0 rounded-2xl w-full">
@@ -91,18 +84,14 @@ export default function EventCard({
             <div className="flex flex-col h-full">
               <span
                 className={`pt-2 pr-3 flex flex-row-reverse text-md font-extrabold uppercase ${
-                  color[program.toLowerCase() as keyof typeof color] ||
-                  color.default
-                }`}
-              >
+                  color[program.toLowerCase() as keyof typeof color] || color.default
+                }`}>
                 {program}
               </span>
               <div className="flex align-middle justify-items-center aspect-square items-center content-center justify-center">
                 {rsvpLink !== "RSVP TBD" && (
                   <a href={rsvpLink}>
-                    <LuExternalLink className="size-8">
-                        RSVP Now
-                      </LuExternalLink>
+                    <LuExternalLink className="size-8">RSVP Now</LuExternalLink>
                   </a>
                 )}
               </div>
