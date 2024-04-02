@@ -28,16 +28,17 @@ export default function Carousel({  }: CarouselProps) {
     <>
       <Swiper
         effect={'coverflow'}
-        slidesPerView={5}
+        centeredSlides={true}
+        slidesPerView={4}
         spaceBetween={20}
         loop={true}
         freeMode={true}
         mousewheel={true}
         coverflowEffect={{
           rotate: 0,
-          stretch: 0,
+          stretch: 2.5,
           depth: 100,
-          modifier: 2.5,
+          modifier: 2.5
         }}
         modules={[EffectCoverflow, Mousewheel, FreeMode]}
         className="mx-0 mt-10 mb-10"
