@@ -25,7 +25,7 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
       dayOrWeekFilter = {
         property: "Date",
         date: {
-          this_week: {},
+          next_week: {},
         },
       };
     } else {
