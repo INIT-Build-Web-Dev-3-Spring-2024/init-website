@@ -130,6 +130,7 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
 
               date = dateObject.toLocaleDateString("en-us", {
                 weekday: "short",
+                year: "numeric",
                 month: "long",
                 day: "numeric",
               });
