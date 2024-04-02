@@ -13,7 +13,8 @@ const page = () => {
             <Sponsors />
             <Mission />
             <Testimonial />
-            <Carousel />
+            <div className="mx-0 mt-10 mb-10"><Carousel/></div>
+            
             <Blurb />
         </>
     );
