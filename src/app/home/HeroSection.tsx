@@ -2,6 +2,8 @@ import Button from "@/components/Button";
 import { Title, AnimatedTitle } from "@/components/Title";
 import React from "react";
 import UpcomingWorkshop from "./(UpcomingWorkshop)";
+import GradientBorder from "@/components/GradientBorder";
+import Link from "next/link";
 
 const HeroSection = () => {
     return (
@@ -11,13 +13,17 @@ const HeroSection = () => {
                 start
             </Title>
             <div className="h-6"></div>
-            <Button
-                className="mx-auto rounded-xl"
-                borderGradient={"always"}
-                href="https://google.com"
+            <GradientBorder
+                className="px-3 py-1 rounded-3xl mx-auto"
+                animatedOnHover
             >
-                Get INIT
-            </Button>
+                <Link
+                    href="https://airtable.com/appkfpQOssQZfmORj/shrNlrSaT073i6fog"
+                    className="p-0"
+                >
+                    Get INIT
+                </Link>
+            </GradientBorder>
             <div className="h-12"></div>
             <UpcomingWorkshop />
         </>
