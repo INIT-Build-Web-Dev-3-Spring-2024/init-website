@@ -39,26 +39,21 @@ const programs = [
 ];
 
 const ProgramCirclePicker: React.FC = () => {
-  const [activeProgram, setActiveProgram] = useState(programs[0].name);
+  const [activeProgramIndex, setActiveProgramIndex] = useState(0);
 
-  const handleProgramClick = (program: (typeof programs)[0]["name"]) => {
-    setActiveProgram(program);
-  };
-
-  const getRotationAngle = () => {
-    const activeIndex = programs.findIndex((p) => p.name === activeProgram);
-    return (
-      ((activeIndex + programs.length + 3) % programs.length) *
-      (360 / programs.length)
-    );
+  const handleProgramClick = (index: number) => {
+    setActiveProgramIndex(index);
   };
 
   function getPosition(index: number) {
-    const left =
-      50 + 40 * Math.cos(((index * 360) / programs.length) * (Math.PI / 180));
+    const angle =
+      (((index - activeProgramIndex + 3) * 360) / programs.length) *
+      (Math.PI / 180);
+    const radius = 40;
+    const center = 50;
 
-    const top =
-      50 + 40 * Math.sin(((index * 360) / programs.length) * (Math.PI / 180));
+    const left = center + radius * Math.cos(angle);
+    const top = center + radius * Math.sin(angle);
 
     return {
       left: `${left.toFixed(2)}%`,
@@ -67,23 +62,19 @@ const ProgramCirclePicker: React.FC = () => {
   }
 
   return (
-    <div className="relative flex items-center justify-center h-[80vh] w-[80vw] mx-auto">
+    <div className="relative flex items-center justify-center w-[90%] h-[70vh] mx-auto mt-5">
       <Title>Programs</Title>
 
-      <div
-        className="absolute top-0 left-0 w-full h-full transition-transform duration-500 ease-in-out"
-        style={{
-          transform: `rotate(-${getRotationAngle()}deg)`,
-        }}
-      >
-        {programs.map(({ id, name, color }, index) => (
+      <div className="absolute top-0 right-0 w-full h-full">
+        {programs.map(({ name, color }, index) => (
           <div
-            className={twMerge(
-              "absolute cursor-pointer transform -translate-x-1/2 -translate-y-1/2 "
-            )}
             key={name}
             style={getPosition(index)}
-            onClick={() => handleProgramClick(name)}
+            onClick={() => handleProgramClick(index)}
+            className={twMerge(
+              "absolute cursor-pointer transition-all duration-500 ease-in-out -translate-x-1/2 -translate-y-1/2",
+              activeProgramIndex === index ? "z-10" : "z-0"
+            )}
           >
             <svg
               width="221"
