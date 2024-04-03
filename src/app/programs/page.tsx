@@ -1,13 +1,11 @@
 "use client";
-import { Title, AnimatedTitle } from "@/components/Title";
-import ProgramCard from "./programCard";
-import Image from "next/image";
-import Text from "@/components/Text";
 import Button from "@/components/Button";
-import ProgramIcon from "./ProgramIcon";
+import Text from "@/components/Text";
+import { AnimatedTitle, Title } from "@/components/Title";
+import Image from "next/image";
+import ProgramCirclePicker from "./ProgramCirclePicker";
 
-export default // async
-function ProgramsPage() {
+export default function ProgramsPage() {
   interface Program {
     name: string;
     color: string;
@@ -20,9 +18,8 @@ function ProgramsPage() {
 
   return (
     <>
-      <ProgramIcon />
+      <ProgramCirclePicker />
 
-      
       <div className="flex flex-col justify-center mt-8 w-[300px] ml-8">
         <div className="mx-auto w-[1px] h-[100px] bg-white mb-8" />
         <Title>
@@ -54,10 +51,19 @@ function ProgramsPage() {
       </Text>
 
       <div className="flex justify-center mt-8 gap-2">
-        <Button borderGradient="onHover" target="_blank" href="https://airtable.com/appkfpQOssQZfmORj/shrNlrSaT073i6fog" className="">
+        <Button
+          borderGradient="onHover"
+          target="_blank"
+          href="https://airtable.com/appkfpQOssQZfmORj/shrNlrSaT073i6fog"
+          className=""
+        >
           Get INIT
         </Button>
-        <Button borderGradient="onHover" target="_blank" href="https://discord.gg/init">
+        <Button
+          borderGradient="onHover"
+          target="_blank"
+          href="https://discord.gg/init"
+        >
           <div className="flex justify-center gap-2 w-16">
             <Image
               src="images/discord-icon.svg"
