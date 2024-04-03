@@ -63,19 +63,23 @@ export default function Navbar() {
     <nav
       className={twMerge(
         "grid grid-cols-3 gap-10 p-8 sticky top-0 transition-all duration-500 z-50",
-        !showNav
-          ? "-top-52"
-          : "bg-gradient-to-b from-page from-65% to-transparent"
+        !showNav && "-top-52",
+        scrollPos > 100 && "bg-gradient-to-b from-black/70 to-transparent"
       )}
     >
-      <div className="justify-self-end my-auto">
+      <div
+        className={twMerge(
+          "justify-self-end my-auto"
+          // scrollPos > 100 && "justify-self-start"
+        )}
+      >
         <Link href="/">
-          <InitLogo className="w-16 hover:text-primary-yellow" />
+          <InitLogo className="w-16 hover:text-primary-yellow shadow-2xl shadow-black" />
         </Link>
       </div>
 
       <div className="justify-self-center">
-        <ul className="flex justify-center items-center gap-2 w-fit border border-secondary-gray rounded-3xl p-1">
+        <ul className="flex justify-center items-center gap-2 w-fit border border-secondary-gray rounded-3xl p-1 bg-page shadow-2xl shadow-black">
           {navLinks.map(({ label, href }) => (
             <li key={label}>
               <HoverEffect className="z-10 rounded-3xl">
@@ -98,6 +102,7 @@ export default function Navbar() {
         className={twMerge(
           "justify-self-start my-auto transition-all duration-500",
           pathName === "/" && scrollPos < 100 && "opacity-0"
+          // scrollPos > 100 && "justify-self-end"
         )}
       >
         <GradientBorder
