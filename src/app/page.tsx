@@ -1,4 +1,4 @@
 export default function Home() {
   // blank
-  return <></>;
+  return <div className="h-[300vh]"></div>;
 }
