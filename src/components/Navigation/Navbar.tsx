@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import {motion} from "framer-motion"
 import Button from "../Button";
 import GradientBorder from "../GradientBorder";
 import HoverEffect from "../hoverEff";
@@ -81,7 +82,16 @@ export default function Navbar() {
       <div className="justify-self-center">
         <ul className="flex justify-center items-center gap-2 w-fit border border-secondary-gray rounded-3xl p-1 bg-page shadow-2xl shadow-black">
           {navLinks.map(({ label, href }) => (
-            <li key={label}>
+            <li key={label} className="relative">
+              {pathName == href && (
+                  <motion.span
+                      layoutId="highlight"
+                      className="absolute bottom-full w-full"
+                  >
+                      <div className="bottom-full w-7 rounded-sm bg-gradient-to-r  from-primary-yellow to-primary-purple mb-[5px] h-1 mx-auto" />
+                  </motion.span>
+              )}
+
               <HoverEffect className="z-10 rounded-3xl">
                 <Button
                   href={href}
