@@ -1,48 +1,51 @@
 "use client";
 
 import InitLogo from "@/components/InitLogo";
+import SubTitle from "@/components/SubTitle";
 import { Title } from "@/components/Title";
-import { useState } from "react";
+import useAutoQueryString from "@/hooks/useAutoQueryString";
+import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 const programs = [
   {
     id: 1,
-    name: "Ignite",
-    color: "red",
+    name: "Build",
   },
   {
     id: 2,
-    name: "Uplift",
-    color: "blue",
+    name: "Ignite",
   },
   {
     id: 3,
-    name: "Reach",
-    color: "green",
+    name: "Uplift",
   },
   {
     id: 4,
-    name: "Hack",
-    color: "yellow",
+    name: "Reach",
   },
   {
     id: 5,
-    name: "Explore",
-    color: "pink",
+    name: "Hack",
   },
   {
     id: 6,
-    name: "Build",
-    color: "orange",
+    name: "Explore",
   },
 ];
 
 const ProgramCirclePicker: React.FC = () => {
+  const [currentView, setCurrentView] = useAutoQueryString("view");
   const [activeProgramIndex, setActiveProgramIndex] = useState(0);
 
-  const handleProgramClick = (index: number) => {
-    setActiveProgramIndex(index);
+  useEffect(() => {
+    setActiveProgramIndex(
+      programs.findIndex(({ name }) => currentView === name)
+    );
+  }, [currentView]);
+
+  const handleProgramClick = (name: string) => {
+    setCurrentView(name);
   };
 
   function getPosition(index: number) {
@@ -66,11 +69,11 @@ const ProgramCirclePicker: React.FC = () => {
       <Title>Programs</Title>
 
       <div className="absolute top-0 right-0 w-full h-full">
-        {programs.map(({ name, color }, index) => (
+        {programs.map(({ name }, index) => (
           <div
             key={name}
             style={getPosition(index)}
-            onClick={() => handleProgramClick(index)}
+            onClick={() => handleProgramClick(name)}
             className={twMerge(
               "absolute cursor-pointer transition-all duration-500 ease-in-out -translate-x-1/2 -translate-y-1/2",
               activeProgramIndex === index ? "z-10" : "z-0"
@@ -82,7 +85,7 @@ const ProgramCirclePicker: React.FC = () => {
               viewBox="0 0 221 167"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              style={{ color }}
+              className={twMerge("", `text-program-${name.toLowerCase()}`)}
             >
               <path
                 d="M182.991 103.641C182.991 143.316 149.42 167 108.217 167C67.0143 167 6.52821e-05 115.183 5.83449e-05 75.507C5.14078e-05 35.8312 102.205 24 143.408 24C184.61 24 182.991 63.9647 182.991 103.641Z"
@@ -118,9 +121,11 @@ const ProgramCirclePicker: React.FC = () => {
               </defs>
             </svg>
 
-            <span className="flex gap-2 justify-center mt-2">
-              <InitLogo className="w-10" />
-              <h1 className="">{name}</h1>
+            <span className="flex gap-2 justify-center items-center mt-2">
+              <InitLogo className="w-9" />
+              <SubTitle className={`text-program-${name.toLowerCase()}`}>
+                {name}
+              </SubTitle>
             </span>
           </div>
         ))}
