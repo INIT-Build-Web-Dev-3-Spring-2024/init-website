@@ -6,7 +6,7 @@ import { twMerge } from "tailwind-merge";
 import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa6";
 import { IoMenu } from "react-icons/io5";
-import InitLogo from "@/images/logo.svg";
+import InitLogo from "@/images/icons/logo.svg";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

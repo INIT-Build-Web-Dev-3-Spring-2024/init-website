@@ -1,10 +1,10 @@
-import SubTitle from "../SubTitle";
-import Text from "../Text";
-import Astronaut from "@/images/Astronaut.svg";
-import Phone from "@/images/phone-icon.svg";
-import Rocket from "@/images/rocket_icon.svg";
-import People from "@/images/people_icon.svg";
-import Gradcap from "@/images/degree_hat_icon.svg";
+import SubTitle from "../../../components/SubTitle";
+import Text from "../../../components/Text";
+import Astronaut from "@/images/icons/Astronaut.svg";
+import Phone from "@/images/icons/phone-icon.svg";
+import Rocket from "@/images/icons/rocket_icon.svg";
+import People from "@/images/icons/people_icon.svg";
+import Gradcap from "@/images/icons/degree_hat_icon.svg";
 
 export default function Action_Block() {
   const items = [
