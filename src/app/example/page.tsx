@@ -8,7 +8,7 @@ import { Title, AnimatedTitle } from "@/components/Title";
 import useAutoQueryString from "@/hooks/useAutoQueryString";
 import InputAndFilters from "@/components/InputAndFilters";
 import { ChangeEvent } from "react";
-import { Action_Block } from "@/app/home/Mission_Statement";
+import { Action_Block } from "@/app/home/Mission";
 
 export default function Page() {
   const [input, setInput] = useAutoQueryString();
