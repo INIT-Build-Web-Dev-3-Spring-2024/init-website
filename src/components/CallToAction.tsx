@@ -1,30 +1,13 @@
-import Button from "@/components/Button";
-import { Title, AnimatedTitle } from "@/components/Title";
-import Text from "@/components/Text";
-import Image from "next/image";
+"use client";
 
-export default function DefaultView() {
+import Button from "./Button";
+import { Title, AnimatedTitle } from "./Title";
+import Image from "next/image";
+import Text from "./Text";
+
+export default function CallToAction() {
   return (
     <>
-      <div className="flex flex-col justify-center mt-8 w-[300px] ml-8">
-        <div className="mx-auto w-[1px] h-[100px] bg-white mb-8" />
-        <Title>
-          INIT <AnimatedTitle>Build</AnimatedTitle>
-          <Text className="mt-4 text-sm mb-8">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          </Text>
-        </Title>
-        <div className="mx-auto w-[1px] h-[100px] bg-white" />
-
-        <Image
-          className="mb-8"
-          src="images/testimonial.svg"
-          alt="Picture of computers"
-          width={300}
-          height={300}
-        />
-      </div>
-
       <Title>
         Become a <AnimatedTitle>Member</AnimatedTitle>
       </Title>

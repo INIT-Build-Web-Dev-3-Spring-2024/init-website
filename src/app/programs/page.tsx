@@ -1,38 +1,33 @@
 "use client";
 
+import CallToAction from "@/components/CallToAction";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import BuildView from "./BuildView";
-import DefaultView from "./DefaultView";
+import AboutProgram, { AboutProgramProps } from "./AboutProgram";
 import ProgramCirclePicker from "./ProgramCirclePicker";
-import { useEffect } from "react";
 
-const programs = [
-  {
-    name: "Hack",
-    description: "",
+const programs: Record<string, Omit<AboutProgramProps, "name">> = {
+  Hack: {
+    description:
+      "Hack into a career by learning, building, and networking at hackathons",
     images: [],
   },
-];
+};
 
 export default function ProgramsPage() {
   // const programRequest = await fetch("http://localhost:3000/api/programs");
   // const programs: Program[] = await programRequest.json();
 
-  const [currentView] = useLocalStorage("view");
-
-  const viewMap = {
-    build: <BuildView />,
-  };
+  const [currentProgram] = useLocalStorage("view");
 
   return (
     <>
       <ProgramCirclePicker />
 
-      {currentView && currentView.toLowerCase() in viewMap ? (
-        viewMap[currentView.toLowerCase() as keyof typeof viewMap]
-      ) : (
-        <DefaultView />
+      {currentProgram && (
+        <AboutProgram {...programs[currentProgram]} name={currentProgram} />
       )}
+
+      <CallToAction />
     </>
   );
 }
