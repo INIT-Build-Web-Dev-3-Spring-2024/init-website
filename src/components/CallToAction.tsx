@@ -1,9 +1,10 @@
 "use client";
 
+import { FaDiscord } from "react-icons/fa";
 import Button from "./Button";
-import { Title, AnimatedTitle } from "./Title";
-import Image from "next/image";
+import InitLogo from "./InitLogo";
 import Text from "./Text";
+import { AnimatedTitle, Title } from "./Title";
 
 export default function CallToAction() {
   return (
@@ -24,24 +25,24 @@ export default function CallToAction() {
           borderGradient="onHover"
           target="_blank"
           href="https://airtable.com/appkfpQOssQZfmORj/shrNlrSaT073i6fog"
-          className=""
         >
-          Get INIT
+          <span className="flex justify-center items-center gap-2 w-28">
+            <Text>Get</Text>
+            <InitLogo className="w-8 h-8" />
+          </span>
         </Button>
+
         <Button
           borderGradient="onHover"
           target="_blank"
           href="https://discord.gg/init"
         >
-          <div className="flex justify-center gap-2 w-16">
-            <Image
-              src="images/discord-icon.svg"
-              alt="Picture of discord"
-              width={15}
-              height={15}
-            />
-            Discord
-          </div>
+          <span className="flex justify-center items-center gap-2 w-28 mt-1">
+            <span>
+              <FaDiscord className="text-xl" />
+            </span>
+            <Text>Discord</Text>
+          </span>
         </Button>
       </div>
     </>
