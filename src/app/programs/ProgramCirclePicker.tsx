@@ -4,7 +4,7 @@ import InitLogo from "@/components/InitLogo";
 import SubTitle from "@/components/SubTitle";
 import { Title } from "@/components/Title";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import tailwindConfig from "@/root/tailwind.config";
 import resolveConfig from "tailwindcss/resolveConfig";
@@ -42,6 +42,8 @@ const ProgramCirclePicker: React.FC = () => {
   const [currentView, setCurrentView] = useLocalStorage("view");
   const [activeProgramIndex, setActiveProgramIndex] = useState(0);
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     setActiveProgramIndex(
       programs.findIndex(({ name }) => currentView === name)
@@ -50,6 +52,15 @@ const ProgramCirclePicker: React.FC = () => {
 
   const handleProgramClick = (name: string) => {
     setCurrentView(name);
+
+    window.setTimeout(() => {
+      if (containerRef.current) {
+        window.scrollTo({
+          top: containerRef.current.scrollHeight + 150,
+          behavior: "smooth",
+        });
+      }
+    }, 600);
   };
 
   function getPosition(index: number) {
@@ -74,7 +85,10 @@ const ProgramCirclePicker: React.FC = () => {
   }
 
   return (
-    <div className="relative flex items-center justify-center w-[90%] h-[70vh] mx-auto mt-5">
+    <div
+      className="relative flex items-center justify-center w-[90%] h-[70vh] mx-auto mt-5"
+      ref={containerRef}
+    >
       <Title>Programs</Title>
 
       <div className="absolute top-0 right-0 w-full h-full">
