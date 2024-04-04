@@ -8,8 +8,8 @@ export default function useAutoQueryString(name: string = "q") {
   const [value, setValue] = useState("");
 
   const searchParams = useSearchParams();
-  const router = useRouter();
   const pathname = usePathname();
+  const { replace } = useRouter();
 
   const handleSearch = useDebouncedCallback(() => {
     const params = new URLSearchParams(searchParams.toString());
@@ -20,7 +20,7 @@ export default function useAutoQueryString(name: string = "q") {
       params.delete(name);
     }
 
-    router.push(`${pathname}?${params}`);
+    replace(`${pathname}?${params.toString()}`);
   }, 300);
 
   // get the initial value of the input on load

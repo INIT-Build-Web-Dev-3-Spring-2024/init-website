@@ -33,14 +33,13 @@ export default function Page() {
         error.
       </Text>
       <GradientBorder disabled animated animatedOnHover className="m-20">
-    <HoverEffect className='rounded-md'>
-        <div className=" p-10">any element inside</div>
-    </HoverEffect>
+        <HoverEffect className="rounded-md">
+          <div className=" p-10">any element inside</div>
+        </HoverEffect>
       </GradientBorder>
 
       <Button borderGradient="always" onClick={() => null} className="m-10">
         Always border gradient button
-
       </Button>
 
       <Button borderGradient="onHover" onClick={() => null} className="m-10">
@@ -87,37 +86,6 @@ export default function Page() {
           </Hexagon>
           <Hexagon className="w-40" offset={["top", "sides"]} hiddenStroke />
           <Hexagon className="w-40"></Hexagon>
-        </div>
-
-        <div className="flex justify-center">
-          <Hexagon className="w-40" offset={["sides"]} />
-          <Hexagon className="w-40" offset={["top"]} />
-          <Hexagon
-            className="w-40"
-            fillOpacity="0.05"
-            offset={["sides"]}
-            hiddenStroke
-          >
-            <SubTitle>Init Build</SubTitle>
-          </Hexagon>
-          <Hexagon
-            className="w-40"
-            fillOpacity="0.05"
-            offset={["top"]}
-            hiddenStroke
-          >
-            <SubTitle>Init uplift</SubTitle>
-          </Hexagon>
-          <Hexagon
-            className="w-40"
-            fillOpacity="0.05"
-            offset={["sides"]}
-            hiddenStroke
-          >
-            <SubTitle>Init Reach</SubTitle>
-          </Hexagon>
-          <Hexagon className="w-40" offset={["top"]} />
-          <Hexagon className="w-40" offset={["sides"]} />
         </div>
 
         <div className="flex justify-center">

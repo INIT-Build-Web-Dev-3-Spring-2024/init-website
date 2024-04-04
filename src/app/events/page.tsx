@@ -1,19 +1,43 @@
 import EventCard from "@/components/EventCard";
+import { AnimatedTitle, Title } from "@/components/Title";
 import fetchEvents from "../lib/fetchEvents";
-import SearchInput from "@/components/Search";
+import InputAndFilters from "@/components/InputAndFilters";
 
-export default async function page({ searchParams }: { searchParams?: { query?: string } }) {
-  const query = searchParams?.query || "";
+interface PageProps {
+  searchParams?: { q?: string };
+}
+
+export default async function page({ searchParams }: PageProps) {
+  const query = searchParams?.q || "";
   const events = await fetchEvents(query, true);
 
   return (
     <main className="mx-auto min-h-screen max-w-7xl px-5 sm:px-16 py-12 bg-opacity-95">
-      <div className="ordered mb-4 flex flex-col items-center justify-between">
-        <h1 className="text-4xl font-bold mb-3">Upcoming events</h1>
-        <div className="flex w-full flex-col items-center space-y-4">
-          <SearchInput searchType="events"></SearchInput>
-        </div>
+      <header>
+        <Title>
+          Discover and Join Our <br />
+          Upcoming
+          <AnimatedTitle> Events</AnimatedTitle>
+        </Title>
+      </header>
+
+      <div className="w-4/5 mx-auto my-16">
+        <InputAndFilters
+          name="q"
+          placeholder="Search Events"
+          filters={[
+            {
+              name: "Program",
+              options: ["Explore", "Reach", "Build", "General", "Other"],
+            },
+            {
+              name: "Location",
+              options: ["PG6", "GC", "CASE", "Other"],
+            },
+          ]}
+        />
       </div>
+
       <div className="mx-auto mt-8">
         <div className="grid gap-6 mx-auto mt-8">
           {events?.map((event) => (
