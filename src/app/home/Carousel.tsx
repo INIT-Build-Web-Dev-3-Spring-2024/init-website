@@ -1,21 +1,19 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-//TODO: recheck mapping
-
 import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/mousewheel";
 import "swiper/css/free-mode";
 
-import { EffectCoverflow, Mousewheel, FreeMode } from "swiper/modules";
-interface CarouselProps {
-}
+import React, { useRef, useState } from "react";
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+//TODO: recheck mapping
+
+import { FreeMode, Pagination, Autoplay } from "swiper/modules";
 
 //TODO: create styling to be used between transitions
-//TODO: add trasition animation
-export default function Carousel({  }: CarouselProps) {
+//TODO: add transition animation
+export default function Carousel() {
   const slides = [
     "/images/programs/initbuild.webp",
     "/images/programs/initdiscover.webp",
@@ -27,25 +25,27 @@ export default function Carousel({  }: CarouselProps) {
   return (
     <>
       <Swiper
-        effect={'coverflow'}
-        centeredSlides={true}
-        slidesPerView={4}
-        spaceBetween={20}
+        grabCursor={true}
+        centeredSlides={false}
         loop={true}
         freeMode={true}
-        mousewheel={true}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 2.5,
-          depth: 100,
-          modifier: 2.5
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
         }}
-        modules={[EffectCoverflow, Mousewheel, FreeMode]}
-        className="mx-0 mt-10 mb-10"
+        slidesPerView={4}
+        pagination={true}
+        modules={[FreeMode, Pagination, Autoplay]}
+        className="mx-0 mt-10 mb-10 h-72"
       >
         {slides.map((url, index) => (
-          <SwiperSlide key={index}>
-              <img className="rounded-xl" src={url} alt={`Slide ${index}`} />
+          <SwiperSlide key={index} className="mx-10 h-72">
+            <Image
+              className="rounded-xl object-contain"
+              src={url}
+              fill
+              alt={`Slide ${index}`}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

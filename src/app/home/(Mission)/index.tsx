@@ -39,7 +39,7 @@ export default function Action_Block() {
         </div>
 
         <div className="grid grid-cols-2 gap-y-10 my-60 ml-20 w-5/6 max-xl:grid-cols-1 max-xl:mx-auto max-xl:w-1/2">
-          {items.map(({ name, description, Icon }) => (
+          {items.map(({ name, description, imgPath }) => (
             <div key={name}>
               <div className="relative my-2 w-16 h-16 max-xl:mx-auto max-xl:w-1/5 max-md:w-2/6 max-md:mx-36">
                 <Image src={`/images/icons/${Icon}`} alt="" fill />
