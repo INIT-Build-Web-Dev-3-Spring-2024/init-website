@@ -1,15 +1,16 @@
 "use client";
 
-import "swiper/css";
-import "swiper/css/free-mode";
-
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 //TODO: recheck mapping
 
-import { FreeMode, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/mousewheel";
+import "swiper/css/free-mode";
+
+import { EffectCoverflow, Mousewheel, FreeMode } from "swiper/modules";
 
 //TODO: create styling to be used between transitions
 //TODO: add transition animation
@@ -25,21 +26,24 @@ export default function Carousel() {
   return (
     <>
       <Swiper
-        grabCursor={true}
-        centeredSlides={false}
+        effect={"coverflow"}
+        centeredSlides={true}
+        slidesPerView={4}
+        spaceBetween={20}
         loop={true}
         freeMode={true}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
+        mousewheel={true}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 2.5,
+          depth: 100,
+          modifier: 2.5,
         }}
-        slidesPerView={4}
-        pagination={true}
-        modules={[FreeMode, Pagination, Autoplay]}
+        modules={[EffectCoverflow, Mousewheel, FreeMode]}
         className="mx-0 mt-10 mb-10 h-72"
       >
         {slides.map((url, index) => (
-          <SwiperSlide key={index} className="mx-10 h-72">
+          <SwiperSlide key={index} className="h-72">
             <Image
               className="rounded-xl object-contain"
               src={url}
