@@ -2,17 +2,19 @@ import React, { useState, useEffect, useMemo } from 'react';
 import EventSlideshow from './EventSlideshow';
 import NextEvent from './NextEvent';
 import { Event } from '../EventCard';
+import QRCode from 'qrcode';
 
 const LiveEventsParent = () => {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [isLive, setIsLive] = useState(false);
+  const [QRSrc, setQRSrc] = useState('');
   // dummy data for tsting
   const slides: Event[] = useMemo(
     () => [
       {
         id: '1',
         name: 'Artificial Intelligence + Machine Learning workshop',
-        rsvpLink: '',
+        rsvpLink: 'https://github.com/WriteCodeRAM',
         date: 'Thursday, April 4',
         time: '1:00 PM EDT',
         picture: '',
@@ -67,6 +69,15 @@ const LiveEventsParent = () => {
       return currentTime >= startTime && currentTime <= endTime;
     };
 
+    const generateQRCode = () => {
+      if (currentEvent.rsvpLink) {
+        QRCode.toDataURL(slides[currentEventIndex].rsvpLink).then(setQRSrc);
+      } else {
+        QRCode.toDataURL('https://www.weareinit.org/').then(setQRSrc);
+      }
+    };
+
+    generateQRCode();
     setIsLive(checkIfEventIsLive(currentEvent));
   }, [currentEventIndex, slides]);
 
@@ -89,7 +100,9 @@ const LiveEventsParent = () => {
         currentEvent={slides[currentEventIndex]}
         isLive={isLive}
         onPrevious={handlePreviousEvent}
+        QRImage={QRSrc}
       />
+
       <NextEvent
         title={nextEvent.name}
         description={nextEvent.description}

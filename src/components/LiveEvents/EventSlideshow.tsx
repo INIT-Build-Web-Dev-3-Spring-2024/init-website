@@ -5,6 +5,7 @@ interface LiveEventProps {
   currentEvent: Event;
   onPrevious: any;
   isLive: boolean;
+  QRImage: string;
 }
 
 const EventSlideshow = (props: LiveEventProps) => {
@@ -25,29 +26,39 @@ const EventSlideshow = (props: LiveEventProps) => {
       {/* container */}
       <div className="absolute flex flex-col justify-between pt-1 p-4">
         {/* top of container */}
-
         <div className="flex items-center space-x-4 pl-16 py-4 justify-between">
-          {/* convert time to words ?  */}
           <h3 className="text-xl text-white px-2 py-1">
             {props.currentEvent.date}
           </h3>
-          {/* boolean or function to check if curr event is live  */}
-
           {props.isLive && (
             <span className="text-xs bg-red-500 text-white px-2 py-1 rounded">
               Live
             </span>
           )}
-
-          {/* <div className="justify-self-end" id="far right"> */}
-          {/* register button */}
-          <a
-            href={props.currentEvent.rsvpLink}
-            className="bg-white text-black py-1 px-4 rounded ml-auto hover:bg-gray-200"
-          >
-            Register
-          </a>
-          {/* </div> */}
+          {/* Register button and QR code container */}
+          <div className="relative">
+            <a
+              href={props.currentEvent.rsvpLink}
+              className="bg-white text-black py-1 px-4 rounded ml-auto hover:bg-gray-200"
+            >
+              Register
+            </a>
+            {/* QR code */}
+            {props.QRImage && (
+              <div
+                className="absolute top-full left-1/2 mt-2"
+                style={{ transform: 'translateX(-50%)' }}
+              >
+                <Image
+                  src={props.QRImage}
+                  layout="responsive"
+                  width={90}
+                  height={90}
+                  alt="QR code"
+                />
+              </div>
+            )}
+          </div>
         </div>
 
         {/* midsection */}
