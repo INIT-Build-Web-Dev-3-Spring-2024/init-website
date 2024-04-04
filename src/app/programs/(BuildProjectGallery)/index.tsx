@@ -162,7 +162,7 @@ Additionally, if there is extra time, an AI model may be made which predicts a f
 export default function BuildProjectGallery() {
   return (
     <>
-      <Title className="mt-36 mb-20">Project Gallery</Title>
+      <Title className="mb-20">Project Gallery</Title>
 
       <div className="mx-auto w-[90%] mb-36">
         {projects.map(({ semester, teams }) => (
