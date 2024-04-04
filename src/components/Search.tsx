@@ -1,10 +1,14 @@
 "use client";
 
-import SearchLogo from "@/images/searchLogo.svg";
+import SearchLogo from "@/images/icons/searchLogo.svg";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
-export default function SearchInput({ searchType = "" }: { searchType: string }) {
+export default function SearchInput({
+  searchType = "",
+}: {
+  searchType: string;
+}) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -22,7 +26,10 @@ export default function SearchInput({ searchType = "" }: { searchType: string })
   return (
     <>
       <div className="w-full md:w-auto">
-        <label htmlFor={`search-${searchType}-input-field`} className="sr-only text-sm font-medium text-gray-900">
+        <label
+          htmlFor={`search-${searchType}-input-field`}
+          className="sr-only text-sm font-medium text-gray-900"
+        >
           Search
         </label>
         <div className="relative">

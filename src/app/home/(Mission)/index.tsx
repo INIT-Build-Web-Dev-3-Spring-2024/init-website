@@ -33,8 +33,7 @@ export default function Action_Block() {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-y-10 my-10 w-screen max-xl:grid-cols-1">
-        {/* <div className="grid grid-cols-1 gap-y-10 max-md:w-full"> */}
+      <div className="grid grid-cols-2 gap-y-10 my-10 max-xl:grid-cols-1">
         <div className="relative">
           <Image src="/images/icons/astronaut.svg" alt="" fill />
         </div>
