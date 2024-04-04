@@ -7,21 +7,21 @@ const LiveEventsParent = () => {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [isLive, setIsLive] = useState(false);
   // dummy data for tsting
-  const slides = useMemo(
+  const slides: Event[] = useMemo(
     () => [
       {
         id: '1',
         name: 'Artificial Intelligence + Machine Learning workshop',
         rsvpLink: '',
-        date: 'Tue, April 2',
-        time: '6:00 PM EDT',
+        date: 'Thursday, April 4',
+        time: '1:00 PM EDT',
         picture: '',
         location: 'GC',
         program: 'Build',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        dateEnd: 'Tue, April 2, 2024',
-        timeEnd: '9:00 PM EDT',
+        dateEnd: 'Thursday, April 4, 2024',
+        timeEnd: '2:05 PM EDT',
       },
 
       {
@@ -40,15 +40,16 @@ const LiveEventsParent = () => {
       },
       {
         id: '4fc329cf-2b49-4976-aa15-75f84a7ce4e1',
-        name: 'test',
-        description: '',
+        name: 'INIT BUILD WEB DEV 3',
+        description:
+          'this is dummy data to make the component look less bare fkalfnsaf afamf da ldmfalf akc a akd a',
         picture: '/assets/images/eventDefaultImage.avif',
         location: 'Location TBD',
         program: 'General',
         date: 'Tue, April 2, 2024',
-        dateEnd: 'Tue, April 2, 2024',
+        dateEnd: 'Tue, April 3, 2024',
         time: '6:00 PM EDT',
-        timeEnd: '9:00 PM EDT',
+        timeEnd: '12:01 PM EDT',
         rsvpLink: '',
       },
     ],
@@ -87,10 +88,13 @@ const LiveEventsParent = () => {
       <EventSlideshow
         currentEvent={slides[currentEventIndex]}
         isLive={isLive}
-        onNext={handleNextEvent}
         onPrevious={handlePreviousEvent}
       />
-      <NextEvent title={nextEvent.name} description={nextEvent.description} />
+      <NextEvent
+        title={nextEvent.name}
+        description={nextEvent.description}
+        onNext={handleNextEvent}
+      />
     </div>
   );
 };

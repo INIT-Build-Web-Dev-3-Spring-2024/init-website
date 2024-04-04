@@ -3,7 +3,6 @@ import { Event } from '../EventCard';
 
 interface LiveEventProps {
   currentEvent: Event;
-  onNext: any;
   onPrevious: any;
   isLive: boolean;
 }
@@ -42,9 +41,12 @@ const EventSlideshow = (props: LiveEventProps) => {
 
           {/* <div className="justify-self-end" id="far right"> */}
           {/* register button */}
-          <button className="bg-white text-black py-1 px-4 rounded ml-auto">
+          <a
+            href={props.currentEvent.rsvpLink}
+            className="bg-white text-black py-1 px-4 rounded ml-auto hover:bg-gray-200"
+          >
             Register
-          </button>
+          </a>
           {/* </div> */}
         </div>
 
@@ -56,7 +58,9 @@ const EventSlideshow = (props: LiveEventProps) => {
 
         {/* bottom section */}
         <div className="flex justify-between items-center px-16 py-4">
-          <button className="text-black bg-white rounded p-2">More info</button>
+          <button className="text-black bg-white rounded p-2 hover:bg-gray-200">
+            More info
+          </button>
         </div>
       </div>
     </div>

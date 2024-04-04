@@ -5,8 +5,7 @@ import { Event } from '../EventCard';
 interface NextEvent {
   title: string;
   description: string;
-  isLive: boolean;
-  onNext: () => Event;
+  onNext: () => void;
 }
 const NextEvent = (props: NextEvent) => {
   return (
@@ -15,7 +14,7 @@ const NextEvent = (props: NextEvent) => {
         <h2 className="font-bold">{props.title}</h2>
         <p className="text-sm">{props.description.slice(0, 100) + '...'}</p>
       </div>
-      <button className="rounded-full">
+      <button className="rounded-full" onClick={props.onNext}>
         <IoIosArrowForward className="text-lg" />
       </button>
     </div>
