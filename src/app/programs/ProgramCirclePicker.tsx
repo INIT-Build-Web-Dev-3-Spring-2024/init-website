@@ -3,7 +3,7 @@
 import InitLogo from "@/components/InitLogo";
 import SubTitle from "@/components/SubTitle";
 import { Title } from "@/components/Title";
-import useAutoQueryString from "@/hooks/useAutoQueryString";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -35,7 +35,7 @@ const programs = [
 ];
 
 const ProgramCirclePicker: React.FC = () => {
-  const [currentView, setCurrentView] = useAutoQueryString("view");
+  const [currentView, setCurrentView] = useLocalStorage("view");
   const [activeProgramIndex, setActiveProgramIndex] = useState(0);
 
   useEffect(() => {
