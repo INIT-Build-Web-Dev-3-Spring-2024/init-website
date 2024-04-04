@@ -308,7 +308,7 @@ export default function Testimonials() {
         setCurrRevs(currRevsCopy)
         setUnusedRevs(unusedRevsCopy)
       }, 1000) // Make sure this is as long as fadeOut animation
-    }, 15000)
+    }, 10000)
 
     return () => {
       clearInterval(switchReview)
