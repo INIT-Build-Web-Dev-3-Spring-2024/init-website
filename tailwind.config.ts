@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
+import resolveConfig from "tailwindcss/resolveConfig";
 
-const config: Config = {
+const config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -48,4 +49,13 @@ const config: Config = {
   },
   plugins: [],
 };
+
+export const twConfig = resolveConfig(config);
+
+export function getProgramColor(programName: string) {
+  return twConfig.theme.colors.program[
+    programName.toLowerCase() as keyof typeof twConfig.theme.colors.program
+  ];
+}
+
 export default config;

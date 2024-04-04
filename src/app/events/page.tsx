@@ -2,6 +2,7 @@ import EventCard from "@/components/EventCard";
 import { AnimatedTitle, Title } from "@/components/Title";
 import fetchEvents from "../lib/fetchEvents";
 import InputAndFilters from "@/components/InputAndFilters";
+import ProgramSelector from "./ProgramSelector";
 
 interface PageProps {
   searchParams?: { q?: string };
@@ -12,7 +13,7 @@ export default async function page({ searchParams }: PageProps) {
   const events = await fetchEvents(query, true);
 
   return (
-    <main className="mx-auto min-h-screen max-w-7xl px-5 sm:px-16 py-12 bg-opacity-95">
+    <div className="mx-auto min-h-screen max-w-7xl px-5 sm:px-16 py-12 bg-opacity-95">
       <header>
         <Title>
           Discover and Join Our <br />
@@ -21,7 +22,7 @@ export default async function page({ searchParams }: PageProps) {
         </Title>
       </header>
 
-      <div className="w-4/5 mx-auto my-16">
+      <div className="w-4/5 mx-auto my-10">
         <InputAndFilters
           name="q"
           placeholder="Search Events"
@@ -38,6 +39,8 @@ export default async function page({ searchParams }: PageProps) {
         />
       </div>
 
+      <ProgramSelector />
+
       <div className="mx-auto mt-8">
         <div className="grid gap-6 mx-auto mt-8">
           {events?.map((event) => (
@@ -45,6 +48,6 @@ export default async function page({ searchParams }: PageProps) {
           ))}
         </div>
       </div>
-    </main>
+    </div>
   );
 }
