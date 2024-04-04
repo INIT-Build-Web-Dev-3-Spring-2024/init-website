@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import { Event } from '../EventCard';
+import LiveIndicator from './LiveIndicator';
+import { IoIosArrowForward } from 'react-icons/io';
 
 interface LiveEventProps {
   currentEvent: Event;
@@ -30,11 +32,7 @@ const EventSlideshow = (props: LiveEventProps) => {
           <h3 className="text-xl text-white px-2 py-1">
             {props.currentEvent.date}
           </h3>
-          {props.isLive && (
-            <span className="text-xs bg-red-500 text-white px-2 py-1 rounded">
-              Live
-            </span>
-          )}
+          {props.isLive && <LiveIndicator />}
           {/* Register button and QR code container */}
           <div className="relative">
             <a
@@ -69,8 +67,10 @@ const EventSlideshow = (props: LiveEventProps) => {
 
         {/* bottom section */}
         <div className="flex justify-between items-center px-16 py-4">
-          <button className="text-black bg-white rounded p-2 hover:bg-gray-200">
-            More info
+          <button className="flex justify-between items-center text-black bg-white rounded-2xl p-2 w-52 hover:bg-gray-200">
+            <p className="pl-1">More Info</p>
+
+            <IoIosArrowForward className="text-lg" />
           </button>
         </div>
       </div>
