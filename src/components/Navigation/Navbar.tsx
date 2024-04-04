@@ -75,7 +75,7 @@ export default function Navbar() {
                     // scrollPos > 100 && "justify-self-start"
                 )}
             >
-                <Link href="/">
+                <Link href="/home">
                     <InitLogo className="w-16 hover:text-primary-yellow shadow-2xl shadow-black" />
                 </Link>
             </div>

@@ -1,4 +1,6 @@
+import { redirect } from "next/navigation";
+
 export default function Home() {
   // blank
-  return <div className="h-[300vh]"></div>;
+  return redirect("/home");
 }
