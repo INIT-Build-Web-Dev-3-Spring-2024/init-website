@@ -1,8 +1,12 @@
-import Button from "@/components/Button";
-import { Title, AnimatedTitle } from "@/components/Title";
+import InitLogo from "@/components/InitLogo";
 import Text from "@/components/Text";
+import { Title } from "@/components/Title";
 import Image from "next/image";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { twMerge } from "tailwind-merge";
+import tailwindConfig from "@/root/tailwind.config";
+import resolveConfig from "tailwindcss/resolveConfig";
+
+const twConfig = resolveConfig(tailwindConfig);
 
 export interface AboutProgramProps {
   name: string;
@@ -13,15 +17,33 @@ export interface AboutProgramProps {
 export default function AboutProgram(props: AboutProgramProps) {
   const { name, description, images } = props;
 
+  function getColor(program: string) {
+    const programName = program as keyof typeof twConfig.theme.colors.program; // so typescript can stop
+    return twConfig.theme.colors.program[programName];
+  }
+
   return (
     <>
       <div className="flex flex-col justify-center mt-8 w-[300px] ml-8">
-        <div className="mx-auto w-[1px] h-[100px] bg-white mb-8" />
-        <Title>
-          INIT <AnimatedTitle>{name}</AnimatedTitle>
-          <Text className="mt-4 text-sm mb-8">{description}</Text>
+        <div
+          className={twMerge("mx-auto w-[1px] h-[100px] mb-8")}
+          style={{
+            backgroundColor: getColor(name.toLowerCase()),
+          }}
+        />
+        <Title className="flex items-center gap-2">
+          <span>
+            <InitLogo className="w-24 h-24 mb-[10px]" />
+          </span>
+          <span style={{ color: getColor(name.toLowerCase()) }}>{name}</span>
         </Title>
-        <div className="mx-auto w-[1px] h-[100px] bg-white" />
+        <Text className="mt-4 text-sm mb-8">{description}</Text>
+        <div
+          className="mx-auto w-[1px] h-[100px]"
+          style={{
+            backgroundColor: getColor(name.toLowerCase()),
+          }}
+        />
 
         <Image
           className="mb-8"

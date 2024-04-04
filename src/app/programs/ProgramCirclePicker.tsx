@@ -6,6 +6,10 @@ import { Title } from "@/components/Title";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import tailwindConfig from "@/root/tailwind.config";
+import resolveConfig from "tailwindcss/resolveConfig";
+
+const twConfig = resolveConfig(tailwindConfig);
 
 const programs = [
   {
@@ -64,6 +68,11 @@ const ProgramCirclePicker: React.FC = () => {
     };
   }
 
+  function getColor(program: string) {
+    const programName = program as keyof typeof twConfig.theme.colors.program; // so typescript can stop
+    return twConfig.theme.colors.program[programName];
+  }
+
   return (
     <div className="relative flex items-center justify-center w-[90%] h-[70vh] mx-auto mt-5">
       <Title>Programs</Title>
@@ -85,7 +94,7 @@ const ProgramCirclePicker: React.FC = () => {
               viewBox="0 0 221 167"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className={twMerge("", `text-program-${name.toLowerCase()}`)}
+              style={{ color: getColor(name.toLowerCase()) }}
             >
               <path
                 d="M182.991 103.641C182.991 143.316 149.42 167 108.217 167C67.0143 167 6.52821e-05 115.183 5.83449e-05 75.507C5.14078e-05 35.8312 102.205 24 143.408 24C184.61 24 182.991 63.9647 182.991 103.641Z"
@@ -123,8 +132,10 @@ const ProgramCirclePicker: React.FC = () => {
 
             <span className="flex gap-2 justify-center items-center mt-2">
               <InitLogo className="w-9" />
-              <SubTitle className={`text-program-${name.toLowerCase()}`}>
-                {name}
+              <SubTitle>
+                <span style={{ color: getColor(name.toLowerCase()) }}>
+                  {name}
+                </span>
               </SubTitle>
             </span>
           </div>
