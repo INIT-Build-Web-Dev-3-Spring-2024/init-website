@@ -15,21 +15,36 @@ interface Person {
   review: string
 }
 
+interface animationState {
+  fadeInIndex: number
+  fadeOutIndex: number
+}
+
 function ReviewAvatar({
   className,
   person,
   avatarIndex,
   selectedIndex,
+  animationState,
   onClick,
 }: {
   className: string
   person: Person
   avatarIndex: number
   selectedIndex: number
+  animationState: animationState
   onClick: MouseEventHandler
 }) {
   return (
-    <GradientBorder className={twMerge(className, 'p-0.5 rounded-full cursor-pointer')} disabled={avatarIndex !== selectedIndex}>
+    <GradientBorder
+      className={twMerge(
+        className,
+        'p-0.5 rounded-full cursor-pointer',
+        animationState.fadeInIndex === avatarIndex ? 'animate-fadeIn' : '',
+        animationState.fadeOutIndex === avatarIndex ? 'animate-fadeOut' : ''
+      )}
+      disabled={avatarIndex !== selectedIndex}
+    >
       <Image className="w-24 h-24 rounded-full" src={person.avatarSrc} alt={person.name} width="96" height="96" onClick={onClick} />
     </GradientBorder>
   )
@@ -249,9 +264,12 @@ export default function Testimonials() {
     },
   ]
 
+  const REVIEWS_LEN = reviews.length
+
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [currRevs, setCurrRevs] = useState(reviews.slice(0, 7))
   const [unusedRevs, setUnusedRevs] = useState(reviews.slice(7, reviews.length))
+  const [animationState, setAnimationState] = useState({ fadeInIndex: REVIEWS_LEN, fadeOutIndex: REVIEWS_LEN })
 
   function handleSelectedIndex(desiredIndex: number) {
     setSelectedIndex(desiredIndex)
@@ -261,7 +279,7 @@ export default function Testimonials() {
   useEffect(() => {
     const switchReview = setInterval(() => {
       let currRan = getRandomNum(6)
-      const unusedRan = getRandomNum(reviews.length - 8)
+      const unusedRan = getRandomNum(REVIEWS_LEN - 8)
 
       // if currRan is currently the index that's selected, increment or decrement it
       if (currRan === selectedIndex) {
@@ -272,21 +290,30 @@ export default function Testimonials() {
         }
       }
 
-      const currRevsCopy = [...currRevs]
-      const unusedRevsCopy = [...unusedRevs]
+      // Fade out current avatar
+      setAnimationState((prev) => ({ ...prev, fadeInIndex: REVIEWS_LEN, fadeOutIndex: currRan }))
 
-      const temp = currRevsCopy[currRan]
-      currRevsCopy[currRan] = unusedRevsCopy[unusedRan]
-      unusedRevsCopy[unusedRan] = temp
+      // Wait for fade out animation to complete
+      setTimeout(() => {
+        // Swap reviews
+        const currRevsCopy = [...currRevs]
+        const unusedRevsCopy = [...unusedRevs]
 
-      setCurrRevs(currRevsCopy)
-      setUnusedRevs(unusedRevsCopy)
-    }, 10000)
+        const temp = currRevsCopy[currRan]
+        currRevsCopy[currRan] = unusedRevsCopy[unusedRan]
+        unusedRevsCopy[unusedRan] = temp
+
+        // Fade in current avatar and update reviews
+        setAnimationState((prev) => ({ ...prev, fadeInIndex: currRan, fadeOutIndex: REVIEWS_LEN }))
+        setCurrRevs(currRevsCopy)
+        setUnusedRevs(unusedRevsCopy)
+      }, 1000) // Make sure this is as long as fadeOut animation
+    }, 15000)
 
     return () => {
       clearInterval(switchReview)
     }
-  }, [selectedIndex, reviews.length, currRevs, unusedRevs])
+  }, [selectedIndex, REVIEWS_LEN, currRevs, unusedRevs])
 
   // make sure to add a translate property, even if it's 0, so it fills out nicely
   return (
@@ -296,6 +323,7 @@ export default function Testimonials() {
           person={currRevs[0]}
           avatarIndex={0}
           selectedIndex={selectedIndex}
+          animationState={animationState}
           className="translate-x-0 translate-y-3 col-start-1 col-end-2"
           onClick={() => handleSelectedIndex(0)}
         />
@@ -303,6 +331,7 @@ export default function Testimonials() {
           person={currRevs[1]}
           avatarIndex={1}
           selectedIndex={selectedIndex}
+          animationState={animationState}
           className="translate-x-0 translate-y-0 col-start-3 col-end-4"
           onClick={() => handleSelectedIndex(1)}
         />
@@ -310,6 +339,7 @@ export default function Testimonials() {
           person={currRevs[2]}
           avatarIndex={2}
           selectedIndex={selectedIndex}
+          animationState={animationState}
           className="translate-x-0 translate-y-1 col-start-5 col-end-6"
           onClick={() => handleSelectedIndex(2)}
         />
@@ -317,6 +347,7 @@ export default function Testimonials() {
           person={currRevs[3]}
           avatarIndex={3}
           selectedIndex={selectedIndex}
+          animationState={animationState}
           className="translate-x-0 translate-y-1 col-start-2 col-end-3"
           onClick={() => handleSelectedIndex(3)}
         />
@@ -324,6 +355,7 @@ export default function Testimonials() {
           person={currRevs[4]}
           avatarIndex={4}
           selectedIndex={selectedIndex}
+          animationState={animationState}
           className="translate-x-0 translate-y-6 col-start-4 col-end-5"
           onClick={() => handleSelectedIndex(4)}
         />
@@ -331,6 +363,7 @@ export default function Testimonials() {
           person={currRevs[5]}
           avatarIndex={5}
           selectedIndex={selectedIndex}
+          animationState={animationState}
           className="-translate-x-5 translate-y-0 col-start-1 col-end-2"
           onClick={() => handleSelectedIndex(5)}
         />
@@ -338,6 +371,7 @@ export default function Testimonials() {
           person={currRevs[6]}
           avatarIndex={6}
           selectedIndex={selectedIndex}
+          animationState={animationState}
           className="translate-x-10 translate-y-0 col-start-5 col-end-6"
           onClick={() => handleSelectedIndex(6)}
         />
