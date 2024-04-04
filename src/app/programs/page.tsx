@@ -4,6 +4,7 @@ import CallToAction from "@/components/CallToAction";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import AboutProgram, { AboutProgramProps } from "./AboutProgram";
 import ProgramCirclePicker from "./ProgramCirclePicker";
+import BuildProjectGallery from "./(BuildProjectGallery)";
 
 const programs: Record<string, Omit<AboutProgramProps, "name">> = {
   Explore: {
@@ -39,18 +40,28 @@ const programs: Record<string, Omit<AboutProgramProps, "name">> = {
 };
 
 export default function ProgramsPage() {
-  // const programRequest = await fetch("http://localhost:3000/api/programs");
-  // const programs: Program[] = await programRequest.json();
-
   const [currentProgram] = useLocalStorage("view");
+
+  function pickView() {
+    switch (currentProgram) {
+      case null:
+        return;
+
+      case "Build":
+        return <BuildProjectGallery />;
+
+      default:
+        return (
+          <AboutProgram {...programs[currentProgram]} name={currentProgram} />
+        );
+    }
+  }
 
   return (
     <>
       <ProgramCirclePicker />
 
-      {currentProgram && (
-        <AboutProgram {...programs[currentProgram]} name={currentProgram} />
-      )}
+      {pickView()}
 
       <CallToAction />
     </>

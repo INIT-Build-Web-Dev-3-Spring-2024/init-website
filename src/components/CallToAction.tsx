@@ -20,7 +20,7 @@ export default function CallToAction() {
         error.
       </Text>
 
-      <div className="flex justify-center mt-8 gap-2">
+      <div className="flex justify-center mt-8 gap-2 mb-10">
         <Button
           borderGradient="onHover"
           target="_blank"
