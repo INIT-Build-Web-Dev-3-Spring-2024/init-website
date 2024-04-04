@@ -1,5 +1,5 @@
 import { redirect, RedirectType } from "next/navigation";
 
 export default function Home() {
-    return redirect("/home", RedirectType["replace"]);
+  return redirect("/home", RedirectType["replace"]);
 }

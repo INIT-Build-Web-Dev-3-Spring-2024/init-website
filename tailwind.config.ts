@@ -9,7 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        page: "#000",
+        page: {
+          DEFAULT: "#10032c",
+          dark: "#05020b",
+        },
         primary: {
           DEFAULT: "#1A1E22",
           yellow: "#FFD550",
