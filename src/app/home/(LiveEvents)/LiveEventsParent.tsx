@@ -1,26 +1,26 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import EventSlideshow from './EventSlideshow';
-import NextEvent from './NextEvent';
-import { Event } from '../EventCard';
-import QRCode from 'qrcode';
-import fetchEvents from '@/app/lib/fetchEvents';
+import React, { useState, useEffect, useMemo } from "react";
+import EventSlideshow from "./EventSlideshow";
+import NextEvent from "./NextEvent";
+import { Event } from "../../../components/EventCard";
+import QRCode from "qrcode";
+import fetchEvents from "@/app/lib/fetchEvents";
 
 const LiveEventsParent = () => {
   const defaultEvent = useMemo(
     () => [
       {
-        id: '999',
-        name: 'There are currently no upcoming events, check again later!',
-        rsvpLink: 'https://www.weareinit.org/',
-        date: 'TBD',
-        time: 'TBD',
-        picture: '/assets/images/notionDefaultImage.jpeg',
-        location: '',
-        program: '',
+        id: "999",
+        name: "There are currently no upcoming events, check again later!",
+        rsvpLink: "https://www.weareinit.org/",
+        date: "TBD",
+        time: "TBD",
+        picture: "/assets/images/notionDefaultImage.jpeg",
+        location: "",
+        program: "",
         description:
-          'In the meantime check out our discord to connect with other members from our community. Check back later for more exciting events!',
-        dateEnd: '',
-        timeEnd: '',
+          "In the meantime check out our discord to connect with other members from our community. Check back later for more exciting events!",
+        dateEnd: "",
+        timeEnd: "",
       },
     ],
     []
@@ -28,7 +28,7 @@ const LiveEventsParent = () => {
 
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [isLive, setIsLive] = useState(false);
-  const [QRSrc, setQRSrc] = useState('');
+  const [QRSrc, setQRSrc] = useState("");
   const [slides, setSlides] = useState(defaultEvent);
   // dummy data for tsting
   // const slides: Event[] = useMemo(
@@ -69,7 +69,9 @@ const LiveEventsParent = () => {
   useEffect(() => {
     const loadEvents = async () => {
       try {
+        console.log("inside first useEffect");
         const fetchedEvents = await fetchEvents();
+        console.log(fetchedEvents);
         // use events from notion if available else default event
         if (fetchedEvents && fetchedEvents.length > 0) {
           setSlides(fetchedEvents);
@@ -77,7 +79,7 @@ const LiveEventsParent = () => {
           setSlides(defaultEvent);
         }
       } catch (error) {
-        console.error('Error fetching events: ', error);
+        console.error("Error fetching events: ", error);
         setSlides(defaultEvent);
       }
     };
@@ -100,7 +102,7 @@ const LiveEventsParent = () => {
       if (currentEvent.rsvpLink) {
         QRCode.toDataURL(slides[currentEventIndex].rsvpLink).then(setQRSrc);
       } else {
-        QRCode.toDataURL('https://www.weareinit.org/').then(setQRSrc);
+        QRCode.toDataURL("https://www.weareinit.org/").then(setQRSrc);
       }
     };
 
@@ -122,7 +124,7 @@ const LiveEventsParent = () => {
   const nextEvent = slides[nextEventIndex];
 
   return (
-    <div className="">
+    <div className="relative">
       <EventSlideshow
         currentEvent={slides[currentEventIndex]}
         isLive={isLive}
@@ -132,8 +134,8 @@ const LiveEventsParent = () => {
 
       {slides.length > 1 && (
         <NextEvent
-          title={slides[nextEventIndex]?.name || 'No upcoming event'}
-          description={slides[nextEventIndex]?.description || ''}
+          title={slides[nextEventIndex]?.name || "No upcoming event"}
+          description={slides[nextEventIndex]?.description || ""}
           onNext={handleNextEvent}
         />
       )}

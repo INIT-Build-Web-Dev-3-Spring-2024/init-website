@@ -19,7 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*", "./public/assets/*"],
+      "@/*": ["./src/*", "./public/*", "./public/assets/*"],
       "@/root/*": ["./*"]
     }
   },
