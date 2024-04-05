@@ -10,6 +10,7 @@ import { AnimatedTitle, Title } from '@/components/Title';
 import useAutoQueryString from '@/hooks/useAutoQueryString';
 import { ChangeEvent } from 'react';
 import HoverEffect from '@/components/hoverEff';
+import LiveEventsParent from '@/components/LiveEvents/LiveEventsParent';
 
 export default function Page() {
   const [input, setInput] = useAutoQueryString();
@@ -23,7 +24,7 @@ export default function Page() {
       <Title>
         Your <AnimatedTitle>TECH</AnimatedTitle> Journey is about to start
       </Title>
-
+      <LiveEventsParent />
       <SubTitle>Get to know us</SubTitle>
 
       <Text>
