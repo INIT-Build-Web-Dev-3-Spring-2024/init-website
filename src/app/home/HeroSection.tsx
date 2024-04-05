@@ -3,7 +3,7 @@ import Button from "@/components/Button";
 import { Title, AnimatedTitle } from "@/components/Title";
 import React from "react";
 import UpcomingWorkshop from "./(UpcomingWorkshop)";
-import LiveEventsParent from "@/components/LiveEvents/LiveEventsParent";
+import LiveEventsParent from "@/app/home/(LiveEvents)/LiveEventsParent";
 
 const HeroSection = () => {
   return (
@@ -19,7 +19,7 @@ const HeroSection = () => {
       >
         Get INIT
       </Button>
-      <div className="h-12"></div>
+      {/* <div className="h-12"></div> */}
       <LiveEventsParent />
       <UpcomingWorkshop />
     </>
