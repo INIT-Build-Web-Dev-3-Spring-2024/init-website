@@ -17,7 +17,7 @@ export default function HexagonNavigation() {
   }, [pathName]);
 
   return (
-    <div className="flex items-center justify-center flex-col">
+    <div className="flex items-center justify-center flex-col -mb-28">
       <div className="flex justify-center">
         <Hexagon className="w-72" hiddenStroke fillOpacity="0.04" />
         <Hexagon className="w-72" offset={["top", "sides"]} hiddenStroke />

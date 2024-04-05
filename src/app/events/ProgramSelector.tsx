@@ -35,7 +35,7 @@ export default function ProgramSelector() {
   }
 
   return (
-    <div className="flex items-center justify-center flex-col">
+    <div className="flex items-center justify-center flex-col -mb-36">
       <div className="flex justify-center">
         <Hexagon
           className={HEX_CLASS_NAME}
