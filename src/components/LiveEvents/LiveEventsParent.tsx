@@ -3,60 +3,87 @@ import EventSlideshow from './EventSlideshow';
 import NextEvent from './NextEvent';
 import { Event } from '../EventCard';
 import QRCode from 'qrcode';
+import fetchEvents from '@/app/lib/fetchEvents';
 
 const LiveEventsParent = () => {
-  const [currentEventIndex, setCurrentEventIndex] = useState(0);
-  const [isLive, setIsLive] = useState(false);
-  const [QRSrc, setQRSrc] = useState('');
-  // dummy data for tsting
-  const slides: Event[] = useMemo(
+  const defaultEvent = useMemo(
     () => [
       {
-        id: '1',
-        name: 'Artificial Intelligence + Machine Learning workshop',
-        rsvpLink: 'https://github.com/WriteCodeRAM',
-        date: 'Thursday, April 4',
-        time: '1:00 PM EDT',
-        picture: '',
-        location: 'GC',
-        program: 'Build',
+        id: '999',
+        name: 'There are currently no upcoming events, check again later!',
+        rsvpLink: 'https://www.weareinit.org/',
+        date: 'TBD',
+        time: 'TBD',
+        picture: '/assets/images/notionDefaultImage.jpeg',
+        location: '',
+        program: '',
         description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        dateEnd: 'Thursday, April 4, 2024',
-        timeEnd: '2:05 PM EDT',
-      },
-
-      {
-        id: '2',
-        name: 'Detecting Color using Computer Vision',
-        rsvpLink: '',
-        date: '04/15/2024',
-        time: '10:00 AM',
-        picture: '/assets/images/default2notion.avif',
-        location: 'Virtual',
-        program: 'Explore',
-        description:
-          'Explore Computer Vision and learn how to program a robot car to identify objects and behaviors using color detection in this workshop!',
-        dateEnd: '04/15/2024',
-        timeEnd: '3:00 PM',
-      },
-      {
-        id: '4fc329cf-2b49-4976-aa15-75f84a7ce4e1',
-        name: 'INIT BUILD WEB DEV 3',
-        description:
-          'this is dummy data to make the component look less bare fkalfnsaf afamf da ldmfalf akc a akd a',
-        picture: '/assets/images/eventDefaultImage.avif',
-        location: 'Location TBD',
-        program: 'General',
-        date: 'Tue, April 2, 2024',
-        dateEnd: 'Tue, April 3, 2024',
-        time: '6:00 PM EDT',
-        timeEnd: '12:01 PM EDT',
-        rsvpLink: '',
+          'In the meantime check out our discord to connect with other members from our community. Check back later for more exciting events!',
+        dateEnd: '',
+        timeEnd: '',
       },
     ],
     []
   );
+
+  const [currentEventIndex, setCurrentEventIndex] = useState(0);
+  const [isLive, setIsLive] = useState(false);
+  const [QRSrc, setQRSrc] = useState('');
+  const [slides, setSlides] = useState(defaultEvent);
+  // dummy data for tsting
+  // const slides: Event[] = useMemo(
+  //   () => [
+  //     {
+  //       id: '1',
+  //       name: 'Artificial Intelligence + Machine Learning workshop',
+  //       rsvpLink: 'https://github.com/WriteCodeRAM',
+  //       date: 'Thursday, April 4',
+  //       time: '4:00 PM EDT',
+  //       picture: '',
+  //       location: 'GC',
+  //       program: 'Build',
+  //       description:
+  //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+  //       dateEnd: 'Thursday, April 4, 2024',
+  //       timeEnd: '6:05 PM EDT',
+  //     },
+
+  //     {
+  //       id: '2',
+  //       name: 'Detecting Color using Computer Vision',
+  //       rsvpLink: '',
+  //       date: '04/15/2024',
+  //       time: '10:00 AM',
+  //       picture: '/assets/images/default2notion.avif',
+  //       location: 'Virtual',
+  //       program: 'Explore',
+  //       description:
+  //         'Explore Computer Vision and learn how to program a robot car to identify objects and behaviors using color detection in this workshop!',
+  //       dateEnd: '04/15/2024',
+  //       timeEnd: '3:00 PM',
+  //     },
+  //
+  //   []
+  // );
+
+  useEffect(() => {
+    const loadEvents = async () => {
+      try {
+        const fetchedEvents = await fetchEvents();
+        // use events from notion if available else default event
+        if (fetchedEvents && fetchedEvents.length > 0) {
+          setSlides(fetchedEvents);
+        } else {
+          setSlides(defaultEvent);
+        }
+      } catch (error) {
+        console.error('Error fetching events: ', error);
+        setSlides(defaultEvent);
+      }
+    };
+
+    loadEvents();
+  }, [defaultEvent]);
 
   useEffect(() => {
     const currentEvent = slides[currentEventIndex];
@@ -95,7 +122,7 @@ const LiveEventsParent = () => {
   const nextEvent = slides[nextEventIndex];
 
   return (
-    <div>
+    <div className="">
       <EventSlideshow
         currentEvent={slides[currentEventIndex]}
         isLive={isLive}
@@ -103,11 +130,13 @@ const LiveEventsParent = () => {
         QRImage={QRSrc}
       />
 
-      <NextEvent
-        title={nextEvent.name}
-        description={nextEvent.description}
-        onNext={handleNextEvent}
-      />
+      {slides.length > 1 && (
+        <NextEvent
+          title={slides[nextEventIndex]?.name || 'No upcoming event'}
+          description={slides[nextEventIndex]?.description || ''}
+          onNext={handleNextEvent}
+        />
+      )}
     </div>
   );
 };
