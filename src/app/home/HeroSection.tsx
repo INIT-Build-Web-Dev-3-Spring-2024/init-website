@@ -1,3 +1,4 @@
+"use client";
 import Button from "@/components/Button";
 import { Title, AnimatedTitle } from "@/components/Title";
 import React from "react";
@@ -19,7 +20,7 @@ const HeroSection = () => {
         Get INIT
       </Button>
       <div className="h-12"></div>
-      <LiveEventsParent /> 
+      <LiveEventsParent />
       <UpcomingWorkshop />
     </>
   );

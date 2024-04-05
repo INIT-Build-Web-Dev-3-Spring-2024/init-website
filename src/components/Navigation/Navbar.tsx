@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
-// import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Button from "../Button";
 import GradientBorder from "../GradientBorder";
 import HoverEffect from "../hoverEff";
