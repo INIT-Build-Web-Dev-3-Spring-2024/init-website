@@ -1,9 +1,6 @@
-'use client';
-import EventSlideshow from '@/components/LiveEvents/EventSlideshow';
-import NextEvent from '@/components/LiveEvents/NextEvent';
-import LiveEventsParent from '@/components/LiveEvents/LiveEventsParent';
+import { redirect } from "next/navigation";
 
 export default function Home() {
   // blank
-  return <LiveEventsParent />;
+  return redirect("/home");
 }
