@@ -37,7 +37,7 @@ export default function Carousel() {
           modifier: 2.5,
         }}
         modules={[EffectCoverflow, Mousewheel, FreeMode]}
-        className="mx-0 mt-10 mb-10 h-72"
+        className="mx-0 my-6 h-72"
       >
         {slides.map((url, index) => (
           <SwiperSlide key={index} className="h-72">
