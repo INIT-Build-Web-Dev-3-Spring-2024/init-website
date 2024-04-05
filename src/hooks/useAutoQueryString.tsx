@@ -32,7 +32,7 @@ export default function useAutoQueryString(
       }
     }
 
-    replace(`${pathname}?${params.toString()}`);
+    replace(`${pathname}?${params.toString()}`, { scroll: false });
   }, 300);
 
   function modifyValue(newVal: string) {
