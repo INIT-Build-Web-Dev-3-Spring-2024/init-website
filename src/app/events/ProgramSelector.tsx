@@ -25,10 +25,10 @@ function ProgramLabel({ children: name, onClick }: ProgramLabelProps) {
 const HEX_CLASS_NAME = "w-40";
 
 export default function ProgramSelector() {
-  const [programsVisible, setProgramsVisible] = useAutoQueryString(
-    "program",
-    true
-  ) as [Set<string>, (newVal: string) => void];
+  const [programsVisible, setProgramsVisible] = useAutoQueryString("program", {
+    isArray: true,
+    debounce: 0,
+  }) as [Set<string>, (newVal: string) => void];
 
   function handleProgramClick(program: string) {
     setProgramsVisible(program);
