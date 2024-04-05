@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*", "./public/assets/*"]
+      "@/*": ["./src/*", "./public/assets/*"],
+      "@/root/*": ["./*"]
     }
   },
   "include": [
