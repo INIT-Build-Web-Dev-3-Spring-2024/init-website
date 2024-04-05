@@ -41,8 +41,8 @@ export default async function page({ searchParams }: PageProps) {
 
       <ProgramSelector />
 
-      <div className="mx-auto mt-8">
-        <div className="grid gap-6 mx-auto mt-8">
+      <div className="mx-auto">
+        <div className="grid gap-6 mx-auto">
           {events?.map((event) => (
             <EventCard key={event.id} {...event}></EventCard>
           ))}

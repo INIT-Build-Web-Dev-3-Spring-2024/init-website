@@ -35,7 +35,7 @@ export default function ProgramSelector() {
   }
 
   return (
-    <div className="flex items-center justify-center flex-col mb-24">
+    <div className="flex items-center justify-center flex-col">
       <div className="flex justify-center">
         <Hexagon
           className={HEX_CLASS_NAME}
@@ -109,6 +109,10 @@ export default function ProgramSelector() {
           <ProgramLabel onClick={handleProgramClick}>Hack</ProgramLabel>
         </Hexagon>
         <Hexagon className={HEX_CLASS_NAME} offset={["top"]} />
+      </div>
+
+      <div className="flex justify-center">
+        <Hexagon hiddenStroke />
       </div>
     </div>
   );
