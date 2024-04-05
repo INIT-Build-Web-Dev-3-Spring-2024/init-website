@@ -9,12 +9,14 @@ interface JobsLayoutProps {
   children: ReactNode;
   companies: ReactNode;
   jobs: ReactNode;
+  exampleJobs: ReactNode;
 }
 
 export default function JobsLayout({
   children,
   companies,
   jobs,
+  exampleJobs
 }: JobsLayoutProps) {
   const [showCompanies, setShowCompanies] = useState(false);
 
@@ -62,7 +64,7 @@ export default function JobsLayout({
         </div>
 
         {showCompanies ? companies : jobs}
-
+          {exampleJobs}
         {children}
       </div>
     </>

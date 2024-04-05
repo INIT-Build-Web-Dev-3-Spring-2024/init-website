@@ -4,12 +4,18 @@ import { CompanyPosting } from "../../api/Events_Tracker/companyPosting";
 import { JobPosting, jobPostings } from "../../api/Events_Tracker/jobPostings";
 import JobCard from "./JobCard";
 import { PrismaClient } from "@prisma/client";
+import JobsCard, { Job } from "../@exampleJobs/JobsCard";
+import CounterComopnent from "../@exampleJobs/CounterComponent";
 
 interface PageProps {
   companies: ReactNode;
 }
 
-export default async function page({ searchParams }: { searchParams?: { [key: string]: string | undefined } }) {
+export default async function page({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | undefined };
+}) {
   const prisma = new PrismaClient();
 
   const groupByCompany = false;
@@ -36,43 +42,84 @@ export default async function page({ searchParams }: { searchParams?: { [key: st
     input: { q: string | null },
     filters: { jobType: string; positionType: string; jobLocation: string }
   ) {
-    if (input.q ||filters.jobType || filters.positionType || filters.jobLocation) {
+    if (
+      input.q ||
+      filters.jobType ||
+      filters.positionType ||
+      filters.jobLocation
+    ) {
       return await prisma.jobPosting.findMany({
         where: {
           AND: [
             {
               OR: [
-                input.q ? { title: { contains: decodedSearchQuery, mode: "insensitive" } } : {},
-                input.q ? { company: { contains: decodedSearchQuery, mode: "insensitive" } } : {},
+                input.q
+                  ? {
+                      title: {
+                        contains: decodedSearchQuery,
+                        mode: "insensitive",
+                      },
+                    }
+                  : {},
+                input.q
+                  ? {
+                      company: {
+                        contains: decodedSearchQuery,
+                        mode: "insensitive",
+                      },
+                    }
+                  : {},
               ],
             },
-            filters.jobType ? { jobType: { in: filters.jobType.split(",") } } : {},
-            filters.positionType ? { jobPosition: { in: filters.positionType.split(",") } } : {},
-            filters.jobLocation ? { jobLocation: { in: filters.jobLocation.split(",") } } : {},
+            filters.jobType
+              ? { jobType: { in: filters.jobType.split(",") } }
+              : {},
+            filters.positionType
+              ? { jobPosition: { in: filters.positionType.split(",") } }
+              : {},
+            filters.jobLocation
+              ? { jobLocation: { in: filters.jobLocation.split(",") } }
+              : {},
           ],
         },
       });
     } else {
-      const eventsRequest = await fetch(`${headersList.get("x-url")}/api/Events_Tracker`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const eventsRequest = await fetch(
+        `${headersList.get("x-url")}/api/Events_Tracker`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const eventsData = await eventsRequest.json();
       return eventsData.jobPostings ?? [];
     }
   }
 
   const jobs: typeof jobPostings = await getJobs(input, filters);
+  const count: number = jobs.length-1
 
   console.log("end result:", jobs);
 
   await prisma.$disconnect();
 
   return (
-    <div className={`grid w-full grid-cols-1 place-items-center min-[980px]:grid-cols-2 min-[1320px]:grid-cols-3 `}>
-      {jobs.length === 0 ? <p>No matching jobs postings.</p> : jobs.map((job) => <JobCard key={job.id} {...job} />)}
-    </div>
+    <>
+      <div
+        className={`grid w-full grid-cols-1 place-items-center min-[980px]:grid-cols-2 min-[1320px]:grid-cols-3 `}
+      >
+        {jobs.length === 0 ? (
+          <p>No matching jobs postings.</p>
+        ) : (
+          jobs.map((job) => <JobCard key={job.id} {...job} />)
+        )}
+      </div>   
+      
+      <JobsCard {...jobs[count]} />
+      <CounterComopnent jobInfo = {jobs} counter={count}/>
+
+    </>
   );
 }
