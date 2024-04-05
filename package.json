@@ -22,6 +22,7 @@
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
     "@types/node": "latest",
+    "@types/qrcode": "^1.5.5",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
