@@ -3,7 +3,6 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-//TODO: recheck mapping
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -12,8 +11,6 @@ import "swiper/css/free-mode";
 
 import { EffectCoverflow, Mousewheel, FreeMode } from "swiper/modules";
 
-//TODO: create styling to be used between transitions
-//TODO: add transition animation
 export default function Carousel() {
   const slides = [
     "/images/programs/initbuild.webp",
