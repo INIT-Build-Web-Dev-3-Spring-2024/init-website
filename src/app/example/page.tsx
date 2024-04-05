@@ -1,14 +1,15 @@
-"use client";
+'use client';
 
-import Button from "@/components/Button";
-import GradientBorder from "@/components/GradientBorder";
-import Hexagon from "@/components/Hexagon";
-import InputAndFilters from "@/components/InputAndFilters";
-import SubTitle from "@/components/SubTitle";
-import Text from "@/components/Text";
-import { AnimatedTitle, Title } from "@/components/Title";
-import useAutoQueryString from "@/hooks/useAutoQueryString";
-import { ChangeEvent } from "react";
+import Button from '@/components/Button';
+import GradientBorder from '@/components/GradientBorder';
+import Hexagon from '@/components/Hexagon';
+import InputAndFilters from '@/components/InputAndFilters';
+import SubTitle from '@/components/SubTitle';
+import Text from '@/components/Text';
+import { AnimatedTitle, Title } from '@/components/Title';
+import useAutoQueryString from '@/hooks/useAutoQueryString';
+import { ChangeEvent } from 'react';
+import LiveEventsParent from '@/components/LiveEvents/LiveEventsParent';
 
 export default function Page() {
   const [input, setInput] = useAutoQueryString();
@@ -22,6 +23,8 @@ export default function Page() {
       <Title>
         Your <AnimatedTitle>TECH</AnimatedTitle> Journey is about to start
       </Title>
+
+      <LiveEventsParent />
 
       <SubTitle>Get to know us</SubTitle>
 
@@ -60,18 +63,18 @@ export default function Page() {
           placeholder="Search by name or type"
           filters={[
             {
-              name: "Location",
-              options: ["Seattle", "Arlington", "Chicago"],
+              name: 'Location',
+              options: ['Seattle', 'Arlington', 'Chicago'],
               onChange: handleFilter,
             },
             {
-              name: "Type",
-              options: ["Full Time", "Part Time", "Internship"],
+              name: 'Type',
+              options: ['Full Time', 'Part Time', 'Internship'],
               onChange: handleFilter,
             },
             {
-              name: "Program",
-              options: ["Expolore", "Build", "Reach"],
+              name: 'Program',
+              options: ['Expolore', 'Build', 'Reach'],
             },
           ]}
         />
@@ -82,17 +85,17 @@ export default function Page() {
           <Hexagon className="w-40" fillOpacity="0.05" hiddenStroke>
             <SubTitle>Init ignite</SubTitle>
           </Hexagon>
-          <Hexagon className="w-40" offset={["top", "sides"]} hiddenStroke />
+          <Hexagon className="w-40" offset={['top', 'sides']} hiddenStroke />
           <Hexagon className="w-40"></Hexagon>
         </div>
 
         <div className="flex justify-center">
-          <Hexagon className="w-40" offset={["sides"]} />
-          <Hexagon className="w-40" offset={["top"]} />
+          <Hexagon className="w-40" offset={['sides']} />
+          <Hexagon className="w-40" offset={['top']} />
           <Hexagon
             className="w-40"
             fillOpacity="0.05"
-            offset={["sides"]}
+            offset={['sides']}
             hiddenStroke
           >
             <SubTitle>Init Build</SubTitle>
@@ -100,7 +103,7 @@ export default function Page() {
           <Hexagon
             className="w-40"
             fillOpacity="0.05"
-            offset={["top"]}
+            offset={['top']}
             hiddenStroke
           >
             <SubTitle>Init uplift</SubTitle>
@@ -108,35 +111,35 @@ export default function Page() {
           <Hexagon
             className="w-40"
             fillOpacity="0.05"
-            offset={["sides"]}
+            offset={['sides']}
             hiddenStroke
           >
             <SubTitle>Init Reach</SubTitle>
           </Hexagon>
-          <Hexagon className="w-40" offset={["top"]} />
-          <Hexagon className="w-40" offset={["sides"]} />
+          <Hexagon className="w-40" offset={['top']} />
+          <Hexagon className="w-40" offset={['sides']} />
         </div>
 
         <div className="flex justify-center">
-          <Hexagon className="w-40" offset={["top"]} />
-          <Hexagon className="w-40" offset={["sides"]} />
+          <Hexagon className="w-40" offset={['top']} />
+          <Hexagon className="w-40" offset={['sides']} />
           <Hexagon
             className="w-40"
             borderGradient="always"
             fillOpacity="0.05"
-            offset={["top"]}
+            offset={['top']}
           >
             <SubTitle>Init Explore</SubTitle>
           </Hexagon>
           <Hexagon
             className="w-40"
             fillOpacity="0.05"
-            offset={["sides"]}
+            offset={['sides']}
             hiddenStroke
           >
             <SubTitle>Init hack</SubTitle>
           </Hexagon>
-          <Hexagon className="w-40" offset={["top"]} />
+          <Hexagon className="w-40" offset={['top']} />
         </div>
       </div>
     </>
