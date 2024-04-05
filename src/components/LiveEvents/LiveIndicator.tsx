@@ -1,5 +1,5 @@
 import React from 'react';
-import { IoMdRadioButtonOn } from 'react-icons/io'; // Import the icon
+import { IoMdRadioButtonOn } from 'react-icons/io';
 
 const LiveIndicator = () => {
   return (
