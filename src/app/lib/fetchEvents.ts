@@ -10,7 +10,10 @@ import { Event } from "@/components/EventCard";
 
 // Notion Database Reference: https://smyvens.notion.site/smyvens/b1c5ddd386bb4abcaab264d630246d99?v=d340036c928e40bea2ac68c41c3d5461
 export default async function fetchEvents(searchQuery = "", weekly = false) {
-  console.log(process.env.NOTION_API, process.env.NOTION_EVENTS_DATABASE_ID);
+  console.log(
+    process.env.NOTION_API_KEY,
+    process.env.NOTION_EVENTS_DATABASE_ID
+  );
 
   try {
     if (!process.env.NOTION_API_KEY || !process.env.NOTION_EVENTS_DATABASE_ID) {
@@ -250,7 +253,6 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
       );
     }
 
-    console.log(events);
     return events;
   } catch (error) {
     console.error("Failed to fetch latest event data:", error);

@@ -4,8 +4,12 @@ import { Title, AnimatedTitle } from "@/components/Title";
 import React from "react";
 import UpcomingWorkshop from "./(UpcomingWorkshop)";
 import LiveEventsParent from "@/app/home/(LiveEvents)/LiveEventsParent";
+import { Event } from "@/components/EventCard";
 
-const HeroSection = () => {
+interface HeroProps {
+  events: any;
+}
+const HeroSection = (props: HeroProps) => {
   return (
     <>
       <Title className="mx-auto max-w-[450px]">
@@ -20,7 +24,7 @@ const HeroSection = () => {
         Get INIT
       </Button>
       {/* <div className="h-12"></div> */}
-      <LiveEventsParent />
+      <LiveEventsParent events={props.events} />
       <UpcomingWorkshop />
     </>
   );

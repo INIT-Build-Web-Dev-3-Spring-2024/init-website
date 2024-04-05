@@ -5,11 +5,13 @@ import Mission from "./(Mission)";
 import Testimonial from "./Testimonial";
 import Carousel from "./Carousel";
 import Blurb from "./Blurb";
+import fetchEvents from "../lib/fetchEvents";
 
-const page = () => {
+const page = async () => {
+  const events = await fetchEvents();
   return (
     <>
-      <HeroSection />
+      <HeroSection events={events} />
       <Sponsors />
       <Mission />
       <Testimonial />
