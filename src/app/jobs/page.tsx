@@ -8,7 +8,30 @@ import GradientBorder from "@/components/GradientBorder";
 import SubTitle from "@/components/SubTitle";
 import { twMerge } from "tailwind-merge";
 
-export default function page() {
+interface PageProps {
+  searchParams?: {
+    position?: string[];
+    location?: string;
+    type?: string;
+    model?: string;
+  };
+}
+
+const availablePositions = [
+  "DevOps Engineer",
+  "UI/UX Engineer",
+  "Software Engineer (SWE)",
+  "Back-end Developer",
+  "Full-Stack Developer",
+  "Product Manager",
+  "Product Designer",
+  "Marketing Coordinator",
+  "Social Media Marketer",
+];
+
+export default function page({ searchParams }: PageProps) {
+  console.log(searchParams);
+
   return (
     <>
       <div
@@ -24,7 +47,7 @@ export default function page() {
           <br /> for you
         </Title>
 
-        <PositionsFilter />
+        <PositionsFilter positions={availablePositions} />
 
         <div className="mx-auto w-[70%]">
           <InputAndFilters
@@ -79,9 +102,7 @@ export default function page() {
             "absolute w-screen h-screen -translate-y-56 -right-[80%] -z-50",
             "bg-gradient-radial from-secondary-yellow/10 to-transparent to-70%"
           )}
-        >
-          asdf
-        </div>
+        />
       </GradientBorder>
     </>
   );

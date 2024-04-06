@@ -3,23 +3,16 @@
 import Button from "@/components/Button";
 import GradientBorder from "@/components/GradientBorder";
 import useAutoQueryString from "@/hooks/useAutoQueryString";
-import { useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 
-const availablePositions = [
-  "DevOps Engineer",
-  "UI/UX Engineer",
-  "Software Engineer (SWE)",
-  "Back-end Developer",
-  "Full-Stack Developer",
-  "Product Manager",
-  "Product Designer",
-  "Marketing Coordinator",
-  "Social Media Marketer",
-];
+interface Props {
+  positions: string[];
+}
 
-export default function PositionsFilter() {
-  const [positions, setPositions] = useAutoQueryString("postion", {
+export default function PositionsFilter({
+  positions: availablePositions,
+}: Props) {
+  const [positions, setPositions] = useAutoQueryString("position", {
     isArray: true,
     debounce: 0,
   }) as [Set<string>, (va: string) => unknown];
@@ -35,11 +28,7 @@ export default function PositionsFilter() {
           )}
           disabled={!positions.has(pos)}
         >
-          <Button
-            onClick={() => setPositions(pos)}
-            // className={twMerge(positions.has(pos) && "border-transparent")}
-            className={"border-none"}
-          >
+          <Button onClick={() => setPositions(pos)} className={"border-none"}>
             {pos}
           </Button>
         </GradientBorder>
