@@ -23,8 +23,8 @@ const HeroSection = (props: HeroProps) => {
       >
         Get INIT
       </Button>
-      {/* <div className="h-12"></div> */}
       <LiveEventsParent events={props.events} />
+      <div className="h-12"></div>
       <UpcomingWorkshop />
     </>
   );

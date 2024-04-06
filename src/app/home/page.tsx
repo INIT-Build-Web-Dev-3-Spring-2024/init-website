@@ -8,7 +8,7 @@ import Blurb from "./Blurb";
 import fetchEvents from "../lib/fetchEvents";
 
 const page = async () => {
-  const events = await fetchEvents();
+  const events = await fetchEvents("", true);
   return (
     <>
       <HeroSection events={events} />
