@@ -16,7 +16,7 @@ interface LiveEventProps {
 const EventSlideshow = (props: LiveEventProps) => {
   return (
     <div className="relative mx-auto my-16 w-4/5 h-[350px] overflow-hidden rounded-lg bg-white text-white mb-0">
-      <div className="absolute inset-0 bg-black opacity-60"></div>
+      <div className="absolute inset-0 bg-black opacity-70"></div>
       <Image
         src={
           props.currentEvent.picture || "/images/icons/notionDefaultImage.jpeg"
@@ -26,7 +26,7 @@ const EventSlideshow = (props: LiveEventProps) => {
         objectFit="cover"
         className="mix-blend-overlay"
       />
-      <div className="absolute flex flex-col justify-between pt-1 p-4">
+      <div className="absolute flex flex-col justify-between pt-1 p-4 w-full">
         <div className="flex items-center space-x-4 pl-16 py-4 justify-between">
           <SubTitle className="text-xl px-2 py-1">
             {props.currentEvent.date}
