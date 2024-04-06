@@ -21,21 +21,21 @@ export default function page() {
     // employeeCount: "40,000 Employess",
     // openApps: true,
     // roleDescription: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius illum perspiciatis impedit nulla aut exercitationem quireprehenderit praesentium. Nisi, possimus qui consequatur officiisvoluptatem architecto. Culpa aliquam iste animi veritatis! Loremipsum dolor sit amet consectetur, adipisicing elit. Eius illumperspiciatis impedit nulla aut exercitationem qui reprehenderit praesentium. Nisi, possimus qui consequatur officiis voluptatem",
-    date: "soon",
+     date: "soon",
   };
 
   return (
     <>
-      <h1> Hello </h1>
+     
       {/* small component for the huge paragrpah */}
-      <div>
+      {/* <div>
         <Title>
           We're <AnimatedTitle> here </AnimatedTitle> to give you the
           opportunities you are looking for
         </Title>
       </div>
 
-      <JobsCard {...job1} />
+      <JobsCard {...job1} /> */}
     </>
   );
 }

@@ -6,6 +6,7 @@ import JobCard from "./JobCard";
 import { PrismaClient } from "@prisma/client";
 import JobsCard, { Job } from "../@exampleJobs/JobsCard";
 import CounterComopnent from "../@exampleJobs/CounterComponent";
+import Button from "@/components/Button";
 
 interface PageProps {
   companies: ReactNode;
@@ -107,7 +108,7 @@ export default async function page({
 
   return (
     <>
-      <div
+      {/* <div
         className={`grid w-full grid-cols-1 place-items-center min-[980px]:grid-cols-2 min-[1320px]:grid-cols-3 `}
       >
         {jobs.length === 0 ? (
@@ -115,10 +116,11 @@ export default async function page({
         ) : (
           jobs.map((job) => <JobCard key={job.id} {...job} />)
         )}
-      </div>   
+      </div>    */}
       
-      <JobsCard {...jobs[count]} />
+      {/* <JobsCard {...jobs[count]} /> */}
       <CounterComopnent jobInfo = {jobs} counter={count}/>
+
 
     </>
   );

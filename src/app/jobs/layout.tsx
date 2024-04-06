@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import InputAndFilters from "@/components/InputAndFilters";
 import { AnimatedTitle, Title } from "@/components/Title";
@@ -16,7 +16,7 @@ export default function JobsLayout({
   children,
   companies,
   jobs,
-  exampleJobs
+  exampleJobs,
 }: JobsLayoutProps) {
   const [showCompanies, setShowCompanies] = useState(false);
 
@@ -26,47 +26,37 @@ export default function JobsLayout({
 
   return (
     <>
-      <div className="max-w-screen-xl mx-auto">
-        <Title>
-          <AnimatedTitle>Opportunities</AnimatedTitle><br/> for you
-        </Title>
+      <Title>
+        <AnimatedTitle>Opportunities</AnimatedTitle>
+        <br /> for you
+      </Title>
 
-
-            <FilterCard/>
-            <div className="mx-auto w-[600px] my-5 ">
-              <InputAndFilters
-                placeholder="Search by name or type"
-                filters={[
-                  {
-                    name: "Location",
-                    options: ["Seattle", "Arlington", "Chicago"],
-                    onChange: handleFilter,
-                  },
-                  {
-                    name: "Type",
-                    options: ["Full Time", "Part Time", "Internship"],
-                    onChange: handleFilter,
-                  },
-                  {
-                    name: "Program",
-                    options: ["Expolore", "Build", "Reach"],
-                  },
-                ]}
-              />
-          {/* <div className="flex items-center gap-6 h-24">
-            {showCompanies || <SearchInput searchType="job" />}
-            <Button onClick={() => setShowCompanies(!showCompanies)}>
-              Group By {showCompanies ? "Jobs" : "Companies"}
-            </Button>
-            <Button onClick={() => alert("clicked add job button")}>Add Jobs</Button>
-          </div> */}
-          
-        </div>
-
-        {showCompanies ? companies : jobs}
-          {exampleJobs}
-        {children}
+      <FilterCard />
+      <div className="mx-auto w-[600px] my-5 ">
+        <InputAndFilters
+          placeholder="Search by name or type"
+          filters={[
+            {
+              name: "Location",
+              options: ["Seattle", "Arlington", "Chicago"],
+              onChange: handleFilter,
+            },
+            {
+              name: "Type",
+              options: ["Full Time", "Part Time", "Internship"],
+              onChange: handleFilter,
+            },
+            {
+              name: "Program",
+              options: ["Expolore", "Build", "Reach"],
+            },
+          ]}
+        />
       </div>
+
+      {showCompanies ? companies : jobs}
+      {exampleJobs}
+      {children}
     </>
   );
 }

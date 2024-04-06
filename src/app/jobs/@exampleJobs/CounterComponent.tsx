@@ -1,41 +1,69 @@
-"use client"
-import { useState, useEffect } from "react"
-import JobsCard, { Job} from "./JobsCard"
+"use client";
 
+import Button from "@/components/Button";
+import { useState } from "react";
+import { CiCircleChevLeft, CiCircleChevRight } from "react-icons/ci";
+import JobsCard, { Job } from "./JobsCard";
+import RoleCard from "./RoleCard";
 
-function CounterComopnent({jobInfo, counter}: {jobInfo: Job[], counter: number}){
-    const [count, setCount] = useState(0)
+function CounterComopnent({
+  jobInfo,
+  counter,
+}: {
+  jobInfo: Job[];
+  counter: number;
+}) {
+  const [count, setCount] = useState(0);
 
-    function upCounter(){
-        setCount(count+1)
-        console.log("Moved by 1: " + count)
+  function upCounter() {
+    setCount(count + 1);
+    console.log("Moved by 1: " + count);
+  }
+  function downCounter() {
+    setCount(count - 1);
+    console.log("Moved by 1: " + count);
+  }
 
-    }
-    function downCounter(){
-        setCount(count-1)
-        console.log("Moved by 1: " + count)
+  // useEffect(() =>{
+  //     if(count > counter){
+  //         setCount(0)
+  //     }
+  //     if(count < counter){
+  //         setCount(counter)
+  //     }
+  // }, [])
 
-    }
+  return (
+    <>
+      <JobsCard {...jobInfo[count]} />
 
-    // useEffect(() =>{
-    //     if(count > counter){
-    //         setCount(0)
-    //     }
-    //     if(count < counter){
-    //         setCount(counter)
-    //     }
-    // }, [count])
-
-    return(
-        <>
-        <div className="flex">
-            <div className="flex justify-center hover: cursor-pointer rouned-full border bg-blue-500 " onClick={downCounter}> - </div>
-                <JobsCard {...jobInfo[count]}/>
-            <div className="flex justify-center hover: cursor-pointer rouned-full border bg-blue-500 " onClick={upCounter}> + </div>            
+      <div className="flex items-center justify-center pt-40 pb-20 gap-10">
+        <div className="justify-self-start">
+          <button onClick={downCounter}>
+            <CiCircleChevLeft className="text-4xl" />
+          </button>
         </div>
- 
-        </>
-    )
+
+        <div className="w-[80vw]">
+          <RoleCard {...jobInfo[count]} />
+        </div>
+
+        <div className="justify-self-start">
+          <button onClick={upCounter}>
+            <CiCircleChevRight className="text-4xl" />
+          </button>
+        </div>
+      </div>
+
+      <Button
+        borderGradient="always"
+        onClick={() => null}
+        className="w-[80vw] mx-auto text-center mb-20"
+      >
+        Apply
+      </Button>
+    </>
+  );
 }
 
-export default CounterComopnent
+export default CounterComopnent;
