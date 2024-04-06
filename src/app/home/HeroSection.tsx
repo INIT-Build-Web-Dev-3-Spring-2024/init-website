@@ -7,7 +7,7 @@ import LiveEventsParent from "@/app/home/(LiveEvents)/LiveEventsParent";
 import { Event } from "@/components/EventCard";
 
 interface HeroProps {
-  events: any;
+  events: Event[] | undefined;
 }
 const HeroSection = (props: HeroProps) => {
   return (
