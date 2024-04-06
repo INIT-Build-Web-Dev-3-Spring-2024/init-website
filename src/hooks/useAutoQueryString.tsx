@@ -4,10 +4,17 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
+type Options = Partial<{
+  isArray: boolean;
+  debounce: number;
+}>;
+
 export default function useAutoQueryString(
   name: string = "q",
-  isArray: boolean = false
+  options?: Options
 ) {
+  const { isArray = false, debounce = 300 } = options || {};
+
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -33,7 +40,7 @@ export default function useAutoQueryString(
     }
 
     replace(`${pathname}?${params.toString()}`, { scroll: false });
-  }, 300);
+  }, debounce);
 
   function modifyValue(newVal: string) {
     setValue((prevVal) => {

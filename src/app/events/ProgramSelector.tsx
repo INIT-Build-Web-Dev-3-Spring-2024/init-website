@@ -25,17 +25,17 @@ function ProgramLabel({ children: name, onClick }: ProgramLabelProps) {
 const HEX_CLASS_NAME = "w-40";
 
 export default function ProgramSelector() {
-  const [programsVisible, setProgramsVisible] = useAutoQueryString(
-    "program",
-    true
-  ) as [Set<string>, (newVal: string) => void];
+  const [programsVisible, setProgramsVisible] = useAutoQueryString("program", {
+    isArray: true,
+    debounce: 0,
+  }) as [Set<string>, (newVal: string) => void];
 
   function handleProgramClick(program: string) {
     setProgramsVisible(program);
   }
 
   return (
-    <div className="flex items-center justify-center flex-col">
+    <div className="flex items-center justify-center flex-col -mb-36">
       <div className="flex justify-center">
         <Hexagon
           className={HEX_CLASS_NAME}
