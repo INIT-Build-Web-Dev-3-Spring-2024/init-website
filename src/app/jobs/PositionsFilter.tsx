@@ -24,21 +24,21 @@ export default function PositionsFilter() {
     debounce: 0,
   }) as [Set<string>, (va: string) => unknown];
 
-  useEffect(() => {
-    console.log(positions);
-  }, [positions]);
-
   return (
     <div className="flex items-center justify-center flex-wrap gap-x-10 gap-y-4 max-w-[70%] mx-auto">
       {availablePositions.map((pos) => (
         <GradientBorder
           key={pos}
-          className="p-0"
+          className={twMerge(
+            "p-0 border border-secondary-gray",
+            positions.has(pos) && "border-none"
+          )}
           disabled={!positions.has(pos)}
         >
           <Button
             onClick={() => setPositions(pos)}
-            className={twMerge(positions.has(pos) && "border-transparent")}
+            // className={twMerge(positions.has(pos) && "border-transparent")}
+            className={"border-none"}
           >
             {pos}
           </Button>

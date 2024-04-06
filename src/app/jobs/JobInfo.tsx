@@ -1,7 +1,10 @@
+"use client";
+
 import { twMerge } from "tailwind-merge";
 import Text from "@/components/Text";
 import Image from "next/image";
 import SubTitle from "@/components/SubTitle";
+import { useEffect, useRef, useState } from "react";
 
 export type Job = {
   title: string;
@@ -19,16 +22,36 @@ export type Job = {
 export default function JobInfo(props: Job) {
   const { title, description, salary, level, modal, company } = props;
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerHeight, setContainerHeight] = useState<number>(400);
+
+  useEffect(() => {
+    setContainerHeight(containerRef.current?.clientHeight || 400);
+  }, [containerRef.current?.clientHeight]);
+
   return (
     <div
-      className={twMerge(
-        "flex items-center justify-center py-10 px-32 border-y border-secondary-gray",
-        "bg-gradient-radial from-page to-95% to-primary-purple"
-      )}
+      className={twMerge("flex items-center justify-center py-10 px-32")}
+      ref={containerRef}
     >
       <div
+        className="absolute left-0 w-screen bg-page transition-all ease-in-out duration-500"
+        style={{
+          top: containerRef.current?.offsetTop,
+          height: containerHeight,
+        }}
+      >
+        <div
+          className={twMerge(
+            "top-0 left-0 w-full h-full",
+            "bg-gradient-to-r from-transparent to-primary-yellow/15"
+          )}
+        />
+      </div>
+
+      <div
         className={twMerge(
-          "relative flex gap-8 border border-secondary-gray rounded-xl p-5 w-[80vw]",
+          "relative flex gap-8 border border-secondary-gray rounded-xl p-5 w-[100%]",
           "bg-gradient-to-b from-page to-page-dark"
         )}
       >

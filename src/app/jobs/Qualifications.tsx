@@ -1,9 +1,9 @@
 "use client";
 
-import Button from "@/components/Button";
 import Text from "@/components/Text";
 import { useState } from "react";
 import { CiCircleChevLeft, CiCircleChevRight } from "react-icons/ci";
+import { twMerge } from "tailwind-merge";
 
 export default function Qualifications() {
   const [count, setCount] = useState(0);
@@ -20,14 +20,19 @@ export default function Qualifications() {
 
   return (
     <>
-      <div className="flex items-center justify-center pt-40 pb-20 gap-10">
+      <div className="flex items-center justify-center gap-10">
         <div className="justify-self-start">
           <button onClick={downCounter}>
             <CiCircleChevLeft className="text-4xl" />
           </button>
         </div>
 
-        <div className="flex flex-col border border-secondary-gray p-10 pb-20 rounded-xl w-[80vw]">
+        <div
+          className={twMerge(
+            "flex flex-col border border-secondary-gray p-10 pb-20 rounded-xl w-[80%] h-96 overflow-y-scroll no-srollbar",
+            "bg-gradient-to-b from-page/80 to-page-dark"
+          )}
+        >
           <h1 className="text-xl font-2 font-bold"> Role </h1>
           <h2 className="mb-5"> Who you are </h2>
           <Text>
@@ -49,14 +54,6 @@ export default function Qualifications() {
           </button>
         </div>
       </div>
-
-      <Button
-        borderGradient="always"
-        onClick={() => null}
-        className="w-[80vw] mx-auto text-center mb-20"
-      >
-        Apply
-      </Button>
     </>
   );
 }
