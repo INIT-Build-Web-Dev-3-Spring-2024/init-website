@@ -83,4 +83,12 @@ body {
       --gradient-angle: 360deg;
     }
   }
-}
+  /* .swiper-wrapper{
+      transition-timing-function : linear !important;
+    } */
+  }
+  
+  .swiper * {
+    transition-timing-function : linear !important;
+  
+  }

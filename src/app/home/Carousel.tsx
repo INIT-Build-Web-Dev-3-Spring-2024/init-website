@@ -9,7 +9,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/mousewheel";
 import "swiper/css/free-mode";
 
-import { EffectCoverflow, Mousewheel, FreeMode } from "swiper/modules";
+import { EffectCoverflow, FreeMode, Autoplay } from "swiper/modules";
 
 export default function Carousel() {
   const slides = [
@@ -24,25 +24,30 @@ export default function Carousel() {
     <>
       <Swiper
         effect={"coverflow"}
-        centeredSlides={true}
         slidesPerView={4}
         spaceBetween={20}
         loop={true}
+        speed={10000}
         freeMode={true}
-        mousewheel={true}
+        grabCursor={true}
+        autoplay= {{
+          delay: 0,
+          pauseOnMouseEnter: false,
+          disableOnInteraction: false
+        }}
         coverflowEffect={{
           rotate: 0,
           stretch: 2.5,
           depth: 100,
           modifier: 2.5,
         }}
-        modules={[EffectCoverflow, Mousewheel, FreeMode]}
-        className="mx-0 mt-10 mb-10 h-72"
+        modules={[EffectCoverflow, FreeMode, Autoplay]}
+        className="mx-0 my-6 h-72"
       >
         {slides.map((url, index) => (
           <SwiperSlide key={index} className="h-72">
             <Image
-              className="rounded-xl object-contain"
+              className="rounded-xl object-cover"
               src={url}
               fill
               alt={`Slide ${index}`}
