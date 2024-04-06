@@ -16,11 +16,12 @@ function CounterComopnent({
   const [count, setCount] = useState(0);
 
   function upCounter() {
-    setCount(count + 1);
-    console.log("Moved by 1: " + count);
+    let moveUp = (count +1) % counter
+    setCount(moveUp);
   }
   function downCounter() {
-    setCount(count - 1);
+    let moveDown = (count-1+counter) % counter
+    setCount(moveDown);
     console.log("Moved by 1: " + count);
   }
 
