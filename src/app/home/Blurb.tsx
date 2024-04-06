@@ -8,7 +8,7 @@ import SubTitle from "@/components/SubTitle";
 const Insight = () => {
   return (
     <>
-      <div className="mx-auto my-12 w-2/5">
+      <div className="mx-auto my-12 w-3/5">
         <SubTitle className="text-3xl font-bold mb-3">Get to know us</SubTitle>
         <Text>
           Our cross-disciplinary team combines strategy, branding, UX design,
@@ -17,7 +17,7 @@ const Insight = () => {
           consistently exceed expectations.
         </Text>
       </div>
-      <Title className="mx-auto mt-20 mb-10 w-2/5">
+      <Title className="mx-auto mt-20 mb-10 w-3/5">
         Join <AnimatedTitle>INIT</AnimatedTitle> and get involved in the
         Community
       </Title>
