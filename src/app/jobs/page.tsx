@@ -2,15 +2,18 @@ import { AnimatedTitle, Title } from "@/components/Title";
 import JobInfo from "./JobInfo";
 import Qualifications from "./Qualifications";
 import InputAndFilters from "@/components/InputAndFilters";
+import PositionsFilter from "./PositionsFilter";
 
 export default function page() {
   return (
     <>
-      <header className="my-20 flex flex-col gap-16">
+      <header className="my-20 flex flex-col gap-20">
         <Title className="">
           <AnimatedTitle>Opportunities</AnimatedTitle>
           <br /> for you
         </Title>
+
+        <PositionsFilter />
 
         <div className="mx-auto w-[70%]">
           <InputAndFilters
@@ -25,8 +28,8 @@ export default function page() {
                 options: ["Full Time", "Part Time", "Internship"],
               },
               {
-                name: "Program",
-                options: ["Expolore", "Build", "Reach"],
+                name: "Model",
+                options: ["In person", "Hybrid", "Remote"],
               },
             ]}
           />
