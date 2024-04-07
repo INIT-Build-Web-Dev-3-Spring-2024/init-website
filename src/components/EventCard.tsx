@@ -1,7 +1,7 @@
-import React from 'react';
-import Image from 'next/image';
-import GradientBorder from './GradientBorder';
-import { LuExternalLink } from 'react-icons/lu';
+import React from "react";
+import Image from "next/image";
+import GradientBorder from "./GradientBorder";
+import { LuExternalLink } from "react-icons/lu";
 // import HoverEffect from "@/components/hoverEff";
 
 export interface Event {
@@ -33,13 +33,13 @@ function displayCountdownUntilDateTime(date: string, time: string): string {
   const targetDateTime = new Date(`${date} ${time}`);
 
   if (isNaN(targetDateTime.getTime())) {
-    return 'To Be Announced';
+    return "To Be Announced";
   }
 
   const currentTime = new Date();
 
   if (currentTime > targetDateTime) {
-    return 'This event has already passed';
+    return "This event has already passed";
   }
 
   const timeDifference = targetDateTime.getTime() - currentTime.getTime();
@@ -51,16 +51,7 @@ function displayCountdownUntilDateTime(date: string, time: string): string {
   return `${hours} hours ${minutes} minutes ${seconds} seconds`;
 }
 
-export default function EventCard({
-  picture,
-  description,
-  location,
-  name,
-  program,
-  rsvpLink,
-  date,
-  time,
-}: Event) {
+export default function EventCard({ picture, description, location, name, program, rsvpLink, date, time }: Event) {
   return (
     <>
       <GradientBorder animatedOnHover className="p-0 rounded-2xl w-full">
@@ -83,9 +74,7 @@ export default function EventCard({
                 {time} | {location}
               </h3>
               <p className="text-2xl text-gray-300">{name}</p>
-              <p className="h-full pt-3 text-gray-400 text-sm overflow-scroll">
-                {description}
-              </p>
+              <p className="h-full pt-3 text-gray-400 text-sm overflow-scroll">{description}</p>
               <div className="pt-1 flex flex-row justify-items-end basis-auto items-end justify-center">
                 {displayCountdownUntilDateTime(date, time)}
               </div>
@@ -95,14 +84,12 @@ export default function EventCard({
             <div className="flex flex-col h-full">
               <span
                 className={`pt-2 pr-3 flex flex-row-reverse text-md font-extrabold uppercase ${
-                  color[program.toLowerCase() as keyof typeof color] ||
-                  color.default
-                }`}
-              >
+                  color[program.toLowerCase() as keyof typeof color] || color.default
+                }`}>
                 {program}
               </span>
               <div className="flex align-middle justify-items-center aspect-square items-center content-center justify-center">
-                {rsvpLink !== 'RSVP TBD' && (
+                {rsvpLink !== "RSVP TBD" && (
                   <a href={rsvpLink}>
                     <LuExternalLink className="size-8">RSVP Now</LuExternalLink>
                   </a>

@@ -23,7 +23,6 @@ export default function Page() {
       <Title>
         Your <AnimatedTitle>TECH</AnimatedTitle> Journey is about to start
       </Title>
-
       <SubTitle>Get to know us</SubTitle>
 
       <Text>

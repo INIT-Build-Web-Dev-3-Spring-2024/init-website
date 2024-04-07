@@ -10,38 +10,6 @@ import { Event } from "@/components/EventCard";
 
 // Notion Database Reference: https://smyvens.notion.site/smyvens/b1c5ddd386bb4abcaab264d630246d99?v=d340036c928e40bea2ac68c41c3d5461
 export default async function fetchEvents(searchQuery = "", weekly = false) {
-  //dummy data for testing
-  // return [
-  //   {
-  //     id: "1",
-  //     name: "Artificial Intelligence + Machine Learning workshop",
-  //     rsvpLink: "https://github.com/WriteCodeRAM",
-  //     date: "Thursday, April 4",
-  //     time: "4:00 PM EDT",
-  //     picture: "",
-  //     location: "GC",
-  //     program: "Build",
-  //     description:
-  //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  //     dateEnd: "Thursday, April 4, 2024",
-  //     timeEnd: "9:05 PM EDT",
-  //   },
-
-  //   {
-  //     id: "2",
-  //     name: "Detecting Color using Computer Vision",
-  //     rsvpLink: "",
-  //     date: "04/15/2024",
-  //     time: "10:00 AM",
-  //     picture: "/assets/images/default2notion.avif",
-  //     location: "Virtual",
-  //     program: "Explore",
-  //     description:
-  //       "Explore Computer Vision and learn how to program a robot car to identify objects and behaviors using color detection in this workshop!",
-  //     dateEnd: "04/15/2024",
-  //     timeEnd: "3:00 PM",
-  //   },
-  // ];
   try {
     if (!process.env.NOTION_API_KEY || !process.env.NOTION_EVENTS_DATABASE_ID) {
       throw new Error(
@@ -280,7 +248,6 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
       );
     }
 
-    console.log(events);
     return events;
   } catch (error) {
     console.error("Failed to fetch latest event data:", error);
