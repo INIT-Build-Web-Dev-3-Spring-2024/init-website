@@ -11,7 +11,10 @@ interface NextEvent {
 
 const NextEvent = (props: NextEvent) => {
   return (
-    <div className="text-white flex justify-between bg-gradient-to-r from-purple-500 to-pink-500 w-1/3 rounded-lg p-3 ml-auto">
+    <div
+      className="text-white flex justify-between bg-gradient-to-r from-purple-500 to-pink-500 w-1/3 rounded-lg p-3 ml-auto"
+      style={{ transform: "translateX(-110px)" }}
+    >
       <div>
         <SubTitle className="font-bold">{props.title}</SubTitle>
         <Text className="text-sm">

@@ -1,13 +1,13 @@
 import GradientBorder from "@/components/GradientBorder";
-import { AnimatedTitle, Title } from "@/components/Title";
+import { Title, AnimatedTitle } from "@/components/Title";
 import Link from "next/link";
 import fetchEvents from "../lib/fetchEvents";
 import LiveEventsParent from "./(LiveEvents)";
 import Mission from "./(Mission)";
 import Sponsors from "./(Sponsors)";
+import Testimonials from "./(Testimonials)";
 import Blurb from "./Blurb";
 import Carousel from "./Carousel";
-import Testimonial from "./Testimonial";
 
 const page = async () => {
   const events = await fetchEvents("", true);
@@ -38,7 +38,7 @@ const page = async () => {
 
       <Sponsors />
       <Mission />
-      <Testimonial />
+      <Testimonials />
       <Carousel />
       <Blurb />
     </>

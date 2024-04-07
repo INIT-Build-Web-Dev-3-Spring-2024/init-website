@@ -29,6 +29,7 @@ const LiveEventsParent = (props: LiveEventsParentProps) => {
     },
   ];
 
+  // show default event if events props is empty
   const eventsToShow =
     props.events && props.events.length > 0 ? props.events : defaultEvent;
 
@@ -47,7 +48,7 @@ const LiveEventsParent = (props: LiveEventsParentProps) => {
 
     setIsLive(checkIfEventIsLive(currentEvent));
 
-    // Generate QR code for the current event
+    // generate QR code
     if (currentEvent.rsvpLink) {
       QRCode.toDataURL(currentEvent.rsvpLink).then(setQRSrc);
     } else {
