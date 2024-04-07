@@ -64,7 +64,7 @@ export default function JobInfo({ jobs }: { jobs: Job[] }) {
 
           <div className="w-0.5 self-stretch bg-secondary-gray" />
 
-          <div className="w-full">
+          <div className="w-full flex flex-col items-center">
             <div className="relative w-24 h-24">
               <Image
                 src={jobs[jobIdx].company.logo}
