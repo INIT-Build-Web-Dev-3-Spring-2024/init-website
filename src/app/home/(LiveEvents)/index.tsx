@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+"use client";
+
+import QRCode from "qrcode";
+import { useEffect, useState } from "react";
+import { Event } from "@/components/EventCard";
 import EventSlideshow from "./EventSlideshow";
 import NextEvent from "./NextEvent";
-import { Event } from "../../../components/EventCard";
-import QRCode from "qrcode";
+import { twMerge } from "tailwind-merge";
 
 interface LiveEventsParentProps {
   events: Event[] | undefined;
@@ -67,7 +70,7 @@ const LiveEventsParent = (props: LiveEventsParentProps) => {
   const nextEvent = eventsToShow[nextEventIndex];
 
   return (
-    <div className="relative">
+    <div className="relative mb-20">
       <EventSlideshow
         currentEvent={eventsToShow[currentEventIndex]}
         isLive={isLive}
@@ -82,6 +85,13 @@ const LiveEventsParent = (props: LiveEventsParentProps) => {
           onNext={handleNextEvent}
         />
       )}
+
+      <div
+        className={twMerge(
+          "absolute -top-3/4 left-0 h-[200%] w-full -z-50",
+          "bg-gradient-radial from-secondary-yellow/30 to-transparent to-65%"
+        )}
+      />
     </div>
   );
 };

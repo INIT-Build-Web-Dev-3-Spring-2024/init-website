@@ -114,7 +114,7 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
             let location = "Location TBD";
             let description = "";
             let rsvpLink = "RSVP TBD";
-            let picture = "/assets/images/eventDefaultImage.avif"; // Default Event Image, can be a link or a local file
+            let picture = "/images/icons/notionDefaultImage.jpeg"; // Default Event Image, can be a link or a local file
             let program = "General";
 
             // Check and extract the properties from Notion
