@@ -9,7 +9,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/mousewheel";
 import "swiper/css/free-mode";
 
-import { EffectCoverflow, FreeMode, Autoplay } from "swiper/modules";
+import { EffectCoverflow, FreeMode, Autoplay, Mousewheel } from "swiper/modules";
 
 export default function Carousel() {
   const slides = [
@@ -41,7 +41,7 @@ export default function Carousel() {
           depth: 100,
           modifier: 2.5,
         }}
-        modules={[EffectCoverflow, FreeMode, Autoplay]}
+        modules={[EffectCoverflow, Mousewheel, FreeMode, Autoplay]}
         className="mx-0 my-6 h-72"
       >
         {slides.map((url, index) => (
