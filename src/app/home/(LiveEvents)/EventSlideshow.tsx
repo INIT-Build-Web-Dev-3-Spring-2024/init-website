@@ -24,6 +24,7 @@ const EventSlideshow = (props: LiveEventProps) => {
           }
           alt="event background image"
           className="mix-blend-overlay object-cover"
+          priority
           fill
         />
       </div>
@@ -59,7 +60,13 @@ const EventSlideshow = (props: LiveEventProps) => {
         </Link>
         {props.QRImage && (
           <div className="relative h-20 w-20">
-            <Image className="rounded" src={props.QRImage} alt="QR code" fill />
+            <Image
+              className="rounded"
+              src={props.QRImage}
+              alt="QR code"
+              fill
+              priority
+            />
           </div>
         )}
       </div>
