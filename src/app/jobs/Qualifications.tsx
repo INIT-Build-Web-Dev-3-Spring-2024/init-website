@@ -1,13 +1,9 @@
 "use client";
 
 import Text from "@/components/Text";
-import { useState } from "react";
-import { CiCircleChevLeft, CiCircleChevRight } from "react-icons/ci";
 import { twMerge } from "tailwind-merge";
 import { Job } from "./JobInfo";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-
-import { Navigation } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -21,36 +17,13 @@ export default function Qualifications({
   jobs: Job[];
   setJobIdx: React.Dispatch<React.SetStateAction<number>>;
 }) {
-  const [count, setCount] = useState(0);
-
-  function upCounter() {
-    let moveUp = count + 1;
-    setCount(moveUp);
-  }
-  function downCounter() {
-    let moveDown = count - 1;
-    setCount(moveDown);
-    console.log("Moved by 1: " + count);
-  }
-  const swiper = useSwiper();
-  // <button onClick={() => swiper.slideNext()}>Slide to the next slide</button>
   return (
     <>
-      {/* <div className="flex items-center justify-center gap-10">
-        <div className="justify-self-start">
-          <button onClick={downCounter}>
-            <CiCircleChevLeft className="text-4xl" />
-          </button>
-        </div> */}
-
       <div>
         <Swiper
-          // navigation={true}
-          // modules={[Navigation]}
-          className="mySwiper h-96 overflow-visible"
-          // _swiper={swiper}
+          className="mySwiper h-96"
           centeredSlides
-          loop={true}
+          // loop={true}
           onSlideChange={(e) => setJobIdx(e.realIndex)}
         >
           <SlidePrevButton />
