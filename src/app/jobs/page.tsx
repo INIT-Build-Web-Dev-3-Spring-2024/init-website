@@ -1,13 +1,10 @@
 import { AnimatedTitle, Title } from "@/components/Title";
 import JobInfo from "./JobInfo";
-import Qualifications from "./Qualifications";
 import InputAndFilters from "@/components/InputAndFilters";
 import PositionsFilter from "./PositionsFilter";
-import Link from "next/link";
-import GradientBorder from "@/components/GradientBorder";
-import SubTitle from "@/components/SubTitle";
 import { twMerge } from "tailwind-merge";
 import Image from "next/image";
+import { Job } from "./JobInfo";
 
 interface PageProps {
   searchParams?: {
@@ -28,6 +25,84 @@ const availablePositions = [
   "Product Designer",
   "Marketing Coordinator",
   "Social Media Marketer",
+];
+
+const jobsArray: Job[] = [
+  {
+    id: 32423452,
+    title: "Front-end Software Engineer",
+    description:
+      "Participate and learn how to do this and that with the web or even building robots and stuff like that. TECH TECH TECH.",
+    roleDescription: `
+      2+ years of experience working with IT systems, networks, and related technologies
+      Excellent ability to install, administer and troubleshoot computer hardware, software
+      Solid understanding of G-suite/Microsoft Office 365
+      Experience with Okta
+      Working knowledge of A/V conferencing systems (Zoom, Crestron)
+      Customer service oriented, strong communication skills and ability to work in fact paced environment
+      Excellent analytical and problem solving skills with attention to details
+      Advanced troubleshooting and multi-tasking skills
+      Knowledge in JAMF - advantage
+      Exceptional organizational and time management skills`,
+    salary: "$89k - 100k",
+    level: "Junior Mid-level",
+    modal: "Hybrid",
+    company: {
+      name: "Apple",
+      tags: ["B2B", "SAAS", "Internal Tools"],
+      logo: "/images/jobs/company/Apple.png",
+    },
+    startDate: "08/17/2024",
+  },
+  {
+    id: 435343453423,
+    title: "Back-end Software Engineer",
+    description:
+      "Join our team to develop and maintain the server-side logic of our web applications. TECH TECH TECH.",
+    roleDescription: `
+      3+ years of experience in backend development
+      Strong understanding of server-side programming languages such as Node.js, Python, or Java
+      Proficient in database management systems (SQL, NoSQL)
+      Experience with cloud platforms such as AWS, Azure, or Google Cloud
+      Familiarity with RESTful API design and development
+      Ability to work collaboratively in a team environment
+      Excellent problem-solving and debugging skills
+      Good communication skills and ability to work under pressure
+      Experience with containerization technologies (Docker, Kubernetes) is a plus
+    `,
+    salary: "$95k - 110k",
+    level: "Mid-level",
+    modal: "Remote",
+    company: {
+      name: "Google",
+      tags: ["Tech Giant", "Cloud Services"],
+      logo: "/images/jobs/company/Google.png",
+    },
+  },
+  {
+    id: 4325455426435234,
+    title: "UX/UI Designer",
+    description:
+      "Design user interfaces for our web and mobile applications, ensuring a seamless and intuitive user experience.",
+    roleDescription: `
+      2+ years of experience in UI/UX design
+      Proficient in design tools such as Adobe XD, Sketch, or Figma
+      Strong understanding of user-centered design principles
+      Ability to create wireframes, prototypes, and visual design components
+      Collaborate with cross-functional teams including product managers, developers, and other designers
+      Conduct user research and usability testing to gather feedback and iterate designs
+      Stay updated on industry trends and best practices in UI/UX design
+      Excellent communication and presentation skills
+    `,
+    salary: "$80k - 95k",
+    level: "Junior Mid-level",
+    modal: "On-site",
+    company: {
+      name: "Facebook",
+      tags: ["Social Media", "Tech"],
+      logo: "/images/jobs/company/Facebook.png",
+    },
+  },
 ];
 
 export default function page({ searchParams }: PageProps) {
@@ -79,39 +154,8 @@ export default function page({ searchParams }: PageProps) {
         </div>
       </header>
       <section>
-        <JobInfo
-          title="Frond-end Software Engineer"
-          description="Participate and learn how to do this and that with the web or even building robots and stuff like that. TECH TECH TECH."
-          salary="$89k - 100k"
-          level="Junior Mid-level"
-          modal="Hybrid"
-          company={{
-            name: "apple",
-            tags: ["B2B", "SAAS", "Internal Tools"],
-            logo: "/images/jobs/company/Apple.png",
-          }}
-        />
+        <JobInfo jobs={jobsArray} />
       </section>
-
-      <section className="mt-24 mb-20">
-        <Qualifications />
-      </section>
-
-      <GradientBorder
-        className="relative w-[80%] mx-auto text-center mb-32"
-        animatedOnHover
-      >
-        <SubTitle>
-          <Link href="#">Apply</Link>
-        </SubTitle>
-
-        <div
-          className={twMerge(
-            "absolute w-screen h-screen -translate-y-56 -right-[80%] -z-50",
-            "bg-gradient-radial from-secondary-yellow/10 to-transparent to-70%"
-          )}
-        />
-      </GradientBorder>
     </>
   );
 }

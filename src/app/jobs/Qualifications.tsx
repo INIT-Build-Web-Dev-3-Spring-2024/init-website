@@ -4,8 +4,23 @@ import Text from "@/components/Text";
 import { useState } from "react";
 import { CiCircleChevLeft, CiCircleChevRight } from "react-icons/ci";
 import { twMerge } from "tailwind-merge";
+import { Job } from "./JobInfo";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 
-export default function Qualifications() {
+import { Navigation } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import SlideNextButton from "./SlideNextButton";
+import SlidePrevButton from "./SlidePrevButton";
+
+export default function Qualifications({
+  jobs,
+  setJobIdx,
+}: {
+  jobs: Job[];
+  setJobIdx: React.Dispatch<React.SetStateAction<number>>;
+}) {
   const [count, setCount] = useState(0);
 
   function upCounter() {
@@ -17,42 +32,49 @@ export default function Qualifications() {
     setCount(moveDown);
     console.log("Moved by 1: " + count);
   }
-
+  const swiper = useSwiper();
+  // <button onClick={() => swiper.slideNext()}>Slide to the next slide</button>
   return (
     <>
-      <div className="flex items-center justify-center gap-10">
+      {/* <div className="flex items-center justify-center gap-10">
         <div className="justify-self-start">
           <button onClick={downCounter}>
             <CiCircleChevLeft className="text-4xl" />
           </button>
-        </div>
+        </div> */}
 
-        <div
-          className={twMerge(
-            "flex flex-col border border-secondary-gray p-10 pb-20 rounded-xl w-[80%] h-96 overflow-y-scroll no-srollbar",
-            "bg-gradient-to-b from-page/80 to-page-dark"
-          )}
+      <div>
+        <Swiper
+          // navigation={true}
+          // modules={[Navigation]}
+          className="mySwiper h-96 overflow-visible"
+          // _swiper={swiper}
+          centeredSlides
+          loop={true}
+          onSlideChange={(e) => setJobIdx(e.realIndex)}
         >
-          <h1 className="text-xl font-2 font-bold"> Role </h1>
-          <h2 className="mb-5"> Who you are </h2>
-          <Text>
-            {/* Role descrpition, NOt in DATA!!!!!!! */}
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius illum
-            perspiciatis impedit nulla aut exercitationem quireprehenderit
-            praesentium. Nisi, possimus qui consequatur officiisvoluptatem
-            architecto. Culpa aliquam iste animi veritatis! Loremipsum dolor sit
-            amet consectetur, adipisicing elit. Eius illumperspiciatis impedit
-            nulla aut exercitationem qui reprehenderit praesentium. Nisi,
-            possimus qui consequatur officiis voluptatem
-          </Text>
-          <h2 className="mt-2">Start Date: {"FIX ME"} </h2>
-        </div>
-
-        <div className="justify-self-start">
-          <button onClick={upCounter}>
-            <CiCircleChevRight className="text-4xl" />
-          </button>
-        </div>
+          <SlidePrevButton />
+          <SlideNextButton />
+          {jobs.map((job) => (
+            <SwiperSlide key={job.id}>
+              <div
+                className={twMerge(
+                  "flex flex-col border border-secondary-gray p-10 rounded-xl w-[80%] h-96 overflow-y-scroll no-srollbar mx-auto",
+                  "bg-gradient-to-b from-page/80 to-page-dark"
+                )}
+              >
+                <h1 className="text-xl font-2 font-bold"> Role </h1>
+                <h2 className="mb-5"> Who you are </h2>
+                <Text className="whitespace-pre text-wrap">
+                  {job.roleDescription}
+                </Text>
+                <h2 className="mt-2">
+                  {job.startDate && `Start Date: ${job.startDate}`}
+                </h2>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </>
   );
