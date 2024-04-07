@@ -18,7 +18,8 @@ export default function PositionsFilter({
   }) as [Set<string>, (va: string) => unknown];
 
   return (
-    <div className="flex items-center justify-center flex-wrap gap-x-10 gap-y-4 max-w-[70%] mx-auto">
+    <div className="relative flex items-center justify-center flex-wrap gap-x-10 gap-y-4 max-w-[70%] mx-auto py-10">
+      <div className="absolute top-0 left-0 right-0 bottom-0 bg-white opacity-20 -z-50 rounded-md"></div>
       {availablePositions.map((pos) => (
         <GradientBorder
           key={pos}

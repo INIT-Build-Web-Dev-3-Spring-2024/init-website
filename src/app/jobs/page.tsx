@@ -7,6 +7,7 @@ import Link from "next/link";
 import GradientBorder from "@/components/GradientBorder";
 import SubTitle from "@/components/SubTitle";
 import { twMerge } from "tailwind-merge";
+import Image from "next/image";
 
 interface PageProps {
   searchParams?: {
@@ -41,13 +42,21 @@ export default function page({ searchParams }: PageProps) {
         )}
       />
 
-      <header className="mt-20 mb-32 flex flex-col justify-center items-center gap-20">
-        <Title>
-          <AnimatedTitle>Opportunities</AnimatedTitle>
-          <br /> for you
-        </Title>
+      <header className="mb-32 gap-20">
+        <div className="relative py-20 mb-10 flex flex-col gap-10">
+          <Image
+            alt="background image"
+            className="object-cover -z-10 brightness-50"
+            src="/images/jobs/bg-image.png"
+            fill
+          />
+          <Title>
+            <AnimatedTitle>Opportunities</AnimatedTitle>
+            <br /> for you
+          </Title>
 
-        <PositionsFilter positions={availablePositions} />
+          <PositionsFilter positions={availablePositions} />
+        </div>
 
         <div className="mx-auto w-[70%]">
           <InputAndFilters
@@ -69,7 +78,6 @@ export default function page({ searchParams }: PageProps) {
           />
         </div>
       </header>
-
       <section>
         <JobInfo
           title="Frond-end Software Engineer"
