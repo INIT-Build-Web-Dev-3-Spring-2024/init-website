@@ -2,7 +2,7 @@ import React from "react";
 import HeroSection from "./HeroSection";
 import Sponsors from "./(Sponsors)";
 import Mission from "./(Mission)";
-import Testimonials from "@/components/Testimonials";
+import Testimonials from "./(Testimonials)";
 import Carousel from "./Carousel";
 import Blurb from "./Blurb";
 import fetchEvents from "../lib/fetchEvents";
