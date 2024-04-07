@@ -50,7 +50,7 @@ const jobsArray: Job[] = [
     company: {
       name: "Apple",
       tags: ["B2B", "SAAS", "Internal Tools"],
-      logo: "/images/jobs/company/Apple.png",
+      logo: "/images/jobs/company/apple.svg",
     },
     startDate: "08/17/2024",
   },
@@ -76,7 +76,7 @@ const jobsArray: Job[] = [
     company: {
       name: "Google",
       tags: ["Tech Giant", "Cloud Services"],
-      logo: "/images/jobs/company/Google.png",
+      logo: "/images/jobs/company/google.svg",
     },
   },
   {
@@ -100,7 +100,7 @@ const jobsArray: Job[] = [
     company: {
       name: "Facebook",
       tags: ["Social Media", "Tech"],
-      logo: "/images/jobs/company/Facebook.png",
+      logo: "/images/jobs/company/facebook.svg",
     },
   },
 ];
