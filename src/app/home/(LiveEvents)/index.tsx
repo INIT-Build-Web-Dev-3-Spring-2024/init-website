@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+"use client";
+
+import QRCode from "qrcode";
+import { useEffect, useState } from "react";
+import { Event } from "@/components/EventCard";
 import EventSlideshow from "./EventSlideshow";
 import NextEvent from "./NextEvent";
-import { Event } from "../../../components/EventCard";
-import QRCode from "qrcode";
 
 interface LiveEventsParentProps {
   events: Event[] | undefined;

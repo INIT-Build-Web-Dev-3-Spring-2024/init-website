@@ -1,7 +1,7 @@
 import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
-import Text from "../../../components/Text";
-import SubTitle from "../../../components/SubTitle";
+import Text from "@/components/Text";
+import SubTitle from "@/components/SubTitle";
 
 interface NextEvent {
   title: string;

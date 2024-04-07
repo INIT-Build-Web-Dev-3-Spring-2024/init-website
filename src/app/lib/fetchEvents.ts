@@ -10,11 +10,6 @@ import { Event } from "@/components/EventCard";
 
 // Notion Database Reference: https://smyvens.notion.site/smyvens/b1c5ddd386bb4abcaab264d630246d99?v=d340036c928e40bea2ac68c41c3d5461
 export default async function fetchEvents(searchQuery = "", weekly = false) {
-  console.log(
-    process.env.NOTION_API_KEY,
-    process.env.NOTION_EVENTS_DATABASE_ID
-  );
-
   try {
     if (!process.env.NOTION_API_KEY || !process.env.NOTION_EVENTS_DATABASE_ID) {
       throw new Error(
@@ -119,7 +114,7 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
             let location = "Location TBD";
             let description = "";
             let rsvpLink = "RSVP TBD";
-            let picture = "/assets/images/eventDefaultImage.avif"; // Default Event Image, can be a link or a local file
+            let picture = "/images/icons/notionDefaultImage.jpeg"; // Default Event Image, can be a link or a local file
             let program = "General";
 
             // Check and extract the properties from Notion
