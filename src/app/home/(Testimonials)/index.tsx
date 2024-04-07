@@ -294,7 +294,7 @@ export default function Testimonials() {
 
   // make sure to add a translate property, even if it's 0, so it fills out nicely
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center mb-44">
       <div className="grid grid-cols-5 grid-rows-3 justify-items-center gap-x-12">
         {styles.map((style, index) => (
           <Avatar
@@ -308,7 +308,7 @@ export default function Testimonials() {
           />
         ))}
       </div>
-      <HighlightedCard person={currRevs[selectedIndex]} />
+      <HighlightedCard user={currRevs[selectedIndex]} />
     </div>
   );
 }
