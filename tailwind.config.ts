@@ -43,6 +43,20 @@ const config = {
       fontFamily: {
         "gothic-a1": ["var(--font-gothic-a1)"],
       },
+      keyframes: {
+        fadeOut: {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
+        },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      },
+      animation: {
+        fadeOut: "fadeOut 1s",
+        fadeIn: "fadeIn ease-in 2s",
+      },
     },
   },
   plugins: [],

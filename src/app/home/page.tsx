@@ -2,7 +2,7 @@ import React from "react";
 import HeroSection from "./HeroSection";
 import Sponsors from "./(Sponsors)";
 import Mission from "./(Mission)";
-import Testimonial from "./Testimonial";
+import Testimonials from "@/components/Testimonials";
 import Carousel from "./Carousel";
 import Blurb from "./Blurb";
 import fetchEvents from "../lib/fetchEvents";
@@ -14,7 +14,7 @@ const page = async () => {
       <HeroSection events={events} />
       <Sponsors />
       <Mission />
-      <Testimonial />
+      <Testimonials />
       <Carousel />
       <Blurb />
     </>
