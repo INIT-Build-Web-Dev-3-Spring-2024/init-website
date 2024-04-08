@@ -28,9 +28,12 @@ const EventSlideshow = (props: LiveEventProps) => {
           fill
         />
       </div>
-
+      {props.isLive && (
+        <div className="absolute pt-2 top-0 left-1/2 -translate-x-1/2">
+          <LiveIndicator />
+        </div>
+      )}{" "}
       <div className="col-span-6 flex flex-col gap-10">
-        {props.isLive && <LiveIndicator />}
         <SubTitle className="text-xl px-2 py-1">
           {props.currentEvent.date}
         </SubTitle>
@@ -50,7 +53,6 @@ const EventSlideshow = (props: LiveEventProps) => {
           <IoIosArrowForward className="text-lg" />
         </Link>
       </div>
-
       <div className="col-span-1 justify-self-end flex flex-col items-center gap-5">
         <Link
           href={props.currentEvent.rsvpLink}

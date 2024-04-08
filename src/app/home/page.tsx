@@ -8,6 +8,8 @@ import Sponsors from "./(Sponsors)";
 import Testimonials from "./(Testimonials)";
 import Blurb from "./Blurb";
 import Carousel from "./Carousel";
+import Numbers from "./Numbers";
+import Image from "next/image";
 
 const page = async () => {
   const events = await fetchEvents("", true);
@@ -39,6 +41,8 @@ const page = async () => {
       <Sponsors />
       <Mission />
       <Testimonials />
+      <Numbers />
+
       <Carousel />
       <Blurb />
     </>
