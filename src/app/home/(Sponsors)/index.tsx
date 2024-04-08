@@ -6,7 +6,6 @@ const Sponsors = () => {
     const sponsors = [
         "/images/sponsors/Assurant.svg",
         "/images/sponsors/Bloomberg.png",
-        "/images/sponsors/BrainStation.png",
         "/images/sponsors/CapitalOne.svg",
         "/images/sponsors/Codepath.png",
         "/images/sponsors/Figma.svg",
@@ -18,9 +17,9 @@ const Sponsors = () => {
         "/images/sponsors/Microsoft.svg",
         "/images/sponsors/nvidia.png",
         "/images/sponsors/Slalom.png",
-        "/images/sponsors/StateFarm.svg",
+        "/images/sponsors/StateFarm.png",
     ];
-    const howMuchSponsorsToShow = 5;
+    const howMuchSponsorsToShow = 8;
 
     const [nextPos, setNextPos] = useState<number>(
         howMuchSponsorsToShow % sponsors.length

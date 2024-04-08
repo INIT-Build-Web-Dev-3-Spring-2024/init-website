@@ -30,13 +30,13 @@ const Sponsor = ({
     }, [changeSponsor, updateSponsors, id, imageOrder]);
 
     return (
-        <div className="w-72 h-6 relative">
+        <div className="w-72 h-72 relative">
             <Image
                 className={`${
                     imageOrder[changeSponsor] == id
                         ? "blur-3xl opacity-0"
                         : "opacity-100"
-                } transition-all duration-1000 ease-linear`}
+                } transition-all duration-1000 ease-linear object-contain`}
                 src={url}
                 alt="placeholder image"
                 fill
