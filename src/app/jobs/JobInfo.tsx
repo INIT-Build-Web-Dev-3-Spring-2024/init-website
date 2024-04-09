@@ -29,10 +29,10 @@ export default function JobInfo({ jobs }: { jobs: Job[] }) {
   const [jobIdx, setJobIdx] = useState(0);
 
   return (
-    <div>
+    <div >
       <div
         className={twMerge(
-          "relative flex items-center justify-center py-10 px-32 mb-10"
+          "relative flex items-center justify-center py-10 px-32 mb-10 max-sm:px-12"
         )}
       >
         <div className="absolute top-0 bottom-0 w-screen bg-page transition-all ease-in-out duration-500">
@@ -46,7 +46,7 @@ export default function JobInfo({ jobs }: { jobs: Job[] }) {
 
         <div
           className={twMerge(
-            "relative flex gap-8 border border-secondary-gray rounded-xl p-5 w-[100%]",
+            "relative flex gap-8 border border-secondary-gray rounded-xl p-5 w-[100%] max-sm:flex-col",
             "bg-gradient-to-b from-page to-page-dark"
           )}
         >
@@ -62,7 +62,7 @@ export default function JobInfo({ jobs }: { jobs: Job[] }) {
             <Text className="py-3">{jobs[jobIdx].modal}</Text>
           </div>
 
-          <div className="w-0.5 self-stretch bg-secondary-gray" />
+          <div className="w-0.5 self-stretch bg-secondary-gray max-sm:w-full max-sm:h-0.5" />
 
           <div className="w-full flex flex-col items-center">
             <div className="relative w-24 h-24">
@@ -106,7 +106,7 @@ export default function JobInfo({ jobs }: { jobs: Job[] }) {
 
         <div
           className={twMerge(
-            "absolute w-screen h-screen -translate-y-56 -right-[80%] -z-50",
+            "absolute w-screen h-screen -translate-y-56 -right-[80%] -z-50 max-sm:translate-y-0 max-sm:right-0",
             "bg-gradient-radial from-secondary-yellow/10 to-transparent to-70%"
           )}
         />
