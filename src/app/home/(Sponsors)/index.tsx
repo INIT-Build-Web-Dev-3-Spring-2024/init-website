@@ -75,8 +75,8 @@ const Sponsors = () => {
     };
 
     return (
-        <div className="mt-40 px-36">
-            <div className="grid grid-cols-4 gap-20">
+        <div className="mt-40 px-32">
+            <div className="grid grid-cols-3 lg:grid-cols-4 gap-10 place-items-center">
                 {[...Array(howMuchSponsorsToShow)].map((_, index) => (
                     <Sponsor
                         key={index}

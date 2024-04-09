@@ -30,7 +30,7 @@ const Sponsor = ({
     }, [changeSponsor, updateSponsors, id, imageOrder]);
 
     return (
-        <div className="w-72 h-72 relative">
+        <div className="w-52 h-52 relative">
             <Image
                 className={`${
                     imageOrder[changeSponsor] == id
