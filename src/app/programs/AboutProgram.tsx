@@ -55,18 +55,18 @@ export default function AboutProgram(props: AboutProgramProps) {
         <div className="flex flex-col justify-center">
           <Image className="absolute right-0 -translate-y-28" src="images/blobOne.svg" alt="Blob One" width={500} height={500} />
           <Image
-            className="mb-8 h-56 w-96 object-cover object-left-top rounded-lg self-end z-10 -translate-x-1/3"
+            className="mb-8 max-w-[500px] max-h-[300px] object-cover rounded-lg self-end z-10 -translate-x-20"
             src={images[0]}
             alt={`INIT ${name} Photo`}
-            width={300}
-            height={192}
+            width={500}
+            height={300}
           />
           <Image
-            className="mb-8 h-56 w-96  object-cover object-left-top rounded-lg -translate-y-16 self-end -translate-x-3/4"
+            className="mb-8 max-w-[500px] max-h-[300px] object-cover rounded-lg -translate-y-16 self-end -translate-x-56"
             src={images[1]}
             alt={`INIT ${name} Photo`}
-            width={300}
-            height={192}
+            width={500}
+            height={300}
           />
           <Title className="flex items-center gap-2">
             <Text>Learn Skills</Text>
