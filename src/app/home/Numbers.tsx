@@ -8,8 +8,8 @@ const handjet = Handjet({ subsets: ['latin'] })
 
 const Numbers = () => {
   return (
-    <div className="relative h-fit overflow-visible mb-24">
-      <div className="absolute -left-10 h-[150%] w-screen">
+    <div className="relative h-fit overflow-x-clip mb-24">
+      <div className="absolute -left-10 h-[150%] w-full">
         {/* <div className="w-2/3 relative"> */}
         <Image
           className="object-contain relative -z-50 -translate-y-36"
