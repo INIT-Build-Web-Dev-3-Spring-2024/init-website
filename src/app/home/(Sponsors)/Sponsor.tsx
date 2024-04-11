@@ -1,4 +1,5 @@
 'use client'
+
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
@@ -33,12 +34,13 @@ const Sponsor = ({ id, sponsors, imageOrder, updateSponsors, changeSponsor }: Sp
         className={`${
           imageOrder[changeSponsor] == id ? 'blur-xl opacity-0' : 'blur-0 opacity-100'
         } transition-all duration-1000 ease-linear object-contain filter brightness-0 invert`}
+
         src={url}
         alt="placeholder image"
         fill
       />
     </div>
-  )
-}
+  );
+};
 
-export default Sponsor
+export default Sponsor;

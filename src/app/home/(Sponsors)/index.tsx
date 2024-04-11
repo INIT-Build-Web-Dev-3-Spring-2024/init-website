@@ -1,4 +1,5 @@
 'use client'
+
 import { useEffect, useState } from 'react'
 import Sponsor from './Sponsor'
 
@@ -81,14 +82,14 @@ const Sponsors = () => {
       <button
         className="mt-10 mx-auto block bg-[#e2e2e2] text-black py-1 px-3 rounded-md"
         onClick={() => {
-          alert('Figure out url')
-          console.log('Figure out url')
+          alert("Figure out url");
+          console.log("Figure out url");
         }}
       >
         <div className="mx-auto">Partner With Us</div>
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default Sponsors
+export default Sponsors;
