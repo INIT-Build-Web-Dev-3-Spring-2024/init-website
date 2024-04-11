@@ -41,14 +41,14 @@ export default function Action_Block() {
         <div className="grid grid-cols-2 gap-y-10 my-60 ml-20 w-5/6 max-xl:grid-cols-1 max-xl:mx-auto max-xl:w-1/2">
           {items.map(({ name, description, Icon }) => (
             <div key={name}>
-              <div className="relative my-2 w-16 h-16 max-xl:mx-auto max-xl:w-1/5 max-md:w-2/6 max-md:mx-36">
+              <div className="relative my-2 w-16 h-16 max-xl:mx-auto max-xl:w-1/5 max-md:w-2/6 max-sm:mx-auto">
                 <Image src={`/images/icons/${Icon}`} alt="" fill />
               </div>
 
-              <SubTitle className="my-4 w-2/5 max-xl:mx-auto max-xl:w-1/5">
+              <SubTitle className="my-4 w-2/5 max-xl:mx-auto max-xl:w-fit">
                 {name}
               </SubTitle>
-              <Text className="my-4 w-5/6 max-xl:mx-auto max-xl:w-full max-md:mx-5 opacity-60">
+              <Text className="my-4 w-5/6 max-xl:mx-auto max-xl:w-full max-md:mx-5 opacity-60 max-sm:mx-0">
                 {description}
               </Text>
             </div>

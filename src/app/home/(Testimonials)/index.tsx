@@ -223,7 +223,7 @@ export default function Testimonials() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [currRevs, setCurrRevs] = useState(reviews.slice(0, 7));
   const [unusedRevs, setUnusedRevs] = useState(
-    reviews.slice(7, reviews.length)
+    reviews.slice(7, reviews.length),
   );
   const [animationState, setAnimationState] = useState({
     fadeInIndex: REVIEWS_LEN,
@@ -283,19 +283,19 @@ export default function Testimonials() {
   }, [selectedIndex, REVIEWS_LEN, currRevs, unusedRevs]);
 
   const styles = [
-    "translate-x-0 translate-y-3 col-start-1 col-end-2",
-    "translate-x-0 translate-y-0 col-start-3 col-end-4",
-    "translate-x-0 translate-y-1 col-start-5 col-end-6",
-    "translate-x-0 translate-y-1 col-start-2 col-end-3",
-    "translate-x-0 translate-y-6 col-start-4 col-end-5",
-    "-translate-x-5 translate-y-0 col-start-1 col-end-2",
-    "translate-x-10 translate-y-0 col-start-5 col-end-6",
+    "translate-x-0 translate-y-3 col-start-1 col-end-2 max-sm:col-start-1 max-sm:col-end-2 max-sm:translate-y-0",
+    "translate-x-0 translate-y-0 col-start-3 col-end-4 max-sm:col-start-2 max-sm:col-end-3",
+    "translate-x-0 translate-y-1 col-start-5 col-end-6  max-sm:col-start-1 max-sm:col-end-2 max-sm:translate-y-0",
+    "translate-x-0 translate-y-1 col-start-2 col-end-3  max-sm:col-start-2 max-sm:col-end-3 max-sm:translate-y-0",
+    "translate-x-0 translate-y-6 col-start-4 col-end-5  max-sm:col-start-1 max-sm:col-end-2 max-sm:translate-y-0",
+    "-translate-x-5 translate-y-0 col-start-1 col-end-2  max-sm:col-start-2 max-sm:col-end-3 max-sm:translate-x-0",
+    "translate-x-10 translate-y-0 col-start-5 col-end-6  max-sm:col-start-1 max-sm:col-end-2 max-sm:translate-x-20",
   ];
 
   // make sure to add a translate property, even if it's 0, so it fills out nicely
   return (
     <div className="flex flex-col justify-center items-center mb-44">
-      <div className="grid grid-cols-5 grid-rows-3 justify-items-center gap-x-12">
+      <div className="grid grid-cols-5 grid-rows-3 justify-items-center gap-x-12 max-sm:grid-cols-2 max-sm:grid-rows-5 max-sm:gap-y-12">
         {styles.map((style, index) => (
           <Avatar
             key={style}

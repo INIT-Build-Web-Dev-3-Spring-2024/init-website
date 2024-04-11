@@ -20,8 +20,8 @@ export default function HighlightedCard({ user }: HighLightedCardProps) {
       />
       <div
         className={twMerge(
-          "flex flex-col items-center p-10 gap-5 rounded-3xl h-72 border border-secondary-gray w-[90%]",
-          "bg-gradient-to-b from-page to-page-dark/50"
+          "flex flex-col items-center p-10 gap-5 rounded-3xl h-fit border border-secondary-gray w-[90%]",
+          "bg-gradient-to-b from-page to-page-dark/50",
         )}
       >
         <div className="relative w-16 h-16">

@@ -65,12 +65,12 @@ export default function Navbar() {
       className={twMerge(
         "flex justify-center items-center gap-2 sm:gap-4 md:gap-10 py-8 sticky top-0 transition-all duration-500 z-50",
         !showNav && "-top-52",
-        scrollPos > 100 && "bg-gradient-to-b from-black/70 to-transparent"
+        scrollPos > 100 && "bg-gradient-to-b from-black/70 to-transparent",
       )}
     >
       <div
         className={twMerge(
-          "my-auto gap-5 justify-self-end invisible sm:visible"
+          "my-auto gap-5 justify-self-end hidden sm:block",
           // scrollPos > 100 && "justify-self-start"
         )}
       >
@@ -97,7 +97,7 @@ export default function Navbar() {
                   href={href}
                   className={twMerge(
                     "rounded-3xl py-px border-none text-nowrap first-letter:capitalize bg-transparent",
-                    activeLink === href && "bg-secondary-gray/30"
+                    activeLink === href && "bg-secondary-gray/30",
                   )}
                 >
                   {label}
@@ -110,8 +110,8 @@ export default function Navbar() {
 
       <div
         className={twMerge(
-          "justify-self-start my-auto transition-all duration-500 invisible sm:visible",
-          pathName === "/" && scrollPos < 100 && "opacity-0"
+          "justify-self-start my-auto transition-all duration-500 hidden sm:block",
+          pathName === "/" && scrollPos < 100 && "opacity-0",
           // scrollPos > 100 && "justify-self-end"
         )}
       >
