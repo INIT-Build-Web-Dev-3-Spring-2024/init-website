@@ -1,9 +1,10 @@
 import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/Navigation/Navbar";
 import type { Metadata } from "next";
 import { Gothic_A1, Inter } from "next/font/google";
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
+import HexagonNavigation from "@/components/Navigation/HexagonNavigation";
 
 const inter = Inter({ subsets: ["latin"] });
 const gothicA1 = Gothic_A1({
@@ -25,12 +26,18 @@ interface LayoutProps {
 export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
-      <body className={twMerge(inter.className, gothicA1.className)}>
+      <body
+        className={twMerge(
+          inter.className,
+          gothicA1.className,
+          "max-w-screen-2xl mx-auto"
+        )}
+      >
         <Navbar />
 
-        {children}
-        <main></main>
+        <main>{children}</main>
 
+        <HexagonNavigation />
         <Footer />
       </body>
     </html>

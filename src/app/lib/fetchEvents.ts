@@ -25,7 +25,7 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
       dayOrWeekFilter = {
         property: "Date",
         date: {
-          this_week: {},
+          next_week: {},
         },
       };
     } else {
@@ -102,7 +102,9 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
           if ("properties" in page) {
             let name = "Unnamed Event";
             let date = "Date TBD";
+            let dateEnd = "Date End TBD";
             let time = "Time TBD";
+            let timeEnd = "Time End TBD";
             let location = "Location TBD";
             let description = "";
             let rsvpLink = "RSVP TBD";
@@ -121,21 +123,50 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
 
             const dateProperty = page.properties["Date"];
             if (dateProperty?.type === "date" && dateProperty.date) {
-              let dateObject = new Date(dateProperty.date.start);
+              // If our date property in Notion is only 10 character's long, it means it doesn't have a specific time
+              const timeProvided = dateProperty.date.start.length !== 10;
+
+              const dateObject = timeProvided
+                ? new Date(dateProperty.date.start)
+                : new Date(`${dateProperty.date.start}T12:00:00.000Z`); // if no time is provided, create date as if time is 12 PM UTC so that the correct day is rendered
 
               date = dateObject.toLocaleDateString("en-us", {
                 weekday: "short",
+                year: "numeric",
                 month: "long",
                 day: "numeric",
               });
 
-              // If our date property in Notion is only 10 character's long, it means it doesn't have a specific time
-              if (dateProperty.date.start.length !== 10) {
+              if (timeProvided) {
                 time = dateObject.toLocaleTimeString("en-us", {
                   hour: "numeric",
                   minute: "numeric",
                   timeZoneName: "short",
                 });
+              }
+
+              // Check if there's an end date and/or time
+              if (dateProperty.date.end) {
+                const timeEndProvided = dateProperty.date.end.length !== 10;
+
+                const dateEndObject = timeEndProvided
+                  ? new Date(dateProperty.date.end)
+                  : new Date(`${dateProperty.date.end}T12:00:00.000Z`);
+
+                dateEnd = dateEndObject.toLocaleDateString("en-us", {
+                  weekday: "short",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                });
+
+                if (timeEndProvided) {
+                  timeEnd = dateEndObject.toLocaleTimeString("en-us", {
+                    hour: "numeric",
+                    minute: "numeric",
+                    timeZoneName: "short",
+                  });
+                }
               }
             }
 
@@ -196,7 +227,9 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
               location,
               program,
               date,
+              dateEnd,
               time,
+              timeEnd,
               rsvpLink,
             };
             events.push(event);
@@ -205,6 +238,7 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
       );
     }
 
+    console.log(events);
     return events;
   } catch (error) {
     console.error("Failed to fetch latest event data:", error);
