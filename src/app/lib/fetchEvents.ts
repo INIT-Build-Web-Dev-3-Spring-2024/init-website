@@ -20,8 +20,6 @@ export default async function fetchEvents(searchQuery: eventSearchProperties, we
     const programFilter = searchQuery?.Program || ''
     const locationFilter = searchQuery?.Location || ''
 
-    const programHexFilter = searchQuery?.program || ''
-
     const notion = new Client({ auth: process.env.NOTION_API_KEY })
     const databaseId = process.env.NOTION_EVENTS_DATABASE_ID
 
@@ -50,10 +48,10 @@ export default async function fetchEvents(searchQuery: eventSearchProperties, we
     }
 
     // Build program hexagon filters depending on if user selected multiple programs
-    const programHexFilters = []
-    if (Array.isArray(programHexFilter)) {
-      for (const program of programHexFilter) {
-        programHexFilters.push({
+    const programFilters = []
+    if (Array.isArray(programFilter)) {
+      for (const program of programFilter) {
+        programFilters.push({
           property: 'Role',
           rich_text: {
             contains: program,
@@ -61,10 +59,10 @@ export default async function fetchEvents(searchQuery: eventSearchProperties, we
         })
       }
     } else {
-      programHexFilters.push({
+      programFilters.push({
         property: 'Role',
         rich_text: {
-          contains: programHexFilter,
+          contains: programFilter,
         },
       })
     }
@@ -86,12 +84,6 @@ export default async function fetchEvents(searchQuery: eventSearchProperties, we
             },
           },
           dayOrWeekFilter,
-          {
-            property: 'Role',
-            rich_text: {
-              contains: programFilter,
-            },
-          },
           {
             property: 'Location',
             rich_text: {
@@ -127,7 +119,7 @@ export default async function fetchEvents(searchQuery: eventSearchProperties, we
             ],
           },
           {
-            or: programHexFilters,
+            or: programFilters,
           },
         ],
       },
