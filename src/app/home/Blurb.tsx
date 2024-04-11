@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { Title, AnimatedTitle } from "@/components/Title";
 import Text from "@/components/Text";
