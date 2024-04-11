@@ -33,7 +33,7 @@ export default function HighlightedCard({ user }: HighLightedCardProps) {
           />
         </div>
 
-        <SubTitle className="font-bold text-lg">{`${user.position} at ${user.company}`}</SubTitle>
+        <SubTitle className="font-bold text-lg text-center">{`${user.position} at ${user.company}`}</SubTitle>
         <Text className="text-center leading-8 opacity-60">
           &ldquo;{user.review} Lorem ipsum, dolor sit amet consectetur
           adipisicing elit. Blanditiis, deleniti qui! Alias sapiente fugiat at

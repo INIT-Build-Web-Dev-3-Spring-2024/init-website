@@ -15,7 +15,7 @@ interface LiveEventProps {
 
 const EventSlideshow = (props: LiveEventProps) => {
   return (
-    <div className="relative grid grid-cols-7 w-4/5 h-[350px] mx-auto rounded-lg p-10 overflow-hidden">
+    <div className="relative grid grid-cols-7 w-4/5 h-[350px] mx-auto rounded-lg p-10 overflow-hidden max-sm:pr-0 max-sm:pb-0">
       <div className="absolute h-full w-full -z-10 bg-black/40">
         <Image
           src={
@@ -53,7 +53,7 @@ const EventSlideshow = (props: LiveEventProps) => {
           <IoIosArrowForward className="text-lg" />
         </Link>
       </div>
-      <div className="col-span-1 justify-self-end flex flex-col items-center gap-5">
+      <div className="col-span-1 justify-self-end flex flex-col items-center gap-5 max-sm:self-end">
         <Link
           href={props.currentEvent.rsvpLink}
           className="bg-white text-black py-1 px-4 rounded ml-auto hover:bg-gray-200"
@@ -61,7 +61,7 @@ const EventSlideshow = (props: LiveEventProps) => {
           Register
         </Link>
         {props.QRImage && (
-          <div className="relative h-20 w-20">
+          <div className="relative h-20 w-20 ">
             <Image
               className="rounded"
               src={props.QRImage}
