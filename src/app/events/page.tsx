@@ -34,10 +34,6 @@ export default async function page({ searchParams }: eventsSearchParams) {
           placeholder="Search Events"
           filters={[
             {
-              name: 'Program',
-              options: ['Explore', 'Reach', 'Build', 'General'],
-            },
-            {
               name: 'Location',
               options: ['PG6', 'GC', 'CASE'],
             },
