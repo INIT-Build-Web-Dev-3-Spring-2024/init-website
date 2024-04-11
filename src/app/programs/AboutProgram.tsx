@@ -69,7 +69,7 @@ export default function AboutProgram(props: AboutProgramProps) {
 
         <div className="flex flex-col justify-center ">
           <Image
-            className="absolute right-0 -translate-y-28 max-lg:w-[200px]"
+            className="absolute right-0 -translate-y-28 -z-10 max-lg:w-[200px]"
             src="images/blobs/blobOne.svg"
             alt="Blob One"
             width={500}
