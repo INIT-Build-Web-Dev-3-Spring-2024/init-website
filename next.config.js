@@ -4,24 +4,24 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "res.cloudinary.com",
-        port: "",
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
       },
       {
-        protocol: "https",
-        hostname: "www.freepnglogos.com",
-        port: "",
+        protocol: 'https',
+        hostname: 'www.freepnglogos.com',
+        port: '',
       },
       {
-        protocol: "https",
-        hostname: "upload.wikimedia.org",
-        port: "",
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+        port: '',
       },
       {
-        protocol: "https",
-        hostname: "**.amazonaws.com",
-        port: "",
+        protocol: 'https',
+        hostname: '**.amazonaws.com',
+        port: '',
       },
     ],
   },
@@ -29,17 +29,10 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.svg$/,
       issuer: { and: [/\.(js|ts)x?$/] },
-      use: ["@svgr/webpack"],
-    });
+      use: ['@svgr/webpack'],
+    })
 
-    return config;
-  },
-  images: {
-    remotePatterns: [
-      {
-        hostname: "res.cloudinary.com",
-      },
-    ],
+    return config
   },
 
   /**
@@ -48,9 +41,9 @@ const nextConfig = {
    * @see https://github.com/vercel/next.js/issues/41980
    */
   i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
+    locales: ['en'],
+    defaultLocale: 'en',
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
