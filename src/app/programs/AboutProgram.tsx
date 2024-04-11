@@ -53,7 +53,7 @@ export default function AboutProgram(props: AboutProgramProps) {
           </div>
           <Image
             className="absolute left-0 -translate-y-72 -z-10 max-lg:w-[200px]"
-            src="images/blobTwo.svg"
+            src="images/blobs/blobTwo.svg"
             alt="Blob One"
             width={400}
             height={400}
@@ -66,10 +66,11 @@ export default function AboutProgram(props: AboutProgramProps) {
             height={300}
           />
         </div>
+
         <div className="flex flex-col justify-center ">
           <Image
             className="absolute right-0 -translate-y-28 max-lg:w-[200px]"
-            src="images/blobOne.svg"
+            src="images/blobs/blobOne.svg"
             alt="Blob One"
             width={500}
             height={500}
@@ -88,12 +89,21 @@ export default function AboutProgram(props: AboutProgramProps) {
             width={500}
             height={300}
           />
+
           <Title className="flex items-center gap-2">
             <Text>Learn Skills</Text>
           </Title>
           <Text className="mt-4 text-xl">{skillsDescription}</Text>
         </div>
       </div>
+      <Image
+        className="absolute -translate-y-80 -translate-x-[32rem] -z-10 right-0 "
+        src="images/blobs/blobThree.svg"
+        alt="Blob Three"
+        width={400}
+        height={400}
+      />
+      <Image className="absolute left-0 top-0 -z-10" src="images/blobs/blobFour.svg" alt="Blob Four" width={800} height={800} />
     </>
   )
 }
