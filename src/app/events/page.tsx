@@ -43,9 +43,11 @@ export default async function page({ searchParams }: PageProps) {
 
       <div className="mx-auto">
         <div className="grid gap-6 mx-auto">
-          {events?.map((event) => (
-            <EventCard key={event.id} {...event}></EventCard>
-          ))}
+        {events && events.length === 0 ? (
+        <p className="text-3xl font-extrabold flex relative justify-center">There are currently no events for this selection</p>
+      ) : (
+        events && events.map((event) => <EventCard key={event.id} {...event} />)
+      )}
         </div>
       </div>
     </div>
