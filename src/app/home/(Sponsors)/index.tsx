@@ -1,82 +1,73 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import Sponsor from "./Sponsor";
+'use client'
+
+import { useEffect, useState } from 'react'
+import Sponsor from './Sponsor'
 
 const Sponsors = () => {
   const sponsors = [
-    "/images/sponsors/Assurant.svg",
-    "/images/sponsors/Bloomberg.png",
-    "/images/sponsors/CapitalOne.svg",
-    "/images/sponsors/Codepath.png",
-    "/images/sponsors/Figma.svg",
-    "/images/sponsors/Google.svg",
-    "/images/sponsors/HPCC.png",
-    "/images/sponsors/images.png",
-    "/images/sponsors/Lyft.svg",
-    "/images/sponsors/Meta.svg",
-    "/images/sponsors/Microsoft.svg",
-    "/images/sponsors/nvidia.png",
-    "/images/sponsors/Slalom.png",
-    "/images/sponsors/StateFarm.png",
-  ];
-  const howMuchSponsorsToShow = 8;
+    '/images/sponsors/Assurant.svg',
+    '/images/sponsors/Bloomberg.svg',
+    '/images/sponsors/CapitalOne.svg',
+    '/images/sponsors/Codepath.svg',
+    '/images/sponsors/Figma.svg',
+    '/images/sponsors/Google.svg',
+    '/images/sponsors/HPCC.svg',
+    '/images/sponsors/Lyft.svg',
+    '/images/sponsors/Meta.svg',
+    '/images/sponsors/Microsoft.svg',
+    '/images/sponsors/nvidia.svg',
+    '/images/sponsors/StateFarm.svg',
+  ]
+  const howMuchSponsorsToShow = 8
 
-  const [nextPos, setNextPos] = useState<number>(
-    howMuchSponsorsToShow % sponsors.length,
-  );
+  const [nextPos, setNextPos] = useState<number>(howMuchSponsorsToShow % sponsors.length)
 
-  const [changeSponsor, setChangeSponsor] = useState<number>(-1);
+  const [changeSponsor, setChangeSponsor] = useState<number>(-1)
 
   function shuffleArray(array: any[]) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+    const newArray = [...array]
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
     }
+    return newArray
   }
 
-  let [imageOrder, setImageOrder] = useState<number[]>(
-    Array.from({ length: howMuchSponsorsToShow }, (_, index) => index),
-  );
+  let [imageOrder, setImageOrder] = useState<number[]>(Array.from({ length: howMuchSponsorsToShow }, (_, index) => index))
 
   // On mount shuffle the array and
   useEffect(() => {
-    shuffleArray(imageOrder);
-    setImageOrder(imageOrder);
+    shuffleArray(imageOrder)
+    setImageOrder(imageOrder)
     // Delay for when the sponsor swap should start
     setTimeout(() => {
-      setChangeSponsor(0);
-    }, 1000);
+      setChangeSponsor(0)
+    }, 1000)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   const getNextUrl = () => {
     if (!sponsors) {
-      return "";
+      return ''
     }
-    const res = sponsors[nextPos % sponsors.length];
-    setNextPos(nextPos + 1);
-    return res;
-  };
+    const res = sponsors[nextPos % sponsors.length]
+    setNextPos(nextPos + 1)
+    return res
+  }
 
-  const updateSponsors = (
-    setUrl: React.Dispatch<React.SetStateAction<string>>,
-    id: number,
-  ) => {
+  const updateSponsors = (setUrl: React.Dispatch<React.SetStateAction<string>>, id: number) => {
     // Delay for when the current image gets swapped out on the screen, should be longer than the transition duration of the image
     setTimeout(() => {
-      setUrl(getNextUrl());
-      setChangeSponsor(-1);
+      setUrl(getNextUrl())
+      setChangeSponsor(-1)
       // Delay for when the process of the next image getting swapped out begins
-      setTimeout(
-        () => setChangeSponsor((id + 1) % howMuchSponsorsToShow),
-        5000,
-      );
-    }, 1200);
-  };
+      setTimeout(() => setChangeSponsor((id + 1) % howMuchSponsorsToShow), 5000)
+    }, 1200)
+  }
 
   return (
-    <div className="mt-40 px-32">
-      <div className="grid grid-cols-3 lg:grid-cols-4 gap-10 place-items-center max-md:grid-cols-2 max-sm:grid-cols-1 max-sm:gap-5">
+    <div className="mt-20 px-24">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
         {[...Array(howMuchSponsorsToShow)].map((_, index) => (
           <Sponsor
             key={index}
