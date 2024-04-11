@@ -1,16 +1,22 @@
-import EventCard from "@/components/EventCard";
-import { AnimatedTitle, Title } from "@/components/Title";
-import fetchEvents from "../lib/fetchEvents";
-import InputAndFilters from "@/components/InputAndFilters";
-import ProgramSelector from "./ProgramSelector";
+import EventCard from '@/components/EventCard'
+import { AnimatedTitle, Title } from '@/components/Title'
+import fetchEvents from '../lib/fetchEvents'
+import InputAndFilters from '@/components/InputAndFilters'
+import ProgramSelector from './ProgramSelector'
 
-interface PageProps {
-  searchParams?: { q?: string };
+export interface eventSearchProperties {
+  q?: string
+  Program?: string
+  Location?: string
+  program?: string
 }
 
-export default async function page({ searchParams }: PageProps) {
-  const query = searchParams?.q || "";
-  const events = await fetchEvents(query, true);
+interface eventsSearchParams {
+  searchParams: eventSearchProperties
+}
+
+export default async function page({ searchParams }: eventsSearchParams) {
+  const events = await fetchEvents(searchParams, true)
 
   return (
     <div className="mx-auto min-h-screen max-w-7xl px-5 sm:px-16 py-12 bg-opacity-95">
@@ -28,12 +34,12 @@ export default async function page({ searchParams }: PageProps) {
           placeholder="Search Events"
           filters={[
             {
-              name: "Program",
-              options: ["Explore", "Reach", "Build", "General", "Other"],
+              name: 'Program',
+              options: ['Explore', 'Reach', 'Build', 'General'],
             },
             {
-              name: "Location",
-              options: ["PG6", "GC", "CASE", "Other"],
+              name: 'Location',
+              options: ['PG6', 'GC', 'CASE'],
             },
           ]}
         />
@@ -43,13 +49,13 @@ export default async function page({ searchParams }: PageProps) {
 
       <div className="mx-auto">
         <div className="grid gap-6 mx-auto">
-        {events && events.length === 0 ? (
-        <p className="text-3xl font-extrabold flex relative justify-center">There are currently no events for this selection</p>
-      ) : (
-        events && events.map((event) => <EventCard key={event.id} {...event} />)
-      )}
+          {events && events.length === 0 ? (
+            <p className="text-3xl font-extrabold flex relative justify-center">There are currently no events for this selection</p>
+          ) : (
+            events && events.map((event) => <EventCard key={event.id} {...event} />)
+          )}
         </div>
       </div>
     </div>
-  );
+  )
 }
