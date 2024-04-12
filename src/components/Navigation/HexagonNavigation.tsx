@@ -16,17 +16,32 @@ export default function HexagonNavigation() {
     return options.slice(0, 3);
   }, [pathName]);
 
+  const HEX_CLASS_NAME = "w-72 max-sm:w-36";
+  const HEX_HIDDEN_CLASS_NAME = "w-72 max-sm:hidden";
+
   return (
-    <div className="flex items-center justify-center flex-col">
+    <div className="flex items-center justify-center flex-col max-sm:pt-28">
       <div className="flex justify-center">
-        <Hexagon className="w-72" hiddenStroke fillOpacity="0.04" />
-        <Hexagon className="w-72" offset={["top", "sides"]} hiddenStroke />
-        <Hexagon className="w-72" hiddenStroke fillOpacity="0.04" />
+        <Hexagon
+          className={HEX_HIDDEN_CLASS_NAME}
+          hiddenStroke
+          fillOpacity="0.04"
+        />
+        <Hexagon
+          className={HEX_HIDDEN_CLASS_NAME}
+          offset={["top", "sides"]}
+          hiddenStroke
+        />
+        <Hexagon
+          className={HEX_HIDDEN_CLASS_NAME}
+          hiddenStroke
+          fillOpacity="0.04"
+        />
       </div>
 
       <div className="flex justify-center">
         <Hexagon
-          className="w-72"
+          className={HEX_HIDDEN_CLASS_NAME}
           offset={["top", "sides"]}
           hiddenStroke
           fillOpacity="0.02"
@@ -35,7 +50,7 @@ export default function HexagonNavigation() {
         {links.map(({ label, href }, index) => (
           <Hexagon
             key={"Hexagon Navigation" + label}
-            className="w-72"
+            className={HEX_CLASS_NAME}
             fillOpacity="0.04"
             offset={index % 2 ? ["top", "sides"] : []}
           >
@@ -50,7 +65,7 @@ export default function HexagonNavigation() {
         ))}
 
         <Hexagon
-          className="w-72"
+          className={HEX_HIDDEN_CLASS_NAME}
           offset={["top", "sides"]}
           hiddenStroke
           fillOpacity="0.02"
@@ -58,14 +73,14 @@ export default function HexagonNavigation() {
       </div>
 
       <div className="flex justify-center">
-        <Hexagon className="w-72" hiddenStroke />
+        <Hexagon className={HEX_HIDDEN_CLASS_NAME} hiddenStroke />
         <Hexagon
-          className="w-72"
+          className={HEX_HIDDEN_CLASS_NAME}
           offset={["top"]}
           hiddenStroke
           fillOpacity="0.02"
         />
-        <Hexagon className="w-72" hiddenStroke />
+        <Hexagon className={HEX_HIDDEN_CLASS_NAME} hiddenStroke />
       </div>
     </div>
   );
