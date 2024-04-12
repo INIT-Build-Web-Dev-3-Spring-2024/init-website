@@ -4,36 +4,69 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
-export default function useAutoQueryString(name: string = "q") {
-  const [value, setValue] = useState("");
+type Options = Partial<{
+  isArray: boolean;
+  debounce: number;
+}>;
+
+export default function useAutoQueryString(
+  name: string = "q",
+  options?: Options
+) {
+  const { isArray = false, debounce = 300 } = options || {};
 
   const searchParams = useSearchParams();
-  const router = useRouter();
   const pathname = usePathname();
+  const { replace } = useRouter();
+
+  const [value, setValue] = useState<Set<string> | string>(
+    isArray
+      ? new Set([...searchParams.getAll(name)])
+      : searchParams.get(name) || ""
+  );
 
   const handleSearch = useDebouncedCallback(() => {
     const params = new URLSearchParams(searchParams.toString());
 
-    if (value) {
-      params.set(name, value);
+    if (value instanceof Set) {
+      params.delete(name); // make sure no duplicates
+      value.forEach((val) => params.append(name, val));
     } else {
-      params.delete(name);
+      if (value) {
+        params.set(name, value);
+      } else {
+        params.delete(name);
+      }
     }
 
-    router.push(`${pathname}?${params}`);
-  }, 300);
+    replace(`${pathname}?${params.toString()}`, { scroll: false });
+  }, debounce);
 
-  // get the initial value of the input on load
-  useEffect(() => {
-    const initialValue = searchParams.get(name) || "";
-    setValue(initialValue);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  function modifyValue(newVal: string) {
+    setValue((prevVal) => {
+      // if the user want to allows an array for the query param
+      if (prevVal instanceof Set) {
+        const newSet = new Set(prevVal);
+
+        // if the value is already in the set, remove it, else add it
+        if (newSet.has(newVal)) {
+          newSet.delete(newVal);
+        } else {
+          newSet.add(newVal);
+        }
+
+        return newSet;
+      } else {
+        // if prevVal is not a Set, just return the newVal
+        return newVal;
+      }
+    });
+  }
 
   // keep calling search input whenever the user types
   useEffect(() => {
     handleSearch();
   }, [handleSearch, value]);
 
-  return [value, setValue] as const;
+  return [value, modifyValue] as const;
 }
