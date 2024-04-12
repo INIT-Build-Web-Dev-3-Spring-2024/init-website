@@ -1,14 +1,14 @@
-'use client'
+"use client";
 
-import Hexagon from '@/components/Hexagon'
-import InitLogo from '@/components/InitLogo'
-import SubTitle from '@/components/SubTitle'
-import useAutoQueryString from '@/hooks/useAutoQueryString'
-import { getProgramColor } from '@/root/tailwind.config'
+import Hexagon from "@/components/Hexagon";
+import InitLogo from "@/components/InitLogo";
+import SubTitle from "@/components/SubTitle";
+import useAutoQueryString from "@/hooks/useAutoQueryString";
+import { getProgramColor } from "@/root/tailwind.config";
 
 interface ProgramLabelProps {
-  children: string
-  onClick: (program: string) => unknown
+  children: string;
+  onClick: (program: string) => unknown;
 }
 
 function ProgramLabel({ children: name, onClick }: ProgramLabelProps) {
@@ -19,39 +19,49 @@ function ProgramLabel({ children: name, onClick }: ProgramLabelProps) {
         <SubTitle className="first-letter:capitalize">{name}</SubTitle>
       </span>
     </button>
-  )
+  );
 }
 
-const HEX_CLASS_NAME = 'w-40'
+const HEX_CLASS_NAME = "w-72 max-sm:w-36";
+const HEX_HIDDEN_CLASS_NAME = "w-72 max-sm:hidden";
 
 export default function ProgramSelector() {
-  const [programsVisible, setProgramsVisible] = useAutoQueryString('Program', {
+  const [programsVisible, setProgramsVisible] = useAutoQueryString("Program", {
     isArray: true,
     debounce: 0,
-  }) as [Set<string>, (newVal: string) => void]
+  }) as [Set<string>, (newVal: string) => void];
 
   function handleProgramClick(program: string) {
-    setProgramsVisible(program)
+    setProgramsVisible(program);
   }
 
   return (
     <div className="flex items-center justify-center flex-col -mb-36">
       <div className="flex justify-center">
-        <Hexagon className={HEX_CLASS_NAME} fillOpacity="0.05" hiddenStroke={!programsVisible.has('Ignite')} borderGradient="always">
+        <Hexagon
+          className={HEX_CLASS_NAME}
+          fillOpacity="0.05"
+          hiddenStroke={!programsVisible.has("Ignite")}
+          borderGradient="always"
+        >
           <ProgramLabel onClick={handleProgramClick}>Ignite</ProgramLabel>
         </Hexagon>
-        <Hexagon className={HEX_CLASS_NAME} offset={['top', 'sides']} hiddenStroke />
-        <Hexagon className={HEX_CLASS_NAME} />
+        <Hexagon
+          className={HEX_CLASS_NAME}
+          offset={["top", "sides"]}
+          hiddenStroke
+        />
+        <Hexagon className={"w-72 max-sm:w-36 opacity-0"} />
       </div>
 
       <div className="flex justify-center">
-        <Hexagon className={HEX_CLASS_NAME} offset={['sides']} />
-        <Hexagon className={HEX_CLASS_NAME} offset={['top']} />
+        <Hexagon className={HEX_HIDDEN_CLASS_NAME} offset={["sides"]} />
+        <Hexagon className={HEX_HIDDEN_CLASS_NAME} offset={["top"]} />
         <Hexagon
           className={HEX_CLASS_NAME}
-          offset={['sides']}
+          offset={["sides"]}
           fillOpacity="0.05"
-          hiddenStroke={!programsVisible.has('Build')}
+          hiddenStroke={!programsVisible.has("Build")}
           borderGradient="always"
         >
           <ProgramLabel onClick={handleProgramClick}>Build</ProgramLabel>
@@ -60,51 +70,51 @@ export default function ProgramSelector() {
           className={HEX_CLASS_NAME}
           borderGradient="always"
           fillOpacity="0.05"
-          offset={['top']}
-          hiddenStroke={!programsVisible.has('Uplift')}
+          offset={["top"]}
+          hiddenStroke={!programsVisible.has("Uplift")}
         >
           <ProgramLabel onClick={handleProgramClick}>Uplift</ProgramLabel>
         </Hexagon>
         <Hexagon
           className={HEX_CLASS_NAME}
           fillOpacity="0.05"
-          offset={['sides']}
-          hiddenStroke={!programsVisible.has('Reach')}
+          offset={["sides"]}
+          hiddenStroke={!programsVisible.has("Reach")}
           borderGradient="always"
         >
           <ProgramLabel onClick={handleProgramClick}>Reach</ProgramLabel>
         </Hexagon>
-        <Hexagon className={HEX_CLASS_NAME} offset={['top']} />
-        <Hexagon className={HEX_CLASS_NAME} offset={['sides']} />
+        <Hexagon className={HEX_HIDDEN_CLASS_NAME} offset={["top"]} />
+        <Hexagon className={HEX_HIDDEN_CLASS_NAME} offset={["sides"]} />
       </div>
 
       <div className="flex justify-center">
-        <Hexagon className={HEX_CLASS_NAME} offset={['top']} />
-        <Hexagon className={HEX_CLASS_NAME} offset={['sides']} />
+        <Hexagon className={HEX_HIDDEN_CLASS_NAME} offset={["top"]} />
+        <Hexagon className={HEX_HIDDEN_CLASS_NAME} offset={["sides"]} />
         <Hexagon
           className={HEX_CLASS_NAME}
-          offset={['top']}
+          offset={["top"]}
           fillOpacity="0.05"
-          hiddenStroke={!programsVisible.has('Explore')}
+          hiddenStroke={!programsVisible.has("Explore")}
           borderGradient="always"
         >
           <ProgramLabel onClick={handleProgramClick}>Explore</ProgramLabel>
         </Hexagon>
         <Hexagon
           className={HEX_CLASS_NAME}
-          offset={['sides']}
+          offset={["sides"]}
           fillOpacity="0.05"
-          hiddenStroke={!programsVisible.has('Hack')}
+          hiddenStroke={!programsVisible.has("Hack")}
           borderGradient="always"
         >
           <ProgramLabel onClick={handleProgramClick}>Hack</ProgramLabel>
         </Hexagon>
-        <Hexagon className={HEX_CLASS_NAME} offset={['top']} />
+        <Hexagon className={HEX_HIDDEN_CLASS_NAME} offset={["top"]} />
       </div>
 
       <div className="flex justify-center">
         <Hexagon hiddenStroke />
       </div>
     </div>
-  )
+  );
 }
