@@ -51,7 +51,7 @@ export default function ProgramSelector() {
           offset={["top", "sides"]}
           hiddenStroke
         />
-        <Hexagon className={HEX_CLASS_NAME} />
+        <Hexagon className={"w-72 max-sm:w-36 opacity-0"} />
       </div>
 
       <div className="flex justify-center">
