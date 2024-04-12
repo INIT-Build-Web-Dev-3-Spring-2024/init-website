@@ -21,7 +21,7 @@ export default async function page({ searchParams }: eventsSearchParams) {
   return (
     <div className="mx-auto min-h-screen max-w-7xl px-5 sm:px-16 py-12 bg-opacity-95">
       <header>
-        <Title>
+        <Title className='leading-tight'>
           Discover and Join Our <br />
           Upcoming
           <AnimatedTitle> Events</AnimatedTitle>
