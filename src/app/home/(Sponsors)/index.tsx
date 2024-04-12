@@ -1,36 +1,39 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react'
-import Sponsor from './Sponsor'
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import Sponsor from "./Sponsor";
 
 const Sponsors = () => {
   const sponsors = [
-    '/images/sponsors/Assurant.svg',
-    '/images/sponsors/Bloomberg.svg',
-    '/images/sponsors/CapitalOne.svg',
-    '/images/sponsors/Codepath.svg',
-    '/images/sponsors/Figma.svg',
-    '/images/sponsors/Google.svg',
-    '/images/sponsors/HPCC.svg',
-    '/images/sponsors/Lyft.svg',
-    '/images/sponsors/Meta.svg',
-    '/images/sponsors/Microsoft.svg',
-    '/images/sponsors/nvidia.svg',
-    '/images/sponsors/StateFarm.svg',
-  ]
-  const howMuchSponsorsToShow = 8
+    "/images/sponsors/Assurant.svg",
+    "/images/sponsors/Bloomberg.svg",
+    "/images/sponsors/CapitalOne.svg",
+    "/images/sponsors/Codepath.svg",
+    "/images/sponsors/Figma.svg",
+    "/images/sponsors/Google.svg",
+    "/images/sponsors/HPCC.svg",
+    "/images/sponsors/Lyft.svg",
+    "/images/sponsors/Meta.svg",
+    "/images/sponsors/Microsoft.svg",
+    "/images/sponsors/nvidia.svg",
+    "/images/sponsors/StateFarm.svg",
+  ];
+  const howMuchSponsorsToShow = 8;
 
-  const [nextPos, setNextPos] = useState<number>(howMuchSponsorsToShow % sponsors.length)
+  const [nextPos, setNextPos] = useState<number>(
+    howMuchSponsorsToShow % sponsors.length
+  );
 
-  const [changeSponsor, setChangeSponsor] = useState<number>(-1)
+  const [changeSponsor, setChangeSponsor] = useState<number>(-1);
 
   function shuffleArray(array: any[]) {
-    const newArray = [...array]
+    const newArray = [...array];
     for (let i = newArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
     }
-    return newArray
+    return newArray;
   }
 
   let [imageOrder, setImageOrder] = useState<number[]>(Array.from({ length: howMuchSponsorsToShow }, (_, index) => index))
@@ -62,7 +65,7 @@ const Sponsors = () => {
       setChangeSponsor(-1)
       // Delay for when the process of the next image getting swapped out begins
       setTimeout(() => setChangeSponsor((id + 1) % howMuchSponsorsToShow), 5000)
-    }, 1200)
+    }, 1000)
   }
 
   return (
@@ -79,17 +82,13 @@ const Sponsors = () => {
           />
         ))}
       </div>
-      <button
-        className="mt-10 mx-auto block bg-[#e2e2e2] text-black py-1 px-3 rounded-md"
-        onClick={() => {
-          alert("Figure out url");
-          console.log("Figure out url");
-        }}
-      >
-        <div className="mx-auto">Partner With Us</div>
+      <button className="mt-10 mx-auto block bg-white text-black py-2 px-5 rounded-xl transition-all duration-300 hover:rounded-sm hover:bg-gray-200">
+        <Link href="">
+          Partner With Us
+        </Link>
       </button>
     </div>
   );
 };
-
+ 
 export default Sponsors;
