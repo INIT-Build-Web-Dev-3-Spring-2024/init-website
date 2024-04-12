@@ -46,15 +46,18 @@ export default function useAutoQueryString(
     setValue((prevVal) => {
       // if the user want to allows an array for the query param
       if (prevVal instanceof Set) {
-        // if the value is already in the query string, remove it
-        if ((value as Set<string>).has(newVal)) {
-          prevVal.delete(newVal);
-          return new Set(prevVal);
+        const newSet = new Set(prevVal);
+
+        // if the value is already in the set, remove it, else add it
+        if (newSet.has(newVal)) {
+          newSet.delete(newVal);
+        } else {
+          newSet.add(newVal);
         }
 
-        // add value to the query string
-        return new Set(prevVal.add(newVal));
+        return newSet;
       } else {
+        // if prevVal is not a Set, just return the newVal
         return newVal;
       }
     });
