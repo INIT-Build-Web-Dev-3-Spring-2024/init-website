@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "@notionhq/client": "^2.2.14",
-    "framer-motion": "^11.0.24",
     "@prisma/client": "^5.11.0",
     "dom": "^0.0.3",
+    "framer-motion": "^11.0.24",
     "next": "latest",
 
 
@@ -29,6 +29,7 @@
 
     "react-dom": "latest",
     "react-icons": "^5.0.1",
+    "swiper": "^11.1.0",
     "tailwind-merge": "^2.2.2",
     "use-debounce": "^10.0.0"
   },
