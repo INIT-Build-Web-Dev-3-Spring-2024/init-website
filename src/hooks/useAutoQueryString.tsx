@@ -66,7 +66,7 @@ export default function useAutoQueryString(
   // keep calling search input whenever the user types
   useEffect(() => {
     handleSearch();
-  }, [handleSearch, value]);
+  }, [handleSearch, value, searchParams]);
 
   return [value, modifyValue] as const;
 }
