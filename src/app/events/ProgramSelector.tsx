@@ -22,8 +22,8 @@ function ProgramLabel({ children: name, onClick }: ProgramLabelProps) {
   );
 }
 
-const HEX_CLASS_NAME = "w-72 max-sm:w-36";
-const HEX_HIDDEN_CLASS_NAME = "w-72 max-sm:hidden";
+const HEX_CLASS_NAME = "w-40 max-sm:w-36";
+const HEX_HIDDEN_CLASS_NAME = "w-40 max-sm:hidden";
 
 export default function ProgramSelector() {
   const [programsVisible, setProgramsVisible] = useAutoQueryString("Program", {
@@ -51,7 +51,7 @@ export default function ProgramSelector() {
           offset={["top", "sides"]}
           hiddenStroke
         />
-        <Hexagon className={"w-72 max-sm:w-36 opacity-0"} />
+        <Hexagon className={"w-40 max-sm:w-36 opacity-0"} />
       </div>
 
       <div className="flex justify-center">
