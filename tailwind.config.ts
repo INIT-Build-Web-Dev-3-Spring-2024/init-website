@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import resolveConfig from "tailwindcss/resolveConfig";
 
 const config = {
   content: [
@@ -43,8 +44,31 @@ const config = {
       fontFamily: {
         "gothic-a1": ["var(--font-gothic-a1)"],
       },
+      keyframes: {
+        fadeOut: {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
+        },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      },
+      animation: {
+        fadeOut: "fadeOut 1s",
+        fadeIn: "fadeIn ease-in 2s",
+      },
     },
   },
   plugins: [],
 };
+
+export const twConfig = resolveConfig(config);
+
+export function getProgramColor(programName: string) {
+  return twConfig.theme.colors.program[
+    programName.toLowerCase() as keyof typeof twConfig.theme.colors.program
+  ];
+}
+
 export default config;

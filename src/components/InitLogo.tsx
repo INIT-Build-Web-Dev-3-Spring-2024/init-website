@@ -1,6 +1,6 @@
 "use client";
 
-import Logo from "@/images/logo.svg";
+import Logo from "@/images/icons/logo.svg";
 
 interface InitLogoProps {
   className?: HTMLElement["className"];

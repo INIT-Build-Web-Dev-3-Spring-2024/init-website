@@ -7,13 +7,23 @@ import {
   DatabaseObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import { Event } from "@/components/EventCard";
+import { eventSearchProperties } from "@/app/events/page";
 
 // Notion Database Reference: https://smyvens.notion.site/smyvens/b1c5ddd386bb4abcaab264d630246d99?v=d340036c928e40bea2ac68c41c3d5461
-export default async function fetchEvents(searchQuery = "", weekly = false) {
+export default async function fetchEvents(
+  searchQuery: eventSearchProperties,
+  weekly = false
+) {
   try {
     if (!process.env.NOTION_API_KEY || !process.env.NOTION_EVENTS_DATABASE_ID) {
-      throw new Error("Required environment variables NOTION_API_KEY or NOTION_EVENTS_DATABASE_ID are not set.");
+      throw new Error(
+        "Required environment variables NOTION_API_KEY or NOTION_EVENTS_DATABASE_ID are not set."
+      );
     }
+
+    const searchFilter = searchQuery?.q || "";
+    const programFilter = searchQuery?.Program || "";
+    const locationFilter = searchQuery?.Location || "";
 
     const notion = new Client({ auth: process.env.NOTION_API_KEY });
     const databaseId = process.env.NOTION_EVENTS_DATABASE_ID;
@@ -42,6 +52,26 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
       };
     }
 
+    // Build program hexagon filters depending on if user selected multiple programs
+    const programFilters = [];
+    if (Array.isArray(programFilter)) {
+      for (const program of programFilter) {
+        programFilters.push({
+          property: "Role",
+          rich_text: {
+            contains: program,
+          },
+        });
+      }
+    } else {
+      programFilters.push({
+        property: "Role",
+        rich_text: {
+          contains: programFilter,
+        },
+      });
+    }
+
     const response: QueryDatabaseResponse = await notion.databases.query({
       database_id: databaseId,
       filter: {
@@ -60,26 +90,41 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
           },
           dayOrWeekFilter,
           {
+            property: "Location",
+            rich_text: {
+              contains: locationFilter,
+            },
+          },
+          {
             or: [
               {
                 property: "﻿Project name",
                 rich_text: {
-                  contains: searchQuery,
+                  contains: searchFilter,
                 },
               },
               {
                 property: "Description",
                 rich_text: {
-                  contains: searchQuery,
+                  contains: searchFilter,
                 },
               },
               {
                 property: "Role",
                 rich_text: {
-                  contains: searchQuery,
+                  contains: searchFilter,
+                },
+              },
+              {
+                property: "Location",
+                rich_text: {
+                  contains: searchFilter,
                 },
               },
             ],
+          },
+          {
+            or: programFilters,
           },
         ],
       },
@@ -97,7 +142,11 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
       const regex = /build|discover|explore|ignite|hack|launch|reach/i; // Used to get program name
       response.results.forEach(
         (
-          page: PageObjectResponse | PartialPageObjectResponse | PartialDatabaseObjectResponse | DatabaseObjectResponse
+          page:
+            | PageObjectResponse
+            | PartialPageObjectResponse
+            | PartialDatabaseObjectResponse
+            | DatabaseObjectResponse
         ) => {
           if ("properties" in page) {
             let name = "Unnamed Event";
@@ -189,7 +238,10 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
             }
 
             const lumaProperty = page.properties["Luma"];
-            if (lumaProperty?.type === "url" && typeof lumaProperty.url === "string") {
+            if (
+              lumaProperty?.type === "url" &&
+              typeof lumaProperty.url === "string"
+            ) {
               rsvpLink = lumaProperty.url;
             }
 
@@ -211,7 +263,8 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
               "text" in programProperty.rich_text[0]
             ) {
               // Match role property from Notion against our Regex to get program name
-              const programMatch: RegExpMatchArray | null = programProperty.rich_text[0].text.content.match(regex);
+              const programMatch: RegExpMatchArray | null =
+                programProperty.rich_text[0].text.content.match(regex);
 
               // If a program is found (Reach, Build, etc.), then store the name in `program`
               if (programMatch) {
@@ -238,7 +291,6 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
       );
     }
 
-    console.log(events);
     return events;
   } catch (error) {
     console.error("Failed to fetch latest event data:", error);
