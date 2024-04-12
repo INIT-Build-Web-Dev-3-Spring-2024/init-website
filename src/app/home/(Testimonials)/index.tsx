@@ -10,211 +10,107 @@ function getRandomNum(max: number) {
 
 export default function Testimonials() {
   // if using links for images, make sure to add hostname to `next.config.js`
+
   const reviews = [
     {
       index: 0,
-      name: "Person One",
-      avatarSrc: "/images/reviews/personOne/personOneAvatar.svg",
-      company: "TechGenius",
+      name: "David Ulloa",
+      avatarSrc: "/images/reviews/personOne/personOneAvatar.jpg",
+      company: "Google",
       companyLogoSrc: "/images/reviews/personOne/personOneCompany.svg",
-      position: "Senior Innovation Strategist",
+      position: "Incoming Google SWE Intern",
       review:
-        "TechGenius provides an incredibly dynamic environment where I've grown more in a year than I did in five years at my previous job.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu urna gravida sem tempor efficitur vel nec tortor. Duis dictum.",
     },
     {
       index: 1,
-      name: "Person Two",
-      avatarSrc: "/images/reviews/personTwo/personTwoAvatar.svg",
-      company: "EcoSolutions",
-      companyLogoSrc: "/images/reviews/personTwo/personTwoCompany.svg",
-      position: "Chief Sustainability Officer",
+      name: "Wissam Hassani",
+      avatarSrc: "/images/reviews/personTwo/personTwoAvatar.jpg",
+      company: "Salesforce",
+      companyLogoSrc: "/images/reviews/personTwo/personTwoCompany.png",
+      position: "Returning SWE Intern",
       review:
-        "Working at EcoSolutions has allowed me to make a real impact on the planet, driving meaningful changes in the industry.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi posuere, quam id tempor cursus, dui purus vehicula nulla, vitae rhoncus.",
     },
     {
       index: 2,
-      name: "Person Three",
-      avatarSrc: "/images/reviews/personThree/personThreeAvatar.svg",
-      company: "FinTech Global",
+      name: "Robert Velasquez",
+      avatarSrc: "/images/reviews/personThree/personThreeAvatar.jpg",
+      company: "Netflix ",
       companyLogoSrc: "/images/reviews/personThree/personThreeCompany.svg",
-      position: "Blockchain Analyst",
+      position: "Incoming SWE Intern",
       review:
-        "FinTech Global is at the cutting edge of blockchain technology, offering unparalleled opportunities for personal and professional growth.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eget ligula bibendum, eleifend eros ut, accumsan purus. Sed at tellus.",
     },
     {
       index: 3,
-      name: "Person Four",
-      avatarSrc: "/images/reviews/personFour/personFourAvatar.svg",
-      company: "HealthVanguard",
+      name: "Gian Pena",
+      avatarSrc: "/images/reviews/personFour/personFourAvatar.jpg",
+      company: "Capital One",
       companyLogoSrc: "/images/reviews/personFour/personFourCompany.svg",
-      position: "Digital Health Specialist",
+      position: "TEIP intern",
       review:
-        "At HealthVanguard, I'm part of a team that's revolutionizing healthcare through technology, improving patient outcomes worldwide.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum, eros quis pretium hendrerit, ex urna fringilla metus, in blandit.",
     },
     {
       index: 4,
-      name: "Person Five",
-      avatarSrc: "/images/reviews/personFive/personFiveAvatar.svg",
-      company: "EdInnovate",
+      name: "Dabian Garnica",
+      avatarSrc: "/images/reviews/personFive/personFiveAvatar.jpg",
+      company: "Blackstone",
       companyLogoSrc: "/images/reviews/personFive/personFiveCompany.svg",
-      position: "Learning Experience Designer",
+      position: "Incoming Sprintern",
       review:
-        "Creating cutting-edge educational programs at EdInnovate has been a profoundly rewarding experience, shaping the future of learning.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec ornare odio, ac dictum metus. Phasellus aliquam pretium finibus. Curabitur.",
     },
     {
       index: 5,
-      name: "Person Six",
-      avatarSrc: "/images/reviews/personSix/personSixAvatar.svg",
-      company: "CyberSecure",
+      name: "Ruth Velasquez",
+      avatarSrc: "/images/reviews/personSix/personSixAvatar.jpg",
+      company: "American Express",
       companyLogoSrc: "/images/reviews/personSix/personSixCompany.svg",
-      position: "Cybersecurity Consultant",
+      position: "Incoming Sprintern",
       review:
-        "CyberSecure is at the forefront of defending against digital threats, and I'm constantly challenged and engaged in my role here.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at eros laoreet, vulputate urna in, finibus orci. Proin fermentum sodales.",
     },
     {
       index: 6,
-      name: "Person Seven",
-      avatarSrc: "/images/reviews/personSeven/personSevenAvatar.svg",
-      company: "GlobalLogistics",
+      name: "Anncarolyne Power",
+      avatarSrc: "/images/reviews/personSeven/personSevenAvatar.jpg",
+      company: "TelevisaUnivision",
       companyLogoSrc: "/images/reviews/personSeven/personSevenCompany.svg",
-      position: "Supply Chain Analyst",
+      position: "Incoming sprintern",
       review:
-        "GlobalLogistics is transforming the supply chain industry, and I'm thrilled to contribute to such groundbreaking work.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam dignissim est quis ultrices. Fusce tristique congue vulputate. Nam eget.",
     },
     {
       index: 7,
-      name: "Person Eight",
-      avatarSrc: "/images/reviews/personEight/personEightAvatar.svg",
-      company: "QuantumLeap",
+      name: " Gabriel Pedroza",
+      avatarSrc: "/images/reviews/personEight/personEightAvatar.jpg",
+      company: "Meta",
       companyLogoSrc: "/images/reviews/personEight/personEightCompany.svg",
-      position: "Quantum Computing Engineer",
+      position: "Returning SWE Intern",
       review:
-        "At QuantumLeap, I'm working with some of the brightest minds to solve complex problems using quantum computing.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in justo nec risus fringilla efficitur. Cras quis dolor elementum, hendrerit. ",
     },
     {
       index: 8,
-      name: "Person Nine",
-      avatarSrc: "/images/reviews/personNine/personNineAvatar.svg",
-      company: "GreenArchitects",
+      name: "Mridul Pahwa",
+      avatarSrc: "/images/reviews/personNine/personNineAvatar.jpg",
+      company: "Google",
       companyLogoSrc: "/images/reviews/personNine/personNineCompany.svg",
-      position: "Sustainable Design Architect",
+      position: "Incoming STEP Intern",
       review:
-        "GreenArchitects is pioneering in sustainable building designs, and it's inspiring to contribute to eco-friendly architecture.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam enim felis, sodales dignissim tellus at, convallis fringilla ligula. Etiam vitae.",
     },
     {
       index: 9,
-      name: "Person Ten",
-      avatarSrc: "/images/reviews/personTen/personTenAvatar.svg",
-      company: "DataDive",
+      name: "Gabriel Lucchesi",
+      avatarSrc: "/images/reviews/personTen/personTenAvatar.jpg",
+      company: "NVIDIA",
       companyLogoSrc: "/images/reviews/personTen/personTenCompany.svg",
-      position: "Data Science Lead",
+      position: "Incoming SWE Intern",
       review:
-        "DataDive is a data enthusiast's paradise, offering endless opportunities to uncover insights and drive innovation.",
-    },
-    {
-      index: 10,
-      name: "Person Eleven",
-      avatarSrc: "/images/reviews/personEleven/personElevenAvatar.svg",
-      company: "NutriGrow",
-      companyLogoSrc: "/images/reviews/personEleven/personElevenCompany.svg",
-      position: "Agricultural Biotechnologist",
-      review:
-        "NutriGrow is revolutionizing agriculture with biotech, and I'm proud to be part of creating sustainable food solutions.",
-    },
-    {
-      index: 11,
-      name: "Person Twelve",
-      avatarSrc: "/images/reviews/personTwelve/personTwelveAvatar.svg",
-      company: "MindMesh",
-      companyLogoSrc: "/images/reviews/personTwelve/personTwelveCompany.svg",
-      position: "AI Psychologist",
-      review:
-        "Working at MindMesh to develop empathetic AI is an exciting blend of technology and psychology, offering fresh challenges daily.",
-    },
-    {
-      index: 12,
-      name: "Person Thirteen",
-      avatarSrc: "/images/reviews/personThirteen/personThirteenAvatar.svg",
-      company: "CleanOcean",
-      companyLogoSrc:
-        "/images/reviews/personThirteen/personThirteenCompany.svg",
-      position: "Marine Conservation Strategist",
-      review:
-        "At CleanOcean, my work on marine conservation projects is deeply fulfilling and contributes to vital environmental protection.",
-    },
-    {
-      index: 13,
-      name: "Person Fourteen",
-      avatarSrc: "/images/reviews/personFourteen/personFourteenAvatar.svg",
-      company: "SkyInnovations",
-      companyLogoSrc:
-        "/images/reviews/personFourteen/personFourteenCompany.svg",
-      position: "Aerospace Design Engineer",
-      review:
-        "SkyInnovations is pushing the boundaries of aerospace technology, and I'm thrilled to be part of such an ambitious team.",
-    },
-    {
-      index: 14,
-      name: "Person Fifteen",
-      avatarSrc: "/images/reviews/personFifteen/personFifteenAvatar.svg",
-      company: "UrbanEco",
-      companyLogoSrc: "/images/reviews/personFifteen/personFifteenCompany.svg",
-      position: "Urban Planner",
-      review:
-        "UrbanEco's commitment to sustainable urban development is unmatched, and I'm learning and contributing to real change.",
-    },
-    {
-      index: 15,
-      name: "Person Sixteen",
-      avatarSrc: "/images/reviews/personSixteen/personSixteenAvatar.svg",
-      company: "GeneEdit",
-      companyLogoSrc: "/images/reviews/personSixteen/personSixteenCompany.svg",
-      position: "Genetic Engineer",
-      review:
-        "GeneEdit is at the cutting edge of genetic engineering, offering unparalleled opportunities to be at the forefront of medical innovation.",
-    },
-    {
-      index: 16,
-      name: "Person Seventeen",
-      avatarSrc: "/images/reviews/personSeventeen/personSeventeenAvatar.svg",
-      company: "FutureFinance",
-      companyLogoSrc:
-        "/images/reviews/personSeventeen/personSeventeenCompany.svg",
-      position: "Cryptocurrency Analyst",
-      review:
-        "At FutureFinance, delving into the world of cryptocurrencies offers an exciting and ever-evolving financial landscape to explore.",
-    },
-    {
-      index: 17,
-      name: "Person Eighteen",
-      avatarSrc: "/images/reviews/personEighteen/personEighteenAvatar.svg",
-      company: "VRVisions",
-      companyLogoSrc:
-        "/images/reviews/personEighteen/personEighteenCompany.svg",
-      position: "Virtual Reality Developer",
-      review:
-        "Creating immersive virtual worlds at VRVisions is as thrilling as it is technically challenging.",
-    },
-    {
-      index: 18,
-      name: "Person Nineteen",
-      avatarSrc: "/images/reviews/personNineteen/personNineteenAvatar.svg",
-      company: "RoboCraft",
-      companyLogoSrc:
-        "/images/reviews/personNineteen/personNineteenCompany.svg",
-      position: "Robotics Engineer",
-      review:
-        "RoboCraft is defining the future of robotics, and being part of this journey is incredibly rewarding and exciting.",
-    },
-    {
-      index: 19,
-      name: "Person Twenty",
-      avatarSrc: "/images/reviews/personTwenty/personTwentyAvatar.svg",
-      company: "NextGenEdu",
-      companyLogoSrc: "/images/reviews/personTwenty/personTwentyCompany.svg",
-      position: "Educational Technologist",
-      review:
-        "At NextGenEdu, I'm part of a team that's reimagining how technology can transform education, making it more accessible and engaging for everyone.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem tortor, vulputate quis tempor sed, condimentum quis sem. Nunc in.",
     },
   ];
 
@@ -223,7 +119,7 @@ export default function Testimonials() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [currRevs, setCurrRevs] = useState(reviews.slice(0, 7));
   const [unusedRevs, setUnusedRevs] = useState(
-    reviews.slice(7, reviews.length),
+    reviews.slice(7, reviews.length)
   );
   const [animationState, setAnimationState] = useState({
     fadeInIndex: REVIEWS_LEN,
