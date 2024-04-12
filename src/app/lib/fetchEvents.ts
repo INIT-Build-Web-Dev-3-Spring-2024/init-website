@@ -7,15 +7,23 @@ import {
   DatabaseObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import { Event } from "@/components/EventCard";
+import { eventSearchProperties } from "@/app/events/page";
 
 // Notion Database Reference: https://smyvens.notion.site/smyvens/b1c5ddd386bb4abcaab264d630246d99?v=d340036c928e40bea2ac68c41c3d5461
-export default async function fetchEvents(searchQuery = "", weekly = false) {
+export default async function fetchEvents(
+  searchQuery: eventSearchProperties,
+  weekly = false
+) {
   try {
     if (!process.env.NOTION_API_KEY || !process.env.NOTION_EVENTS_DATABASE_ID) {
       throw new Error(
         "Required environment variables NOTION_API_KEY or NOTION_EVENTS_DATABASE_ID are not set."
       );
     }
+
+    const searchFilter = searchQuery?.q || "";
+    const programFilter = searchQuery?.Program || "";
+    const locationFilter = searchQuery?.Location || "";
 
     const notion = new Client({ auth: process.env.NOTION_API_KEY });
     const databaseId = process.env.NOTION_EVENTS_DATABASE_ID;
@@ -44,6 +52,26 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
       };
     }
 
+    // Build program hexagon filters depending on if user selected multiple programs
+    const programFilters = [];
+    if (Array.isArray(programFilter)) {
+      for (const program of programFilter) {
+        programFilters.push({
+          property: "Role",
+          rich_text: {
+            contains: program,
+          },
+        });
+      }
+    } else {
+      programFilters.push({
+        property: "Role",
+        rich_text: {
+          contains: programFilter,
+        },
+      });
+    }
+
     const response: QueryDatabaseResponse = await notion.databases.query({
       database_id: databaseId,
       filter: {
@@ -62,26 +90,41 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
           },
           dayOrWeekFilter,
           {
+            property: "Location",
+            rich_text: {
+              contains: locationFilter,
+            },
+          },
+          {
             or: [
               {
                 property: "﻿Project name",
                 rich_text: {
-                  contains: searchQuery,
+                  contains: searchFilter,
                 },
               },
               {
                 property: "Description",
                 rich_text: {
-                  contains: searchQuery,
+                  contains: searchFilter,
                 },
               },
               {
                 property: "Role",
                 rich_text: {
-                  contains: searchQuery,
+                  contains: searchFilter,
+                },
+              },
+              {
+                property: "Location",
+                rich_text: {
+                  contains: searchFilter,
                 },
               },
             ],
+          },
+          {
+            or: programFilters,
           },
         ],
       },
@@ -114,7 +157,7 @@ export default async function fetchEvents(searchQuery = "", weekly = false) {
             let location = "Location TBD";
             let description = "";
             let rsvpLink = "RSVP TBD";
-            let picture = "/images/icons/notionDefaultImage.jpeg"; // Default Event Image, can be a link or a local file
+            let picture = "/assets/images/eventDefaultImage.avif"; // Default Event Image, can be a link or a local file
             let program = "General";
 
             // Check and extract the properties from Notion
