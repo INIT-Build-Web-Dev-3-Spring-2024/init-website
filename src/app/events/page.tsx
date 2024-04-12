@@ -1,26 +1,57 @@
-import EventCard from "@/components/EventCard";
-import fetchEvents from "../lib/fetchEvents";
-import SearchInput from "@/components/Search";
+import EventCard from '@/components/EventCard'
+import { AnimatedTitle, Title } from '@/components/Title'
+import fetchEvents from '../lib/fetchEvents'
+import InputAndFilters from '@/components/InputAndFilters'
+import ProgramSelector from './ProgramSelector'
 
-export default async function page({ searchParams }: { searchParams?: { query?: string } }) {
-  const query = searchParams?.query || "";
-  const events = await fetchEvents(query, true);
+export interface eventSearchProperties {
+  q?: string
+  Program?: string
+  Location?: string
+  program?: string
+}
+
+interface eventsSearchParams {
+  searchParams: eventSearchProperties
+}
+
+export default async function page({ searchParams }: eventsSearchParams) {
+  const events = await fetchEvents(searchParams, true)
 
   return (
-    <main className="mx-auto min-h-screen max-w-7xl px-5 sm:px-16 py-12 bg-opacity-95">
-      <div className="ordered mb-4 flex flex-col items-center justify-between">
-        <h1 className="text-4xl font-bold mb-3">Upcoming events</h1>
-        <div className="flex w-full flex-col items-center space-y-4">
-          <SearchInput searchType="events"></SearchInput>
+    <div className="mx-auto min-h-screen max-w-7xl px-5 sm:px-16 py-12 bg-opacity-95">
+      <header>
+        <Title>
+          Discover and Join Our <br />
+          Upcoming
+          <AnimatedTitle> Events</AnimatedTitle>
+        </Title>
+      </header>
+
+      <div className="w-4/5 mx-auto my-10">
+        <InputAndFilters
+          name="q"
+          placeholder="Search Events"
+          filters={[
+            {
+              name: 'Location',
+              options: ['PG6', 'GC', 'CASE'],
+            },
+          ]}
+        />
+      </div>
+
+      <ProgramSelector />
+
+      <div className="mx-auto">
+        <div className="grid gap-6 mx-auto">
+          {events && events.length === 0 ? (
+            <p className="text-3xl font-extrabold flex relative justify-center">There are currently no events for this selection</p>
+          ) : (
+            events && events.map((event) => <EventCard key={event.id} {...event} />)
+          )}
         </div>
       </div>
-      <div className="mx-auto mt-8">
-        <div className="grid gap-6 mx-auto mt-8">
-          {events?.map((event) => (
-            <EventCard key={event.id} {...event}></EventCard>
-          ))}
-        </div>
-      </div>
-    </main>
-  );
+    </div>
+  )
 }

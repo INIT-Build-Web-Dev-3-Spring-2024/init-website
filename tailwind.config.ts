@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import resolveConfig from "tailwindcss/resolveConfig";
 
 const config = {
   content: [
@@ -47,4 +48,13 @@ const config = {
   },
   plugins: [],
 };
+
+export const twConfig = resolveConfig(config);
+
+export function getProgramColor(programName: string) {
+  return twConfig.theme.colors.program[
+    programName.toLowerCase() as keyof typeof twConfig.theme.colors.program
+  ];
+}
+
 export default config;
