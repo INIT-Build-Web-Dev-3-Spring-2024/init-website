@@ -1,6 +1,6 @@
 'use client'
 
-import InitLogo from '@/images/logo.svg'
+import InitLogo from '@/images/icons/logo.svg'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'

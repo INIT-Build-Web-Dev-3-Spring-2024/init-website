@@ -20,14 +20,14 @@ export interface Event {
 }
 
 const color = {
-  build: "text-program-build",
-  discover: "text-program-discover",
-  explore: "text-program-explore",
-  ingite: "text-program-ignite",
-  hack: "text-program-hack",
-  launch: "text-program-launch",
-  reach: "text-program-reach",
-  default: "text-primary-yellow",
+  build: 'text-program-build',
+  discover: 'text-program-discover',
+  explore: 'text-program-explore',
+  ingite: 'text-program-ignite',
+  hack: 'text-program-hack',
+  launch: 'text-program-launch',
+  reach: 'text-program-reach',
+  default: 'text-primary-yellow',
 };
 
 function displayCountdownUntilDateTime(date: string, time: string) {
