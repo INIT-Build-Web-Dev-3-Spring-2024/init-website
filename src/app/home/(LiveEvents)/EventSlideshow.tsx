@@ -43,7 +43,7 @@ const EventSlideshow = (props: LiveEventProps) => {
         </div>
 
         <Link
-          href={"https://google.com"}
+          href={props.currentEvent.rsvpLink}
           className="flex justify-between items-center text-black bg-white rounded-2xl p-2 w-52 hover:bg-gray-200"
         >
           <Text className="pl-1">More Info</Text>
