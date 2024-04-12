@@ -18,10 +18,7 @@ const EventSlideshow = (props: LiveEventProps) => {
     <div className="relative grid grid-cols-7 w-4/5 h-[350px] mx-auto rounded-lg p-10 overflow-hidden max-sm:h-fit max-sm:pr-0 max-sm:pb-0">
       <div className="absolute h-full w-full -z-10 bg-black/40">
         <Image
-          src={
-            props.currentEvent.picture ||
-            "/images/icons/notionDefaultImage.jpeg"
-          }
+          src={"/images/icons/notionDefaultImage.jpeg"}
           alt="event background image"
           className="mix-blend-overlay object-cover"
           priority
