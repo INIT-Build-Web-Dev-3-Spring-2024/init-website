@@ -1,6 +1,6 @@
 "use client";
 
-import useAutoQueryString from "@/hooks/useAutoQueryString";
+import useAutoQueryString, { SingleVal } from "@/hooks/useAutoQueryString";
 import { Fragment } from "react";
 import { IoIosSearch } from "react-icons/io";
 import DropDownMenu, { DropDownMenuProps } from "./DropDownMenu";
@@ -16,7 +16,7 @@ interface InputAndFiltersProps {
 export default function InputAndFilters(props: InputAndFiltersProps) {
   const { placeholder = "search", name, filters } = props;
   const { refresh } = useRouter();
-  const [input, setInput] = useAutoQueryString(name);
+  const [input, setInput] = useAutoQueryString(name) as SingleVal;
 
   return (
     <div className="relative md:flex flex-row items-center justify-center gap-2 border border-secondary-gray py-3 px-7 rounded-xl">

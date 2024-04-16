@@ -31,13 +31,13 @@ const HoverEffect = ({ children, className }: HoverEffectProps) => {
     };
 
     if (hoverElement) {
-            hoverElement.addEventListener('mousemove', handleMouseMove as EventListener);
+            hoverElement.addEventListener('mouseenter', handleMouseMove as unknown as EventListener);
             hoverElement.addEventListener('mouseleave', handleMouseLeave as EventListener);
     }
 
     return () => {
         if (hoverElement) {
-            hoverElement.removeEventListener('mousemove', handleMouseMove as EventListener);
+            hoverElement.removeEventListener('mousemove', handleMouseMove as unknown as EventListener);
             hoverElement.removeEventListener('mouseleave', handleMouseLeave as EventListener);
         }
     };
