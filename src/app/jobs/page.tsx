@@ -5,6 +5,7 @@ import PositionsFilter from "./PositionsFilter";
 import { twMerge } from "tailwind-merge";
 import Image from "next/image";
 import { Job } from "./JobInfo";
+import { Suspense } from "react";
 
 interface PageProps {
   searchParams?: {
@@ -130,27 +131,31 @@ export default function page({ searchParams }: PageProps) {
             <br /> for you
           </Title>
 
-          <PositionsFilter positions={availablePositions} />
+          <Suspense>
+            <PositionsFilter positions={availablePositions} />
+          </Suspense>
         </div>
 
         <div className="mx-auto w-[70%]">
-          <InputAndFilters
-            placeholder="Search by name or type"
-            filters={[
-              {
-                name: "Location",
-                options: ["Seattle", "Arlington", "Chicago"],
-              },
-              {
-                name: "Type",
-                options: ["Full Time", "Part Time", "Internship"],
-              },
-              {
-                name: "Model",
-                options: ["In person", "Hybrid", "Remote"],
-              },
-            ]}
-          />
+          <Suspense>
+            <InputAndFilters
+              placeholder="Search by name or type"
+              filters={[
+                {
+                  name: "Location",
+                  options: ["Seattle", "Arlington", "Chicago"],
+                },
+                {
+                  name: "Type",
+                  options: ["Full Time", "Part Time", "Internship"],
+                },
+                {
+                  name: "Model",
+                  options: ["In person", "Hybrid", "Remote"],
+                },
+              ]}
+            />
+          </Suspense>
         </div>
       </header>
       <section>

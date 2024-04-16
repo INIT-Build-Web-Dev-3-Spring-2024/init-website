@@ -9,6 +9,9 @@ type Options = Partial<{
   debounce: number;
 }>;
 
+export type SingleVal = [string, (val: string) => void];
+export type MultiVal = [Set<string>, (val: string) => void];
+
 export default function useAutoQueryString(
   name: string = "q",
   options?: Options
