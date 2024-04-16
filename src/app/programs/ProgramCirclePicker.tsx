@@ -1,87 +1,102 @@
-'use client'
+"use client";
 
-import InitLogo from '@/components/InitLogo'
-import SubTitle from '@/components/SubTitle'
-import { Title } from '@/components/Title'
-import { useLocalStorage } from '@/hooks/useLocalStorage'
-import { useEffect, useRef, useState } from 'react'
-import { twMerge } from 'tailwind-merge'
-import tailwindConfig from '@/root/tailwind.config'
-import resolveConfig from 'tailwindcss/resolveConfig'
+import InitLogo from "@/components/InitLogo";
+import SubTitle from "@/components/SubTitle";
+import { Title } from "@/components/Title";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useEffect, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
+import tailwindConfig from "@/root/tailwind.config";
+import resolveConfig from "tailwindcss/resolveConfig";
 
-const twConfig = resolveConfig(tailwindConfig)
+const twConfig = resolveConfig(tailwindConfig);
 
 const programs = [
   {
     id: 1,
-    name: 'Build',
+    name: "Build",
   },
   {
     id: 2,
-    name: 'Ignite',
+    name: "Ignite",
   },
   {
     id: 3,
-    name: 'Uplift',
+    name: "Uplift",
   },
   {
     id: 4,
-    name: 'Reach',
+    name: "Reach",
   },
   {
     id: 5,
-    name: 'Hack',
+    name: "Hack",
   },
   {
     id: 6,
-    name: 'Explore',
+    name: "Explore",
   },
-]
+];
+
+function getRandomProgam() {
+  const randomProgIndex = Math.floor(Math.random() * programs.length);
+  return programs[randomProgIndex].name;
+}
 
 const ProgramCirclePicker: React.FC = () => {
-  const [currentView, setCurrentView] = useLocalStorage('view')
-  const [activeProgramIndex, setActiveProgramIndex] = useState(0)
+  const [currentView, setCurrentView] = useLocalStorage(
+    "view",
+    getRandomProgam()
+  );
+  const [activeProgramIndex, setActiveProgramIndex] = useState(0);
 
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setActiveProgramIndex(programs.findIndex(({ name }) => currentView === name))
-  }, [currentView])
+    setActiveProgramIndex(
+      programs.findIndex(({ name }) => currentView === name)
+    );
+  }, [currentView]);
 
   const handleProgramClick = (name: string) => {
-    setCurrentView(name)
+    setCurrentView(name);
 
     window.setTimeout(() => {
       if (containerRef.current) {
         window.scrollTo({
           top: containerRef.current.scrollHeight + 150,
-          behavior: 'smooth',
-        })
+          behavior: "smooth",
+        });
       }
-    }, 600)
-  }
+    }, 600);
+  };
 
   function getPosition(index: number) {
-    const angle = (((index - activeProgramIndex + 3) * 360) / programs.length) * (Math.PI / 180)
-    const radius = 40
-    const center = 50
+    const angle =
+      (((index - activeProgramIndex + 3) * 360) / programs.length) *
+      (Math.PI / 180);
+    const radius = 40;
+    const center = 50;
 
-    const left = center + radius * Math.cos(angle)
-    const top = center + radius * Math.sin(angle)
+    const left = center + radius * Math.cos(angle);
+    const top = center + radius * Math.sin(angle);
 
     return {
       left: `${left.toFixed(2)}%`,
       top: `${top.toFixed(2)}%`,
-    }
+    };
   }
 
   function getColor(program: string) {
-    const programName = program as keyof typeof twConfig.theme.colors.program // so typescript can stop
-    return twConfig.theme.colors.program[programName]
+    const programName = program as keyof typeof twConfig.theme.colors.program; // so typescript can stop
+    return twConfig.theme.colors.program[programName];
   }
 
   return (
-    <div className="relative flex items-center justify-center w-[90%] h-[70vh] mx-auto mt-5" ref={containerRef}>
+    <div
+      className="relative flex items-center justify-center w-[90%] h-[70vh] mx-auto mt-5"
+      ref={containerRef}
+    >
       <Title className="max-sm:text-4xl">Programs</Title>
 
       <div className="absolute top-0 right-0 w-full h-full">
@@ -91,8 +106,8 @@ const ProgramCirclePicker: React.FC = () => {
             style={getPosition(index)}
             onClick={() => handleProgramClick(name)}
             className={twMerge(
-              'absolute cursor-pointer transition-all duration-500 ease-in-out -translate-x-1/2 -translate-y-1/2',
-              activeProgramIndex === index ? 'z-10' : 'z-0'
+              "absolute cursor-pointer transition-all duration-500 ease-in-out -translate-x-1/2 -translate-y-1/2",
+              activeProgramIndex === index ? "z-10" : "z-0"
             )}
           >
             <svg
@@ -141,14 +156,16 @@ const ProgramCirclePicker: React.FC = () => {
             <span className="flex gap-2 justify-center items-center mt-2">
               <InitLogo className="w-9" />
               <SubTitle>
-                <span style={{ color: getColor(name.toLowerCase()) }}>{name}</span>
+                <span style={{ color: getColor(name.toLowerCase()) }}>
+                  {name}
+                </span>
               </SubTitle>
             </span>
           </div>
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProgramCirclePicker
+export default ProgramCirclePicker;

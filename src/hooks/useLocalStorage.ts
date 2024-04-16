@@ -1,14 +1,8 @@
 "use client";
 
-import {
-  ReactNode,
-  createContext,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { useCallback, useEffect, useState } from "react";
 
-export function useLocalStorage(key: string) {
+export function useLocalStorage(key: string, fallback: string = "") {
   const [value, setValue] = useState<string | null>(null);
 
   const handleStorageChange = useCallback(() => {
@@ -19,7 +13,11 @@ export function useLocalStorage(key: string) {
     window.addEventListener("storage", handleStorageChange);
 
     // make sure that the local storage get ran on load
-    window.dispatchEvent(new Event("storage"));
+    if (!window.localStorage.getItem(key)) {
+      modifyLocalStorage(fallback);
+    } else {
+      window.dispatchEvent(new Event("storage"));
+    }
 
     return () => {
       window.removeEventListener("storage", handleStorageChange);
