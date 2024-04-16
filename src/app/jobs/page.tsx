@@ -122,9 +122,10 @@ export default function page({ searchParams }: PageProps) {
         <div className="relative py-20 mb-10 flex flex-col gap-10">
           <Image
             alt="background image"
-            className="object-cover -z-10 brightness-50"
+            className="object-cover -z-10 opacity-20"
             src="/images/jobs/bg-image.png"
             fill
+            priority
           />
           <Title>
             <AnimatedTitle>Opportunities</AnimatedTitle>
